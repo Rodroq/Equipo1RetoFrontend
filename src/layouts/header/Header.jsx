@@ -3,13 +3,16 @@ import "./Header.css";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navegar = useNavigate();
+
   return (
     <Navbar expand="lg" bg="white" shadow="sm" className="border-bottom">
       <Container>
         {/* LOGO */}
-        <Navbar.Brand href="#" className="fw-bold">
+        <Navbar.Brand href="/" className="fw-bold">
           Torneo
         </Navbar.Brand>
 
@@ -20,19 +23,29 @@ function Header() {
         <Navbar.Collapse id="navbar-nav">
           <Nav className="mx-auto">
             <Nav.Item>
-              <Nav.Link href="#" className="fw-semibold text-dark link-hover">
+              <Nav.Link href="/torneo" className="fw-semibold text-dark link-hover">
                 Torneo
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#" className="fw-semibold text-dark link-hover">
+              <Nav.Link href="/equipos" className="fw-semibold text-dark link-hover">
                 Equipos
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/retos" className="fw-semibold text-dark link-hover">
+                Retos
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/publicaciones" className="fw-semibold text-dark link-hover">
+                Publicaciones
               </Nav.Link>
             </Nav.Item>
           </Nav>
 
           {/* BOTÓN LOGIN */}
-          <Button variant="outline-primary">Login</Button>
+          <Button onClick={() => { navegar('/login') }} variant="outline-primary">Login</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
