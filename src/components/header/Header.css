@@ -1,0 +1,6 @@
+.link-hover {
+    transition: color 0.3s ease-in-out;
+}
+.link-hover:hover {
+    color: #007bff !important;
+}
