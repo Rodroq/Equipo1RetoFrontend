@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from "react-router-dom";
+import logo from '../../assets/logo_sede_torrelavega.png'; // Importa la imagen del logo
 
 function Header() {
   const navegar = useNavigate();
@@ -13,7 +14,8 @@ function Header() {
       <Container>
         {/* LOGO */}
         <Navbar.Brand href="/" className="fw-bold">
-          Torneo
+          <img src={logo} alt="Logo" style={{ height: '40px', marginRight: '10px' }} />
+          Liga Solidaria FP
         </Navbar.Brand>
 
         {/* BOTÓN MENU RESPONSIVO */}
