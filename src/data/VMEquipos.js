@@ -1,5 +1,5 @@
-{
-  "equipos": [
+const vmEquipos = {
+  equipos: [
     {
       "id": 1,
       "nombre": "Desguace FC",
@@ -1106,3 +1106,5 @@
     }
   ]
 }
+
+export default vmEquipos;
