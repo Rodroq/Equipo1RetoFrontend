@@ -1,35 +1,43 @@
+import { Container, Row, Col, Nav } from 'react-bootstrap';
+
 function Footer() {
   return (
-    <div className="container">
+    <Container>
       <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div className="col-md-4 d-flex align-items-center">
-          <span className="mb-3 mb-md-0 text-body-secondary">&copy; IES Miguel Herrero, 2025</span>
-        </div>
+        <Row className="w-100">
+          {/* Columna con el texto copyright */}
+          <Col md={4} className="d-flex align-items-center">
+            <span className="mb-3 mb-md-0 text-body-secondary">&copy; IES Miguel Herrero, 2025</span>
+          </Col>
 
-        <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-          <li className="ms-3">
-            <a className="text-body-secondary" href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-              Twitter
-            </a>
-          </li>
-          <li className="ms-3">
-            <a className="text-body-secondary" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-          </li>
-          <li className="ms-3">
-            <a className="text-body-secondary" href="https://www.twitch.tv/" target="_blank" rel="noopener noreferrer">
-              Twitch
-            </a>
-          </li>
-          <li className="ms-3">
-            <a className="text-body-secondary" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-              Youtube
-            </a>
-          </li>
-        </ul>
+          {/* Columna con los enlaces de redes sociales */}
+          <Col md={8} className="d-flex justify-content-end">
+            <Nav className="list-unstyled d-flex">
+              <Nav.Item>
+                <Nav.Link href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="text-body-secondary ms-3">
+                  Twitter
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="text-body-secondary ms-3">
+                  Instagram
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="https://www.twitch.tv/" target="_blank" rel="noopener noreferrer" className="text-body-secondary ms-3">
+                  Twitch
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" className="text-body-secondary ms-3">
+                  Youtube
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Col>
+        </Row>
       </footer>
-    </div>
+    </Container>
   );
 }
 
