@@ -1,53 +1,41 @@
+import { Button } from "react-bootstrap";
 import "./Header.css";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 function Header() {
   return (
-    <nav className="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
-      <div className="container">
+    <Navbar expand="lg" bg="white" shadow="sm" className="border-bottom">
+      <Container>
         {/* LOGO */}
-        <a className="navbar-brand fw-bold" href="#">
+        <Navbar.Brand href="#" className="fw-bold">
           Torneo
-        </a>
+        </Navbar.Brand>
 
         {/* BOTÓN MENU RESPONSIVO */}
-        <button
-          className="navbar-toggler border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <Navbar.Toggle aria-controls="navbar-nav" />
 
         {/* NAVEGACIÓN */}
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mx-auto">
-            <li className="nav-item">
-              <a className="nav-link fw-semibold text-dark link-hover" href="#">
+        <Navbar.Collapse id="navbar-nav">
+          <Nav className="mx-auto">
+            <Nav.Item>
+              <Nav.Link href="#" className="fw-semibold text-dark link-hover">
                 Torneo
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link fw-semibold text-dark link-hover" href="#">
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="#" className="fw-semibold text-dark link-hover">
                 Equipos
-              </a>
-            </li>
-          </ul>
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
 
           {/* BOTÓN LOGIN */}
-          <div className="d-flex">
-            <button type="button" className="btn btn-outline-primary">
-              Login
-            </button>
-          </div>
-        </div>
-      </div>
-
-      
-    </nav>
+          <Button variant="outline-primary">Login</Button>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
