@@ -1,8 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Placeholder from 'react-bootstrap/Placeholder';
-import { Navigate, useNavigate } from 'react-router-dom';
-import DetallesEquipoPage from '../pages/DetallesEquipoPage';
+import { useNavigate } from 'react-router-dom';
 
 function Tarjeta({ tituloTarjeta, textoTarjeta, imagenTarjeta, textoBoton, nombreEntidad, datosObjeto }) {
     const navegar = useNavigate();
