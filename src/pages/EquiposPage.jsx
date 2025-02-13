@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Tarjeta from "../components/Tarjeta";
-import $negocio from "../core/negocio";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
+import { AppContext } from "../contexts/AppProvider";
 
 // Cambiará según usuario para CRUD
 function EquiposPage() {
     const [equipos, setEquipos] = useState([]);
 
+    const { negocio } = useContext(AppContext);
+
     useEffect(() => {
         async function fetchEquipos() {
-            const equiposData = await $negocio.obtenerEquipos();
+            const equiposData = await negocio.obtenerEquipos();
             setEquipos(equiposData);
         }
         fetchEquipos();
