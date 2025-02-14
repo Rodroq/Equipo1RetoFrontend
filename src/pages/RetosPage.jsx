@@ -1,4 +1,4 @@
-import { Card, Container, Row } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import Carrusel from "../components/Carrusel";
 import Tarjeta from "../components/Tarjeta";
 import { useContext, useEffect, useState } from "react";
@@ -11,38 +11,35 @@ function RetosPage() {
 
     const { negocio } = useContext(AppContext);
 
-    function generarRetosAleatorios() {
-        let tarjetasAleatorias = [...retos];
-        tarjetasAleatorias.sort(function () { return Math.random() - 0.5 });
-        setRetosAleatorios(tarjetasAleatorias.slice(0, 5));
-    }
-
-    function cargarImagenesCarrusel() {
-        let imagenes = [];
-        if (retosAleatorios) {
-            retosAleatorios.forEach(reto => {
-                imagenes.push([reto.imagen, reto.nombre]);
-            });
-        }
-
-        setImagenesCarrusel(imagenes);
-    }
-
     useEffect(() => {
         async function fetchRetos() {
             const retosData = await negocio.obtenerRetos();
             setRetos(retosData);
         }
         fetchRetos();
-    }, []);
+    }, [negocio]);
 
     useEffect(() => {
-        generarRetosAleatorios();
+        if (retos.length > 0) {
+            generarRetosAleatorios();
+        }
     }, [retos]);
 
     useEffect(() => {
-        cargarImagenesCarrusel();
+        if (retosAleatorios.length > 0) {
+            cargarImagenesCarrusel();
+        }
     }, [retosAleatorios]);
+
+    function generarRetosAleatorios() {
+        const tarjetasAleatorias = [...retos].sort(() => Math.random() - 0.5);
+        setRetosAleatorios(tarjetasAleatorias.slice(0, 5));
+    }
+
+    function cargarImagenesCarrusel() {
+        const imagenes = retosAleatorios.map(reto => [reto.imagen, reto.nombre]);
+        setImagenesCarrusel(imagenes);
+    }
 
     return (
         <>
@@ -58,13 +55,20 @@ function RetosPage() {
                         <div className="row justify-content-center">
                             {retos.map((reto) => (
                                 <div className="col-lg-3 col-md-4 mb-4" key={reto.id}>
-                                    <Tarjeta tituloTarjeta={reto.nombre} textoTarjeta={reto.descripcion} imagenTarjeta={reto.imagen} textoBoton={'Ver reto'} nombreEntidad={'retos'} datosObjeto={reto} />
+                                    <Tarjeta
+                                        tituloTarjeta={reto.nombre}
+                                        textoTarjeta={reto.descripcion}
+                                        imagenTarjeta={reto.imagen}
+                                        textoBoton={'Ver reto'}
+                                        nombreEntidad={'retos'}
+                                        datosObjeto={reto}
+                                    />
                                 </div>
                             ))}
                         </div>
                     </Card.Body>
                 </Card>
-            </Container >
+            </Container>
         </>
     );
 }
