@@ -1,6 +1,9 @@
 import { Form, Row, Col, Button } from "react-bootstrap";
+import { useId } from "react";
 
 function JugadoresForm({ formData, handleChange, eliminarJugador, agregarJugador, limiteJugadoresNormales, onValidation }) {
+    const id = useId();
+
     const handleBlur = () => {
         const isValid = !formData.jugadores.some(jugador =>
             jugador.nombre.trim() === "" ||
@@ -14,7 +17,7 @@ function JugadoresForm({ formData, handleChange, eliminarJugador, agregarJugador
     return (
         <div className="mb-4">
             {formData.jugadores.map((jugador, index) => (
-                <div key={index}>
+                <div key={`${id}-${index}`}>
                     <div className="d-flex">
                         <h3>Jugador {index + 2}</h3>
                         {formData.jugadores.length > 1 && (
@@ -33,7 +36,7 @@ function JugadoresForm({ formData, handleChange, eliminarJugador, agregarJugador
                         )}
                     </div>
                     <Row>
-                        <Form.Group as={Col} controlId={`formJugadorNombre-${index}`}>
+                        <Form.Group as={Col} controlId={`formJugadorNombre-${id}-${index}`}>
                             <Form.Label>Nombre del Jugador*</Form.Label>
                             <Form.Control
                                 type="text"
@@ -50,7 +53,7 @@ function JugadoresForm({ formData, handleChange, eliminarJugador, agregarJugador
                                 Ingrese el nombre del jugador.
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group as={Col} controlId={`formJugadorApellido1-${index}`}>
+                        <Form.Group as={Col} controlId={`formJugadorApellido1-${id}-${index}`}>
                             <Form.Label>Primer apellido*</Form.Label>
                             <Form.Control
                                 type="text"
@@ -68,7 +71,7 @@ function JugadoresForm({ formData, handleChange, eliminarJugador, agregarJugador
                             </Form.Control.Feedback>
                         </Form.Group>
                     </Row>
-                    <Form.Group controlId={`formJugadorApellido2-${index}`}>
+                    <Form.Group controlId={`formJugadorApellido2-${id}-${index}`}>
                         <Form.Label>Segundo apellido*</Form.Label>
                         <Form.Control
                             type="text"
@@ -85,7 +88,7 @@ function JugadoresForm({ formData, handleChange, eliminarJugador, agregarJugador
                             Ingrese el segundo apellido.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group controlId={`formJugadorCiclo-${index}`}>
+                    <Form.Group controlId={`formJugadorCiclo-${id}-${index}`}>
                         <Form.Label>Ciclo formativo*</Form.Label>
                         <Form.Select
                             required

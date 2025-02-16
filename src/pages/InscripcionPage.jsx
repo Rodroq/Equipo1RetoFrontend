@@ -50,6 +50,10 @@ function InscripcionPage() {
             }
             return newFormData;
         });
+
+        if (validated) {
+            validarPestana()
+        }
     };
 
     function agregarJugador() {
@@ -106,16 +110,15 @@ function InscripcionPage() {
         return newValidez.every(Boolean);
     }
 
-    function handleSubmit(event) {
-        const form = event.currentTarget;
+    function handleSubmit() {
         event.preventDefault();
         event.stopPropagation();
-        validarPestana();
+        const esValido = validarPestana();
 
-        const esValido = setValidated(true);
+        setValidated(true);
 
         if (esValido) {
-            // Aquí enviamos el formulario
+            // Aquí enviamos el formulario, primero mostrando un modal
             console.log("Formulario válido y enviado");
         } else {
             console.log("Formulario inválido");
@@ -215,7 +218,15 @@ function InscripcionPage() {
 
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         {paso === 1 && (
-                            <EquipoForm formData={formData} handleChange={handleChange} />
+                            <EquipoForm formData={formData} handleChange={handleChange}
+                                onValidation={(isValid) => {
+                                    setValidez(prev => {
+                                        const newValidez = [...prev];
+                                        newValidez[0] = isValid;
+                                        return newValidez;
+                                    });
+                                }}
+                            />
                         )}
 
                         {paso === 2 && (
