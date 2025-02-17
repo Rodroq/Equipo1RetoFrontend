@@ -1,31 +1,58 @@
-import { Editor } from "@tinymce/tinymce-react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../contexts/AppProvider";
+import { Card, Container } from "react-bootstrap";
+import Carrusel from "../components/Carrusel";
+import Tarjeta from "../components/Tarjeta";
 
 function PublicacionesPage() {
-    return (
-        <>
-            <h1>PublicacionesPage</h1>
-            <Editor apiKey="o57jd9b86kr8ia7ehmzrmx3b4zx9k8amj9fj3j8enj2gnf48"
-                init={{
-                    plugins: [
-                      // Core editing features
-                      'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-                      // Your account includes a free trial of TinyMCE premium features
-                      // Try the most popular premium features until Mar 3, 2025:
-                      'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
-                    ],
-                    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                    tinycomments_mode: 'embedded',
-                    tinycomments_author: 'Author name',
-                    mergetags_list: [
-                      { value: 'First.Name', title: 'First Name' },
-                      { value: 'Email', title: 'Email' },
-                    ],
-                    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-                  }}
-                  initialValue="Welcome to TinyMCE!"
-            />
-        </>
-    );
+  const [publicaciones, setPublicaciones] = useState([]);
+  const [imagenesCarrusel, setImagenesCarrusel] = useState([]);
+
+  const { negocio } = useContext(AppContext);
+
+  useEffect(() => {
+    async function fetchRetos() {
+      const publicacionesData = await negocio.obtenerPublicaciones();
+      setPublicaciones(publicacionesData);
+    }
+    fetchRetos();
+  }, [negocio]);
+
+  function cargarImagenesCarrusel() {
+    const imagenes = publicaciones.map(publicacion => [publicacion.imagen, publicacion.nombre]);
+    setImagenesCarrusel(imagenes);
+  }
+
+  return (
+    <>
+      <h1>PublicacionesPage</h1>
+      <Carrusel imagenes={imagenesCarrusel} />
+      <Container className="mt-5">
+        <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
+          <Card.Body>
+            <h1>Publicaciones</h1>
+            <p>En esta página encontrarás un resumen de las publicaciones más recientes e interesantes. Cada publicación informa de las últimas novedades del torneo solidario. ¡Explora las publicaciones y acepta el desafío!</p>
+            <br />
+            <br />
+            <div className="row justify-content-center">
+              {publicaciones.map((publicacion) => (
+                <div className="col-lg-3 col-md-4 mb-4" key={publicacion.id}>
+                  <Tarjeta
+                    tituloTarjeta={publicacion.nombre}
+                    textoTarjeta={publicacion.descripcion}
+                    imagenTarjeta={publicacion.imagen}
+                    textoBoton={'Ver publicación'}
+                    nombreEntidad={'publicaciones'}
+                    datosObjeto={publicacion}
+                  />
+                </div>
+              ))}
+            </div>
+          </Card.Body>
+        </Card>
+      </Container>
+    </>
+  );
 }
 
 export default PublicacionesPage;
