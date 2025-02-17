@@ -1,0 +1,41 @@
+.tabla-container {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.tabla-header {
+    background-color: var(--bs-primary);
+}
+
+.tabla-row {
+    transition: all 0.3s ease;
+}
+
+.tabla-row:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+    transform: translateX(5px);
+}
+
+.hover-effect {
+    transition: all 0.2s ease-in-out;
+}
+
+.hover-effect:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.02);
+}
+
+.textoTruncado {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+Button {
+    transition: transform 0.2s ease;
+}
+
+Button:hover {
+    transform: scale(1.05);
+}
