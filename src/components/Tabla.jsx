@@ -34,7 +34,7 @@ function Tabla({ informacion, handleVer, handleEditar, handleBorrar }) {
 
     return (
         <Container>
-            {/* Cabeceras */}
+            {/* Titulos */}
             <Row className="tabla-header py-3 bg-primary text-white rounded-top">
                 {titulos.map((titulo, index) => (
                     <Col key={index} className="text-capitalize fw-bold">
@@ -57,13 +57,13 @@ function Tabla({ informacion, handleVer, handleEditar, handleBorrar }) {
                     ))}
                     <Col className="text-center">
                         <Button variant="primary" size="m" className="mx-1" onClick={handleVer}>
-                            <i className="fas fa-eye"></i> Ver
+                            <i className="fas fa-eye">Ver</i>
                         </Button>
                         <Button variant="warning" size="m" className="mx-1" onClick={handleEditar}>
-                            <i className="fas fa-edit"></i> Editar
+                            <i className="fas fa-edit">Editar</i>
                         </Button>
                         <Button variant="danger" size="m" className="mx-1" onClick={handleBorrar}>
-                            <i className="fas fa-trash"></i> Borrar
+                            <i className="fas fa-trash">Borrar</i>
                         </Button>
                     </Col>
                 </Row>
