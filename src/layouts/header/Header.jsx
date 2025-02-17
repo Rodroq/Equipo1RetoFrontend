@@ -46,7 +46,7 @@ function Header() {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="/inscripcion" className="fw-semibold text-dark link-hover">
-                Inscripcion
+                Inscripción
               </Nav.Link>
             </Nav.Item>
           </Nav>
