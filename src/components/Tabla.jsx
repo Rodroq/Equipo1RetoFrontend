@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import { Button, Image } from 'react-bootstrap';
 import './Tabla.css';
 
-function Tabla({ informacion }) {
+function Tabla({ informacion, handleVer, handleEditar, handleBorrar }) {
     // Modelo para pasar informacion:
     // informacion = [
     //     {
@@ -46,8 +46,8 @@ function Tabla({ informacion }) {
 
             {/* Filas de datos */}
             {informacion.map((item, index) => (
-                <Row 
-                    key={index} 
+                <Row
+                    key={index}
                     className="tabla-row py-3 border-bottom align-items-center hover-effect"
                 >
                     {titulos.map((titulo, colIndex) => (
@@ -56,13 +56,13 @@ function Tabla({ informacion }) {
                         </Col>
                     ))}
                     <Col className="text-center">
-                        <Button variant="primary" size="m" className="mx-1">
+                        <Button variant="primary" size="m" className="mx-1" onClick={handleVer}>
                             <i className="fas fa-eye"></i> Ver
                         </Button>
-                        <Button variant="warning" size="m" className="mx-1">
+                        <Button variant="warning" size="m" className="mx-1" onClick={handleEditar}>
                             <i className="fas fa-edit"></i> Editar
                         </Button>
-                        <Button variant="danger" size="m" className="mx-1">
+                        <Button variant="danger" size="m" className="mx-1" onClick={handleBorrar}>
                             <i className="fas fa-trash"></i> Borrar
                         </Button>
                     </Col>
