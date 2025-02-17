@@ -13,6 +13,7 @@ import DetallesPublicacionPage from "../pages/DetallesPublicacionPage.jsx";
 import DetallesRetoPage from "../pages/DetallesRetoPage.jsx";
 import DetallesUsuarioPage from "../pages/DetallesUsuarioPage.jsx";
 import InscripcionPage from "../pages/InscripcionPage.jsx";
+import RutaPrivada from "../components/RutaPrivada.jsx";
 
 function AppEnrutador() {
     return (
@@ -28,10 +29,36 @@ function AppEnrutador() {
                     <Route path="publicaciones" element={<PublicacionesPage />} />
                     <Route path="publicaciones/:id" element={<DetallesPublicacionPage />} />
                     <Route path="login" element={<LoginPage />} />
-                    <Route path="usuarios/:id" element={<DetallesUsuarioPage />} />
                     <Route path="jugadores/:id" element={<DetallesJugadorPage />} />
                     <Route path="inscripcion" element={<InscripcionPage />} />
                     <Route path="*" element={<ErrorPage />} />
+
+                    {/* Rutas privadas */}
+                    <Route path="editar/publicaciones" element={
+                        <RutaPrivada></RutaPrivada>
+                    } />
+                    <Route path="editar/publicaciones/:id" element={
+                        <RutaPrivada>{ }</RutaPrivada>
+                    } />
+                    <Route path="editar/imagenes" element={
+                        <RutaPrivada>{ }</RutaPrivada>
+                    } />
+                    <Route path="editar/imagenes/:id" element={
+                        <RutaPrivada>{ }</RutaPrivada>
+                    } />
+                    <Route path="editar/usuarios" element={
+                        <RutaPrivada>{ }</RutaPrivada>
+                    } />
+                    <Route path="editar/usuarios/:id" element={
+                        <RutaPrivada rolesPermitidos={['admin']}><DetallesUsuarioPage /></RutaPrivada>
+                    } />
+                    <Route path="gestion/actas" element={
+                        <RutaPrivada rolesPermitidos={['admin']}><DetallesUsuarioPage /></RutaPrivada>
+                    } />
+                    <Route path="gestion/equipos" element={
+                        <RutaPrivada rolesPermitidos={['admin']}><DetallesUsuarioPage /></RutaPrivada>
+                    } />
+
                 </Route>
             </Routes>
         </BrowserRouter>
