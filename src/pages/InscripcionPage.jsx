@@ -42,11 +42,11 @@ function InscripcionPage() {
 
     function handleClose() {
         setShow(false)
-        console.log('Se ha inscrito al equipo correctamente');
     };
 
-    function handleShow() {
-        setShow(true)
+    function handleConfirm() {
+        setShow(false)
+        console.log('Se ha inscrito al equipo correctamente');
     };
 
     function handleChange(seccion, index, campo, valor) {
@@ -321,7 +321,7 @@ function InscripcionPage() {
                 cancelar='Cancelar'
                 show={show}
                 handleClose={handleClose}
-                handleShow={handleShow}
+                handleConfirm={handleConfirm}
             />
         </>
     );
