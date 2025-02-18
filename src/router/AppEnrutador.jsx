@@ -15,6 +15,8 @@ import DetallesUsuarioPage from "../pages/DetallesUsuarioPage.jsx";
 import InscripcionPage from "../pages/InscripcionPage.jsx";
 import RutaPrivada from "../components/RutaPrivada.jsx";
 import EditarPublicaciones from "../pages/EditarPublicaciones.jsx";
+import EditarImagenesPage from "../pages/EditarImagenesPage.jsx";
+import EditarUsuariosPage from "../pages/EditarUsuariosPage.jsx";
 
 function AppEnrutador() {
     return (
@@ -42,22 +44,22 @@ function AppEnrutador() {
                         <RutaPrivada>{ }</RutaPrivada>
                     } />
                     <Route path="editar/imagenes" element={
-                        <RutaPrivada>{ }</RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['admin']}><EditarImagenesPage /></RutaPrivada>
                     } />
                     <Route path="editar/imagenes/:id" element={
                         <RutaPrivada>{ }</RutaPrivada>
                     } />
                     <Route path="editar/usuarios" element={
-                        <RutaPrivada>{ }</RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['admin']}><EditarUsuariosPage /></RutaPrivada>
                     } />
                     <Route path="editar/usuarios/:id" element={
-                        <RutaPrivada>{ }</RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
                     } />
                     <Route path="gestion/actas" element={
-                        <RutaPrivada>{ }</RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
                     } />
                     <Route path="gestion/equipos" element={
-                        <RutaPrivada>{ }</RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
                     } />
 
                 </Route>
