@@ -7,6 +7,9 @@ function DetallesEquipoPage() {
     const navegar = useNavigate();
 
     if (!state || !state.entidad) {
+
+        
+
         return (
             <Container className="mt-5 text-center">
                 <h2 className="text-danger">Error</h2>
