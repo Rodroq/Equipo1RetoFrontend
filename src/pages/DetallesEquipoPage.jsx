@@ -1,27 +1,59 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card, Table, Button, Container, Row, Col, Image } from "react-bootstrap";
 import Tarjeta from "../components/Tarjeta";
+import { AppContext } from "../contexts/AppProvider";
+import { useContext, useEffect, useState } from "react";
+
 
 function DetallesEquipoPage() {
     const { state } = useLocation();
     const navegar = useNavigate();
+    const { negocio } = useContext(AppContext);
+    const [equipo, setEquipo] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    if (!state || !state.entidad) {
+    useEffect(() => {
+        async function recuperarDatos() {
+            try {
+                if (!state?.entidad) {
+                    // Obtener el ID del equipo de la URL
+                    const id = window.location.pathname.split('/').pop();
+                    const datos = await negocio.getDatos(`equipos/${id}`);
+                    if (!datos) {
+                        setError('No se han encontrado los datos del equipo');
+                        return;
+                    }
+                    setEquipo(datos);
+                } else {
+                    setEquipo(state.entidad);
+                }
+            } catch (err) {
+                setError('Error al cargar los datos del equipo');
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        }
+        recuperarDatos();
+    }, [state, negocio]);
 
-        
-
-        return (
-            <Container className="mt-5 text-center">
-                <h2 className="text-danger">Error</h2>
-                <p>No se han encontrado los datos del equipo.</p>
-                <Button variant="primary" size="lg" onClick={() => navegar('../equipos')}>Volver</Button>
-            </Container>
-        );
+    if (loading) {
+        return <Container className="mt-5 text-center">
+            <h2>Cargando...</h2>
+        </Container>;
     }
 
-    const { nombre, grupo, centro, jugadores } = state.entidad;
+    if (error) {
+        return <Container className="mt-5 text-center">
+            <h2 className="text-danger">Error</h2>
+            <p>{error}</p>
+            <Button variant="primary" size="lg" onClick={() => navegar('../equipos')}>Volver</Button>
+        </Container>;
+    }
 
-    // Ejemplo sin usar el componente tarjeta
+    const { nombre, grupo, centro, jugadores } = equipo;
+
     return (
         <Container className="mt-5">
             <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
