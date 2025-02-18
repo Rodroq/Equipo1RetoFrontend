@@ -51,13 +51,13 @@ function AppEnrutador() {
                         <RutaPrivada>{ }</RutaPrivada>
                     } />
                     <Route path="editar/usuarios/:id" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><DetallesUsuarioPage /></RutaPrivada>
+                        <RutaPrivada>{ }</RutaPrivada>
                     } />
                     <Route path="gestion/actas" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><DetallesUsuarioPage /></RutaPrivada>
+                        <RutaPrivada>{ }</RutaPrivada>
                     } />
                     <Route path="gestion/equipos" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><DetallesUsuarioPage /></RutaPrivada>
+                        <RutaPrivada>{ }</RutaPrivada>
                     } />
 
                 </Route>

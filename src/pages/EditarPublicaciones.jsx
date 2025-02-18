@@ -10,6 +10,9 @@ function EditarPublicaciones() {
         {
             id: 1,
             titulo: 'Nuevo producto tecnológico',
+            titu2lo: 'Nuevo producto tecnológico',
+            titu22lo: 'Nuevo producto tecnológico',
+            titu222lo: 'Nuevo producto tecnológico',
             descripcion: 'Lanzamiento del último smartphone con características innovadoras',
         },
         {
@@ -60,7 +63,7 @@ function EditarPublicaciones() {
     }
 
     function handleEditar(elemento) {
-        navegar(`${elemento.id}`);
+        navegar(`/editar/publicaciones/${elemento.id}`);
     }
 
     function handleBorrar(elemento) {
@@ -81,7 +84,7 @@ function EditarPublicaciones() {
     }
 
     return (
-        <Container className="mt-5">
+        <Container fluid className="mt-5">
             <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                 <Card.Body>
                     <Tabla

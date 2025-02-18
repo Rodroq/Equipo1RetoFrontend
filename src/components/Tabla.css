@@ -1,28 +1,18 @@
 .tabla-container {
+    margin-top: 2rem;
     border-radius: 8px;
     overflow: hidden;
-    margin-top: 2rem;
+    background-color: white;
+    padding: 1rem;
 }
 
 .tabla-header {
-    background-color: var(--bs-primary);
-}
-
-.tabla-row {
-    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    font-weight: bold;
 }
 
 .tabla-row:hover {
-    background-color: rgba(var(--bs-primary-rgb), 0.05);
-    transform: translateX(5px);
-}
-
-.hover-effect {
-    transition: all 0.2s ease-in-out;
-}
-
-.hover-effect:hover {
-    background-color: rgba(var(--bs-primary-rgb), 0.02);
+    background-color: rgba(0, 123, 255, 0.05);
 }
 
 .textoTruncado {
@@ -32,10 +22,28 @@
     max-width: 200px;
 }
 
-Button {
-    transition: transform 0.2s ease;
+/* Estilos para los botones */
+.btn {
+    transition: all 0.2s ease-in-out;
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
 }
 
-Button:hover {
-    transform: scale(1.05);
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.25rem 0.5rem;
+    }
+    
+    td .d-flex {
+        flex-wrap: nowrap;
+    }
 }
