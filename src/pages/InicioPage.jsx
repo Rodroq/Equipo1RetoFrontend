@@ -38,8 +38,8 @@ function InicioPage() {
             <section className="row g-0 mt-4">
                 <h3 className="text-center">Donaciones</h3>
                 <div className="col p-4">
-                    <Card className="text-center border-primary bg-light">
-                        <Card.Body>
+                    <Card className="text-center border-primary bg-light h-100">
+                        <Card.Body className="d-flex flex-column justify-content-center">
                             <Card.Title>Total recaudado</Card.Title>
                             <Card.Text>
                                 1234 Kg de productos de primera necesidad
@@ -54,13 +54,13 @@ function InicioPage() {
                     </Card>
                 </div>
                 <div className="col p-4">
-                    <Card className="text-center border-primary bg-light">
-                        <Card.Body>
+                    <Card className="text-center border-primary bg-light h-100">
+                        <Card.Body className="d-flex flex-column justify-content-center">
                             <Card.Title>¿Quieres donar?</Card.Title>
                             <Card.Text>
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint perspiciatis amet deserunt iste ducimus dolore, sapiente laboriosam quibusdam, quaerat aperiam hic eos enim recusandae optio harum eaque cumque officiis! Sit?
                             </Card.Text>
-                            <Button variant="dark" title="Ver.">Ver</Button>
+                            <Button variant="dark" title="Ver." className="mx-auto">Ver</Button>
                         </Card.Body>
                     </Card>
                 </div>
