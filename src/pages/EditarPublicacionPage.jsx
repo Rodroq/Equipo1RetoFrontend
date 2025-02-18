@@ -4,10 +4,23 @@ import { Form, Button } from "react-bootstrap";
 function EditarPublicacionPage() {
     return (
         <>
-            <h1>PublicacionesPage</h1>
+            <h1>PublicacionPage</h1>
             <Form>
                 <Form.Group controlId="formTitulo" className="mb-3">
                     <Form.Label>Título</Form.Label>
+                    <Form.Control type="text" />
+                </Form.Group>
+                <Form.Check 
+                    type="switch"
+                    id="switch-portada"
+                    label="Habilitar portada"
+                />
+                <Form.Group controlId="formRutaVideo" className="mb-3">
+                    <Form.Label>Ruta de Vídeo</Form.Label>
+                    <Form.Control type="text" />
+                </Form.Group>
+                <Form.Group controlId="formRutaAudio" className="mb-3">
+                    <Form.Label>Ruta de Audio</Form.Label>
                     <Form.Control type="text" />
                 </Form.Group>
                 <Form.Group controlId="formImagen" className="mb-3">
