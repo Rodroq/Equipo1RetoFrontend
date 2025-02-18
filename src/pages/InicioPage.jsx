@@ -60,7 +60,7 @@ function InicioPage() {
                             <Card.Text>
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint perspiciatis amet deserunt iste ducimus dolore, sapiente laboriosam quibusdam, quaerat aperiam hic eos enim recusandae optio harum eaque cumque officiis! Sit?
                             </Card.Text>
-                            <Button variant="dark" title="Ver.">Ver</Button>
+                            <Button variant="dark" title="Ver." className="mx-auto">Ver</Button>
                         </Card.Body>
                     </Card>
                 </div>
