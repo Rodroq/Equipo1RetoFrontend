@@ -12,7 +12,7 @@ function EquiposPage() {
 
     useEffect(() => {
         async function fetchEquipos() {
-            const equiposData = await negocio.obtenerEquipos();
+            const equiposData = await negocio.getDatos('equipos');
             setEquipos(equiposData);
         }
         fetchEquipos();

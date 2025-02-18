@@ -1,161 +1,113 @@
-import vmEquipos from '../data/VMEquipos.js';
-import vmRetos from '../data/VMRetos.js';
-
 const $negocio = (function () {
-    if (!localStorage.getItem('equipos')) {
-        localStorage.setItem('equipos', JSON.stringify(vmEquipos.equipos));
-    }
-    if (!localStorage.getItem('retos')) {
-        localStorage.setItem('retos', JSON.stringify(vmRetos.retos));
-    }
-    let equipos = JSON.parse(localStorage.getItem('equipos'));
-    let retos = JSON.parse(localStorage.getItem('retos'));
+    // URL base de la API
+    const apiUrl = 'http://127.0.0.1:8000';
 
-    function siguienteEquipoId() {
-        let maxId = Math.max(...equipos.map(p => p.id), 0);
-        return maxId + 1;
+    // Variable para almacenar el token de autenticación
+    let authToken = null;
+
+    // Función para actualizar el token almacenado
+    function setAuthToken(nuevoToken) {
+        authToken = nuevoToken;
     }
 
-    function siguienteRetoId() {
-        let maxId = Math.max(...retos.map(p => p.id), 0);
-        return maxId + 1;
+    // Función para obtener la URL base de la API
+    function getApiUrl() {
+        return apiUrl;
     }
 
-    async function obtenerEquipos(filtro = '', inicio = 0, limite) {
-        let filtrados = [...equipos];
-        if (filtro != '') {
-            filtro.toLowerCase();
-            filtrados = filtrados.filter(equipo => {
-                return Object.keys(equipo).some(key => {
-                    return equipo[key] && equipo[key].toString().toLowerCase().includes(filtro);
-                });
-            })
-        }
-        if (inicio > 0) {
-            filtrados = filtrados.slice(inicio);
-        }
-        if (limite !== undefined) {
-            filtrados = filtrados.slice(0, limite);
-        }
-        return filtrados;
-    }
-
-    async function obtenerRetos(filtro = '', inicio = 0, limite) {
-        let filtrados = [...retos];
-        if (filtro != '') {
-            filtro.toLowerCase();
-            filtrados = filtrados.filter(reto => {
-                return Object.keys(reto).some(key => {
-                    return reto[key] && reto[key].toString().toLowerCase().includes(filtro);
-                });
-            })
-        }
-        if (inicio > 0) {
-            filtrados = filtrados.slice(inicio);
-        }
-        if (limite !== undefined) {
-            filtrados = filtrados.slice(0, limite);
-        }
-        return filtrados;
-    }
-
-    async function obtenerEquipo(equipoId) {
-        let index = equipos.findIndex(p => p.id == equipoId);
-        if (index !== -1) {
-            return equipos[index];
-        }
-        return null;
-    }
-
-    async function obtenerReto(retoId) {
-        let index = retos.findIndex(p => p.id == retoId);
-        if (index !== -1) {
-            return retos[index];
-        }
-        return null;
-    }
-
-    async function crearEquipo(objEquipo) {
-        objEquipo.id = siguienteEquipoId();
-
-        equipos.push(objEquipo);
-        localStorage.setItem('equipos', JSON.stringify(equipos));
-    }
-
-    async function crearReto(objReto) {
-        objReto.id = siguienteRetoId();
-
-        retos.push(objReto);
-        localStorage.setItem('retos', JSON.stringify(retos));
-    }
-
-    async function actualizarEquipo(objEquipo) {
-        let index = equipos.findIndex(p => p.id == objEquipo.id);
-        if (index !== -1) {
-            equipos[index] = objEquipo;
-            localStorage.setItem('equipos', JSON.stringify(equipos));
-            return true;
-        }
-        return false;
-    }
-
-    async function actualizarReto(objReto) {
-        let index = retos.findIndex(p => p.id == objReto.id);
-        if (index !== -1) {
-            retos[index] = objReto;
-            localStorage.setItem('retos', JSON.stringify(retos));
-            return true;
-        }
-        return false;
-    }
-
-    function limpiarLocalStorage() {
-        localStorage.removeItem('equipos');
-        localStorage.removeItem('retos');
-    }
-
-    async function eliminarEquipo(equipoId) {
-        let indexEquipo = equipos.findIndex(e => e.equipoId == equipoId);
-
-        if (indexEquipo === -1) {
-            return false;
+    // Función para manejar respuestas y errores de las peticiones
+    async function handleRespuesta(respuesta) {
+        if (!respuesta.ok) {
+            const errorDatos = await respuesta.json();
+            throw new Error(errorDatos.detail || 'Error en la petición');
         }
 
-        equipos.splice(indexEquipo, 1);
-        localStorage.setItem('equipos', JSON.stringify(equipos));
-
-        return true;
+        return await respuesta.json();
     }
 
-    async function eliminarReto(retoId) {
-        let indexReto = retos.findIndex(e => e.retoId == retoId);
+    // Función para peticiones GET
+    async function getDatos(endpoint) {
+        try {
+            const respuesta = await fetch(`${apiUrl}/${endpoint}`, {
+                method: 'GET',
+                headers: {
+                    ...(authToken && { 'Authorization': `Bearer ${authToken}` }),
+                    'Content-Type': 'application/json'
+                }
+            });
 
-        if (indexReto === -1) {
-            return false;
+            return await handleRespuesta(respuesta);
+        } catch (error) {
+            console.error('Error en petición GET:', error);
+            throw error;
         }
-
-        retos.splice(indexReto, 1);
-        localStorage.setItem('retos', JSON.stringify(retos));
-
-        return true;
     }
 
+    // Función para peticiones POST
+    async function postDatos(endpoint, datos) {
+        try {
+            const respuesta = await fetch(`${apiUrl}/${endpoint}`, {
+                method: 'POST',
+                headers: {
+                    ...(authToken && { 'Authorization': `Bearer ${authToken}` }),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            });
+
+            return await handleRespuesta(respuesta);
+        } catch (error) {
+            console.error('Error en petición POST:', error);
+            throw error;
+        }
+    }
+
+    // Función para peticiones PUT
+    async function putDatos(endpoint, datos) {
+        try {
+            const respuesta = await fetch(`${apiUrl}/${endpoint}`, {
+                method: 'PUT',
+                headers: {
+                    ...(authToken && { 'Authorization': `Bearer ${authToken}` }),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            });
+
+            return await handleRespuesta(respuesta);
+        } catch (error) {
+            console.error('Error en petición PUT:', error);
+            throw error;
+        }
+    }
+
+    // Función para peticiones DELETE
+    async function deleteDatos(endpoint) {
+        try {
+            const respuesta = await fetch(`${apiUrl}/${endpoint}`, {
+                method: 'DELETE',
+                headers: {
+                    ...(authToken && { 'Authorization': `Bearer ${authToken}` }),
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            return await handleRespuesta(respuesta);
+        } catch (error) {
+            console.error('Error en DELETE:', error);
+            throw error;
+        }
+    }
+
+    // Métodos y propiedades públicas
     return {
-        obtenerEquipos,
-        obtenerEquipo,
-        crearEquipo,
-        actualizarEquipo,
-        eliminarEquipo,
-
-        obtenerRetos,
-        obtenerReto,
-        crearReto,
-        actualizarReto,
-        eliminarReto,
-
-        limpiarLocalStorage,
+        setAuthToken,
+        getApiUrl,
+        getDatos,
+        postDatos,
+        putDatos,
+        deleteDatos
     };
 })();
 
-window.$negocio = $negocio;
 export default $negocio;
