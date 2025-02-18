@@ -1,27 +1,57 @@
-import { Card, Container, Image, Row, Col, Badge } from "react-bootstrap";
+import { useContext, useEffect, useState } from "react";
+import { Card, Container, Image, Row, Col, Button } from "react-bootstrap";
 import Carrusel from "../components/Carrusel";
+import ErrorDisplay from "../components/ErrorDisplay";
+import LoadingDisplay from "../components/LoadingDisplay";
+import { AppContext } from "../contexts/AppProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
-// Cambiará según usuario para CRUD (tener en cuenta para las imágenes)
 function DetallesJugadorPage() {
+    const [jugador, setJugador] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const { state } = useLocation();
+    const navegar = useNavigate();
+    const { negocio } = useContext(AppContext);
+
     const imagenes = [
         ["https://placehold.co/1920x500", "Texto1"],
         ["https://placehold.co/1820x400", "Texto2"],
         ["https://placehold.co/1720x300", 'Texto3']
     ];
 
-    const jugador = {
-        "id": 79,
-        "nombre": "Iván",
-        "tipo": "jugador",
-        "ciclo": "Técnico Superior en Administración de Sistemas Informáticos en Red",
-        "curso": "2º",
-        "goles": 0,
-        "asistencias": 1,
-        "faltas": 2,
-        "lesiones": 0,
-        "tarjetas-amarillas": 1,
-        "tarjetas-rojas": 0
-    };
+    useEffect(() => {
+        async function recuperarDatos() {
+            try {
+                if (!state?.jugador) {
+                    // Obtener el ID del jugador de la URL
+                    const id = window.location.pathname.split('/').pop();
+                    const datos = await negocio.getDatos(`jugadores/${id}`);
+                    if (!datos) {
+                        setError('No se han encontrado los datos del jugador');
+                        return;
+                    }
+                    setJugador(datos);
+                } else {
+                    setJugador(state.jugador);
+                }
+            } catch (err) {
+                setError('Error al cargar los datos del jugador');
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        }
+        recuperarDatos();
+    }, [state, negocio]);
+
+    if (loading) {
+        return <LoadingDisplay />;
+    }
+
+    if (error) {
+        return <ErrorDisplay mensaje={error} />;
+    }
 
     return (
         <Container className="mt-5">
@@ -96,6 +126,10 @@ function DetallesJugadorPage() {
                             </Row>
                         </Card.Body>
                     </Card>
+
+                    <div className="text-center mt-4">
+                        <Button variant="primary" size="lg" onClick={() => navegar(-1)}>Volver</Button>
+                    </div>
                 </Card.Body>
             </Card>
         </Container>

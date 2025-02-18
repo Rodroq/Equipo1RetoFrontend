@@ -3,6 +3,8 @@ import { Card, Table, Button, Container, Row, Col, Image } from "react-bootstrap
 import Tarjeta from "../components/Tarjeta";
 import { AppContext } from "../contexts/AppProvider";
 import { useContext, useEffect, useState } from "react";
+import LoadingDisplay from "../components/LoadingDisplay";
+import ErrorDisplay from "../components/ErrorDisplay";
 
 
 function DetallesEquipoPage() {
@@ -39,17 +41,11 @@ function DetallesEquipoPage() {
     }, [state, negocio]);
 
     if (loading) {
-        return <Container className="mt-5 text-center">
-            <h2>Cargando...</h2>
-        </Container>;
+        return <LoadingDisplay />;
     }
 
     if (error) {
-        return <Container className="mt-5 text-center">
-            <h2 className="text-danger">Error</h2>
-            <p>{error}</p>
-            <Button variant="primary" size="lg" onClick={() => navegar('../equipos')}>Volver</Button>
-        </Container>;
+        return <ErrorDisplay mensaje={error} />;
     }
 
     const { nombre, grupo, centro, jugadores } = equipo;
