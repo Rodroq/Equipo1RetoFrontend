@@ -14,7 +14,8 @@ import DetallesRetoPage from "../pages/DetallesRetoPage.jsx";
 import DetallesUsuarioPage from "../pages/DetallesUsuarioPage.jsx";
 import InscripcionPage from "../pages/InscripcionPage.jsx";
 import RutaPrivada from "../components/RutaPrivada.jsx";
-import EditarPublicaciones from "../pages/EditarPublicaciones.jsx";
+import EditarPublicacionPage from "../pages/EditarPublicacionPage.jsx"
+import EditarPublicacionesPage from "../pages/EditarPublicacionesPage.jsx";
 import EditarImagenesPage from "../pages/EditarImagenesPage.jsx";
 import EditarUsuariosPage from "../pages/EditarUsuariosPage.jsx";
 
@@ -38,10 +39,10 @@ function AppEnrutador() {
 
                     {/* Rutas privadas */}
                     <Route path="editar/publicaciones" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarPublicaciones /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['admin']}><EditarPublicacionesPage /></RutaPrivada>
                     } />
                     <Route path="editar/publicaciones/:id" element={
-                        <RutaPrivada>{ }</RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['admin']}><EditarPublicacionPage /></RutaPrivada>
                     } />
                     <Route path="editar/imagenes" element={
                         <RutaPrivada rolesPermitidos={['admin']}><EditarImagenesPage /></RutaPrivada>

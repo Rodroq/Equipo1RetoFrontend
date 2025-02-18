@@ -4,7 +4,7 @@ import Modal from '../components/Modal.jsx'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function EditarPublicaciones() {
+function EditarPublicacionesPage() {
     const navegar = useNavigate();
     const [publicaciones, setPublicaciones] = useState([
         {
@@ -106,4 +106,4 @@ function EditarPublicaciones() {
     );
 }
 
-export default EditarPublicaciones;
+export default EditarPublicacionesPage;
