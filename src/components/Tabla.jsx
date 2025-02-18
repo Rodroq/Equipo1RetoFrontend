@@ -25,9 +25,9 @@ function Tabla({ informacion, columnas, handleVer, handleEditar, handleBorrar })
                 </thead>
                 <tbody>
                     {informacion.map((item, index) => (
-                        <tr key={index} className="align-middle">
+                        <tr key={index}>
                             {columnasAMostrar.map((columna, colIndex) => (
-                                <td key={colIndex} className="text-secondary textoTruncado align-middle">
+                                <td key={colIndex} className="text-secondary textoTruncado">
                                     {item[columna]}
                                 </td>
                             ))}

@@ -11,31 +11,11 @@
     font-weight: bold;
 }
 
-.tabla-row:hover {
-    background-color: rgba(0, 123, 255, 0.05);
-}
-
 .textoTruncado {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
-}
-
-/* Estilos para los botones */
-.btn {
-    transition: all 0.2s ease-in-out;
-    padding: 0.375rem 0.75rem;
-    border-radius: 4px;
-}
-
-.btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.btn:active {
-    transform: translateY(0);
 }
 
 @media (max-width: 768px) {
