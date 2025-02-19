@@ -2,8 +2,8 @@ import { Container, Row, Col, Nav } from 'react-bootstrap';
 
 function Footer() {
   return (
-    <Container>
-      <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <footer className="border-top border-primary py-3 bg-light">
+      <Container>
         <Row className="w-100">
           {/* Columna con el texto copyright */}
           <Col md={4} className="d-flex align-items-center">
@@ -36,8 +36,8 @@ function Footer() {
             </Nav>
           </Col>
         </Row>
-      </footer>
-    </Container>
+      </Container>
+    </footer>
   );
 }
 
