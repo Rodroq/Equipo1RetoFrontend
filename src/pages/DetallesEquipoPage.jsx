@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card, Table, Button, Container, Row, Col, Image } from "react-bootstrap";
-import Tarjeta from "../components/Tarjeta";
 import { AppContext } from "../contexts/AppProvider";
 import { useContext, useEffect, useState, useId } from "react";
 import LoadingDisplay from "../components/LoadingDisplay";
