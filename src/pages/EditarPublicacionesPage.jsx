@@ -63,7 +63,7 @@ function EditarPublicacionesPage() {
     }
 
     function handleEditar(elemento) {
-        navegar(`/editar/publicaciones/${elemento.id}`);
+        navegar(`/publicaciones/editar/${elemento.id}`);
     }
 
     function handleBorrar(elemento) {

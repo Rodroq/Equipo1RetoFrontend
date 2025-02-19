@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useId } from "react";
 import { AppContext } from "../contexts/AppProvider";
 import { Card, Container } from "react-bootstrap";
 import Carrusel from "../components/Carrusel";
 import Tarjeta from "../components/Tarjeta";
 
 function PublicacionesPage() {
+  const idComponente = useId();
   const [publicaciones, setPublicaciones] = useState([]);
   const [imagenesCarrusel, setImagenesCarrusel] = useState([]);
 
@@ -12,7 +13,7 @@ function PublicacionesPage() {
 
   useEffect(() => {
     async function fetchRetos() {
-      const publicacionesData = await negocio.obtenerPublicaciones();
+      const publicacionesData = await negocio.getDatos('equipos');
       setPublicaciones(publicacionesData);
     }
     fetchRetos();
@@ -34,12 +35,12 @@ function PublicacionesPage() {
             <br />
             <br />
             <div className="row justify-content-center">
-              {publicaciones.map((publicacion) => (
-                <div className="col-lg-3 col-md-4 mb-4" key={publicacion.id}>
+              {publicaciones.map((publicacion, index) => (
+                <div className="col-lg-3 col-md-4 mb-4" key={`${idComponente}-${index}`}>
                   <Tarjeta
                     tituloTarjeta={publicacion.nombre}
                     textoTarjeta={publicacion.descripcion}
-                    imagenTarjeta={publicacion.imagen}
+                    //imagenTarjeta={publicacion.imagen}
                     textoBoton={'Ver publicación'}
                     nombreEntidad={'publicaciones'}
                     datosObjeto={publicacion}
