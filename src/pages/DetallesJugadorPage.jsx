@@ -7,11 +7,14 @@ import { AppContext } from "../contexts/AppProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function DetallesJugadorPage() {
+    // Estados
     const [jugador, setJugador] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const { state } = useLocation();
     const navegar = useNavigate();
+
+    // Contexto
     const { negocio } = useContext(AppContext);
 
     const imagenes = [
@@ -20,6 +23,7 @@ function DetallesJugadorPage() {
         ["https://placehold.co/1720x300", 'Texto3']
     ];
 
+    // Efecto al montar el componente y detectar cambios en 'state'
     useEffect(() => {
         async function recuperarDatos() {
             try {
@@ -27,10 +31,12 @@ function DetallesJugadorPage() {
                     // Obtener el ID del jugador de la URL
                     const id = window.location.pathname.split('/').pop();
                     const datos = await negocio.getDatos(`jugadores/${id}`);
+
                     if (!datos) {
                         setError('No se han encontrado los datos del jugador');
                         return;
                     }
+
                     setJugador(datos);
                 } else {
                     setJugador(state.jugador);
@@ -53,6 +59,7 @@ function DetallesJugadorPage() {
         return <ErrorDisplay mensaje={error} />;
     }
 
+    // Renderizado
     return (
         <Container className="mt-5">
             <Card className="shadow-lg border-0 rounded-4">
@@ -73,7 +80,7 @@ function DetallesJugadorPage() {
                     <div className="text-center mb-5">
                         <h1 className="display-5 fw-bold">{jugador.nombre}</h1>
                         <h5 className="text-secondary">
-                            {jugador.ciclo} - {jugador.curso} curso
+                            {jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º
                         </h5>
                     </div>
 

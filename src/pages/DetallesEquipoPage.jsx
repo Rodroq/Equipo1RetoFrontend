@@ -2,19 +2,26 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Card, Table, Button, Container, Row, Col, Image } from "react-bootstrap";
 import Tarjeta from "../components/Tarjeta";
 import { AppContext } from "../contexts/AppProvider";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useId } from "react";
 import LoadingDisplay from "../components/LoadingDisplay";
 import ErrorDisplay from "../components/ErrorDisplay";
 
 
 function DetallesEquipoPage() {
+    // Id de componente
+    const idComponente = useId();
+
+    // Estados
     const { state } = useLocation();
     const navegar = useNavigate();
-    const { negocio } = useContext(AppContext);
     const [equipo, setEquipo] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // Contexto
+    const { negocio } = useContext(AppContext);
+
+    // Efecto al montar el componente y al detectar cambios en 'state'
     useEffect(() => {
         async function recuperarDatos() {
             try {
@@ -22,13 +29,16 @@ function DetallesEquipoPage() {
                     // Obtener el ID del equipo de la URL
                     const id = window.location.pathname.split('/').pop();
                     const datos = await negocio.getDatos(`equipos/${id}`);
+
                     if (!datos) {
                         setError('No se han encontrado los datos del equipo');
                         return;
                     }
+
                     setEquipo(datos);
                 } else {
                     setEquipo(state.entidad);
+                    console.log('STATE: ', state);
                 }
             } catch (err) {
                 setError('Error al cargar los datos del equipo');
@@ -48,23 +58,24 @@ function DetallesEquipoPage() {
         return <ErrorDisplay mensaje={error} />;
     }
 
-    const { nombre, grupo, centro, jugadores } = equipo;
+    console.log('EQUIPO: ', equipo);
 
+    // Renderizado
     return (
         <Container className="mt-5">
             <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                 <Card.Body>
-                    <h2 className="text-center mb-4 text-primary fw-bold">{nombre}</h2>
-                    <h5 className="text-center text-secondary">Grupo {grupo} - {centro}</h5>
+                    <h2 className="text-center mb-4 text-primary fw-bold">{equipo.nombre}</h2>
+                    <h5 className="text-center text-secondary">Grupo {equipo.grupo} - {equipo.centro.nombre}</h5>
                     <hr />
                     <h4 className="mt-4 text-dark">📋 Plantilla</h4>
                     <Row className="mt-3">
-                        {jugadores.map((jugador) => (
-                            <Col key={jugador.id} md={6} lg={4} className="mb-4">
+                        {equipo.jugadores.map((jugador, index) => (
+                            <Col key={`${idComponente}-${index}`} md={6} lg={4} className="mb-4">
                                 <Card
                                     className="h-100 shadow-sm text-center border-0 rounded-3 bg-white"
                                     style={{ cursor: 'pointer' }}
-                                    onClick={() => navegar(`/jugadores/${jugador.id}`, { state: { jugador: jugador } })}
+                                    onClick={() => navegar(`/jugadores/${null}`, { state: { jugador: jugador } })}
                                 >
                                     <Card.Body>
                                         <Image
@@ -76,7 +87,7 @@ function DetallesEquipoPage() {
                                         />
                                         <h5 className="fw-bold text-dark">{jugador.nombre}</h5>
                                         <p className="text-muted fst-italic">{jugador.tipo}</p>
-                                        <p className="fw-light">{jugador.ciclo} - {jugador.curso}</p>
+                                        <p className="fw-light">{jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º</p>
                                         <Table borderless size="sm" className="text-center">
                                             <tbody>
                                                 <tr className="fw-semibold">

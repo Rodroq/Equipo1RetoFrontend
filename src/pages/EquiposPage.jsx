@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useId } from "react";
 import Tarjeta from "../components/Tarjeta";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Container } from "react-bootstrap";
@@ -7,21 +7,28 @@ import ErrorDisplay from "../components/ErrorDisplay";
 import LoadingDisplay from "../components/LoadingDisplay";
 
 function EquiposPage() {
+    // ID de componente
+    const idComponente = useId();
+
+    // Estados
     const [equipos, setEquipos] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    //Contexto
     const { negocio } = useContext(AppContext);
 
+    // Efecto al montar el componente
     useEffect(() => {
         async function fetchEquipos() {
             try {
                 const equiposData = await negocio.getDatos('equipos');
+
                 if (!equiposData) {
                     setError('No se han encontrado equipos');
                     return;
                 }
-                setEquipos(equiposData);
+                setEquipos(equiposData.data.equipos);
             } catch (err) {
                 setError('Error al cargar los equipos');
                 console.error(err);
@@ -40,18 +47,19 @@ function EquiposPage() {
         return <ErrorDisplay mensaje={error} />;
     }
 
+    // Renderizado
     return (
         <Container className="mt-5">
             <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                 <Card.Body>
                     <div className="row justify-content-center">
-                        {equipos.map(equipo => (
-                            <div className="col-lg-3 col-md-4 mb-4" key={equipo.id}>
+                        {equipos.map((equipo, index) => (
+                            <div className="col-lg-3 col-md-4 mb-4" key={`${idComponente}-${index}`}>
                                 <Tarjeta
                                     tituloTarjeta={equipo.nombre}
-                                    textoTarjeta={equipo.centro}
+                                    textoTarjeta={equipo.centro.nombre}
                                     textoBoton="Ver equipo"
-                                    imagenTarjeta={equipo.imagen}
+                                    // imagenTarjeta={equipo.imagen}
                                     nombreEntidad="equipos"
                                     datosObjeto={equipo} />
                             </div>
