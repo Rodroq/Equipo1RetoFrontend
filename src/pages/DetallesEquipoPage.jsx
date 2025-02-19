@@ -37,7 +37,6 @@ function DetallesEquipoPage() {
                     setEquipo(datos);
                 } else {
                     setEquipo(state.entidad);
-                    console.log('STATE: ', state);
                 }
             } catch (err) {
                 setError('Error al cargar los datos del equipo');
@@ -46,6 +45,7 @@ function DetallesEquipoPage() {
                 setLoading(false);
             }
         }
+
         recuperarDatos();
     }, [state, negocio]);
 
@@ -56,8 +56,6 @@ function DetallesEquipoPage() {
     if (error) {
         return <ErrorDisplay mensaje={error} />;
     }
-
-    console.log('EQUIPO: ', equipo);
 
     // Renderizado
     return (

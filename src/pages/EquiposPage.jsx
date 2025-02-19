@@ -28,6 +28,7 @@ function EquiposPage() {
                     setError('No se han encontrado equipos');
                     return;
                 }
+
                 setEquipos(equiposData.data.equipos);
             } catch (err) {
                 setError('Error al cargar los equipos');
@@ -36,6 +37,7 @@ function EquiposPage() {
                 setLoading(false);
             }
         }
+
         fetchEquipos();
     }, [negocio]);
 

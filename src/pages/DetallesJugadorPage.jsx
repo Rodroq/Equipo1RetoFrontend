@@ -48,6 +48,7 @@ function DetallesJugadorPage() {
                 setLoading(false);
             }
         }
+
         recuperarDatos();
     }, [state, negocio]);
 
