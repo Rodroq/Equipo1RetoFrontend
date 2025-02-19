@@ -1,7 +1,21 @@
 import { Form, Row, Col } from "react-bootstrap";
 
+/**
+ *  Componente del formulario de inscripción, de la pestaña de Capitan
+ * 
+ * @param {Object} formData //Datos del formulario para poder cargarlos cuando se cambia de pestaña
+ * @param {Function} handleChange //Funcion que hace que cuando algun input cambie se validen las pestañas
+ * @param {Function} onValidation //Funcion que permite cambiar si la pestaña actual es valida
+ * @returns {JSX.Element}
+ */
 function CapitanForm({ formData, handleChange, onValidation }) {
-    const handleBlur = () => {
+    /**
+     * Funcion que maneja cuando se deselecciona un input
+     * Cuando se ejecuta, valida que todos los campos se hayan rellenado y cambia el onValidation por el valor actual
+     * 
+     * @returns {void}
+     */
+    function handleBlur() {
         const { nombre, apellido1, apellido2, dni, telefono, email, ciclo } = formData.capitan;
         const isValid = nombre.trim() !== "" &&
             apellido1.trim() !== "" &&
@@ -16,6 +30,7 @@ function CapitanForm({ formData, handleChange, onValidation }) {
     return (
         <div className="mb-3">
             <Row>
+                {/* Campo nombre */}
                 <Form.Group as={Col} controlId="formCapitanNombre">
                     <Form.Label>Nombre*</Form.Label>
                     <Form.Control
@@ -33,6 +48,8 @@ function CapitanForm({ formData, handleChange, onValidation }) {
                         Ingrese el nombre del capitán.
                     </Form.Control.Feedback>
                 </Form.Group>
+
+                {/* Campo primer apellido */}
                 <Form.Group as={Col} controlId="formCapitanApellido1">
                     <Form.Label>Primer apellido*</Form.Label>
                     <Form.Control
@@ -51,6 +68,8 @@ function CapitanForm({ formData, handleChange, onValidation }) {
                     </Form.Control.Feedback>
                 </Form.Group>
             </Row>
+
+            {/* Campo segundo apellido */}
             <Form.Group controlId="formCapitanApellido2">
                 <Form.Label>Segundo apellido*</Form.Label>
                 <Form.Control
@@ -68,6 +87,8 @@ function CapitanForm({ formData, handleChange, onValidation }) {
                     Ingrese el segundo apellido.
                 </Form.Control.Feedback>
             </Form.Group>
+
+            {/* Campo ciclo formativo */}
             <Form.Group controlId="formCapitanCiclo">
                 <Form.Label>Ciclo formativo*</Form.Label>
                 <Form.Select
@@ -90,6 +111,7 @@ function CapitanForm({ formData, handleChange, onValidation }) {
                 </Form.Control.Feedback>
             </Form.Group>
             <Row>
+                {/* Campo dni */}
                 <Form.Group as={Col} controlId="formCapitanDNI">
                     <Form.Label>DNI*</Form.Label>
                     <Form.Control
@@ -107,6 +129,8 @@ function CapitanForm({ formData, handleChange, onValidation }) {
                         Ingrese un DNI válido.
                     </Form.Control.Feedback>
                 </Form.Group>
+
+                {/* Campo telefono */}
                 <Form.Group as={Col} controlId="formCapitanTelefono">
                     <Form.Label>Teléfono*</Form.Label>
                     <Form.Control
@@ -125,6 +149,8 @@ function CapitanForm({ formData, handleChange, onValidation }) {
                     </Form.Control.Feedback>
                 </Form.Group>
             </Row>
+
+            {/* Campo email */}
             <Form.Group controlId="formCapitanEmail">
                 <Form.Label>Email*</Form.Label>
                 <Form.Control
