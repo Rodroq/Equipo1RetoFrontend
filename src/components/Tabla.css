@@ -1,28 +1,14 @@
 .tabla-container {
+    margin-top: 2rem;
     border-radius: 8px;
     overflow: hidden;
-    margin-top: 2rem;
+    background-color: white;
+    padding: 1rem;
 }
 
 .tabla-header {
-    background-color: var(--bs-primary);
-}
-
-.tabla-row {
-    transition: all 0.3s ease;
-}
-
-.tabla-row:hover {
-    background-color: rgba(var(--bs-primary-rgb), 0.05);
-    transform: translateX(5px);
-}
-
-.hover-effect {
-    transition: all 0.2s ease-in-out;
-}
-
-.hover-effect:hover {
-    background-color: rgba(var(--bs-primary-rgb), 0.02);
+    background-color: #f8f9fa;
+    font-weight: bold;
 }
 
 .textoTruncado {
@@ -32,10 +18,12 @@
     max-width: 200px;
 }
 
-Button {
-    transition: transform 0.2s ease;
-}
-
-Button:hover {
-    transform: scale(1.05);
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.25rem 0.5rem;
+    }
+    
+    td .d-flex {
+        flex-wrap: nowrap;
+    }
 }
