@@ -1,6 +1,6 @@
 const $negocio = (function () {
     // URL base de la API
-    const apiUrl = 'http://127.0.0.1:8000';
+    const apiUrl = 'http://127.0.0.1:8000/api';
 
     // Variable para almacenar el token de autenticación
     let authToken = null;
