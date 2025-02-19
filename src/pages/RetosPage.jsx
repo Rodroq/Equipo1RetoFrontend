@@ -43,12 +43,11 @@ function RetosPage() {
 
     return (
         <>
-            <h1>RetosPage</h1>
             <Carrusel imagenes={imagenesCarrusel} />
-            <Container className="mt-5">
+            <Container className="mt-5 mb-5">
                 <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                     <Card.Body>
-                        <h1>Retos</h1>
+                        <h2 className="text-center mb-5 section-titulo">Retos</h2>
                         <p>En esta página encontrarás un resumen de los retos más recientes y emocionantes. Cada reto está diseñado para desafiar tus habilidades y ayudarte a crecer. ¡Explora los retos y acepta el desafío!</p>
                         <br />
                         <br />

@@ -1,6 +1,6 @@
 function TorneoPage() {
     return (
-        <h1>TorneoPage</h1>
+        <h2 className="text-center mb-5 section-titulo">Torneo</h2>
     );
 }
 

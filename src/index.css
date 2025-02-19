@@ -7,3 +7,19 @@
 main {
     flex: 1;
 }
+
+h2.section-titulo {
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+h2.section-titulo::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: #007bff;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
