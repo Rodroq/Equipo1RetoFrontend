@@ -44,9 +44,9 @@ function Header() {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="/categoria1">Reglamento</Dropdown.Item>
-                    <Dropdown.Item href="/categoria2">Partidos</Dropdown.Item>
-                    <Dropdown.Item href="/categoria3">Clasificación</Dropdown.Item>
+                    <Dropdown.Item href="reglamento">Reglamento</Dropdown.Item>
+                    <Dropdown.Item href="partidos">Partidos</Dropdown.Item>
+                    <Dropdown.Item href="clasificacion">Clasificación</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Nav.Item>
