@@ -9,7 +9,6 @@
     /* Cambia el color al azul de Bootstrap al hacer hover */
 }
 
-
 /* Muestra el menú desplegable al hacer hover sobre el contenedor */
 .hover-dropdown:hover .dropdown-menu {
     display: block;
@@ -17,7 +16,7 @@
 
 /* Ajusta el margen del menú desplegable para que no se desplace hacia abajo */
 .hover-dropdown .dropdown-menu {
-    margin-top: 0;
+    margin-top: 0 !important;
 }
 
 /* Estilos para el logo */

@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from "react-router-dom";
 import logo from '../../assets/logo_sede_torrelavega.png';
+import { useState } from "react";
 
 /**
  * Devuelve el componente Header
@@ -12,6 +13,8 @@ import logo from '../../assets/logo_sede_torrelavega.png';
  * @returns {JSX.Element}
  */
 function Header() {
+  // Estado para manejar la visibilidad del dropdown
+  const [showDropdown, setShowDropdown] = useState(false);
   // Definimos la variable que llama a useNavigate
   const navegar = useNavigate();
 
@@ -34,8 +37,13 @@ function Header() {
               {/* ENLACES */}
               <Nav.Item>
                 {/* MENU DROPDOWN QUE SE DESPLIEGA CON HOVER */}
-                <Dropdown className="hover-dropdown">
-                  <Dropdown.Toggle 
+                <Dropdown
+                  className="hover-dropdown"
+                  show={showDropdown}
+                  onMouseEnter={() => setShowDropdown(true)}
+                  onMouseLeave={() => setShowDropdown(false)}
+                >
+                  <Dropdown.Toggle
                     variant="link"
                     id="nav-dropdown"
                     className="fw-semibold text-dark link-hover nav-link p-2"
