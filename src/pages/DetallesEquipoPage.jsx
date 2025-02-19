@@ -59,12 +59,11 @@ function DetallesEquipoPage() {
 
     // Renderizado
     return (
-        <Container className="mt-5">
+        <Container className="mt-5 mb-5">
             <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                 <Card.Body>
                     <h2 className="text-center mb-4 text-primary fw-bold">{equipo.nombre}</h2>
-                    <h5 className="text-center text-secondary">Grupo {equipo.grupo} - {equipo.centro.nombre}</h5>
-                    <hr />
+                    <h5 className="text-center text-secondary border-bottom border-primary p-2">Grupo {equipo.grupo} - {equipo.centro.nombre}</h5>
                     <h4 className="mt-4 text-dark">📋 Plantilla</h4>
                     <Row className="mt-3">
                         {equipo.jugadores.map((jugador, index) => (
