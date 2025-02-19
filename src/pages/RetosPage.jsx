@@ -1,10 +1,11 @@
 import { Card, Container } from "react-bootstrap";
 import Carrusel from "../components/Carrusel";
 import Tarjeta from "../components/Tarjeta";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useId } from "react";
 import { AppContext } from "../contexts/AppProvider";
 
 function RetosPage() {
+    const idComponente = useId();
     const [retos, setRetos] = useState([]);
     const [retosAleatorios, setRetosAleatorios] = useState([]);
     const [imagenesCarrusel, setImagenesCarrusel] = useState([]);
@@ -12,9 +13,9 @@ function RetosPage() {
     const { negocio } = useContext(AppContext);
 
     useEffect(() => {
-        async function fetchRetos() {
-            const retosData = await negocio.obtenerRetos();
-            setRetos(retosData);
+        async function fetchRetos() {            
+            const retosData = await negocio.getDatos('retos');
+            setRetos(retosData.data);
         }
         fetchRetos();
     }, [negocio]);
@@ -37,7 +38,7 @@ function RetosPage() {
     }
 
     function cargarImagenesCarrusel() {
-        const imagenes = retosAleatorios.map(reto => [reto.imagen, reto.nombre]);
+        const imagenes = retosAleatorios.map(reto => [reto.imagen, reto.titulo]);
         setImagenesCarrusel(imagenes);
     }
 
@@ -52,12 +53,12 @@ function RetosPage() {
                         <br />
                         <br />
                         <div className="row justify-content-center">
-                            {retos.map((reto) => (
-                                <div className="col-lg-3 col-md-4 mb-4" key={reto.id}>
+                            {retos.map((reto, index) => (
+                                <div className="col-lg-3 col-md-4 mb-4" key={`${idComponente}-${index}`}>
                                     <Tarjeta
-                                        tituloTarjeta={reto.nombre}
-                                        textoTarjeta={reto.descripcion}
-                                        imagenTarjeta={reto.imagen}
+                                        tituloTarjeta={reto.titulo}
+                                        textoTarjeta={reto.texto}
+                                        //imagenTarjeta={reto.imagen}
                                         textoBoton={'Ver reto'}
                                         nombreEntidad={'retos'}
                                         datosObjeto={reto}
