@@ -58,9 +58,6 @@ function AppEnrutador() {
                     {/* Ruta de inscripcion de equipo */}
                     <Route path="inscripcion" element={<InscripcionPage />} />
 
-                    {/* Ruta del inicio de sesión */}
-                    <Route path="login" element={<LoginPage />} />
-
                     {/* Ruta de la página de error */}
                     <Route path="*" element={<ErrorPage />} />
 

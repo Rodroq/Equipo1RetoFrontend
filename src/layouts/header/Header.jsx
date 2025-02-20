@@ -1,11 +1,9 @@
-import { Button, Dropdown } from "react-bootstrap";
+import { Button, Dropdown, Container, Nav, Navbar } from "react-bootstrap";
 import "./Header.css";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from "react-router-dom";
 import logo from '../../assets/logo_sede_torrelavega.png';
 import { useState } from "react";
+import LoginForm from "../../components/formularios/LoginForm";
 
 /**
  * Devuelve el componente Header
@@ -81,7 +79,15 @@ function Header() {
             </Nav>
 
             {/* BOTÓN LOGIN */}
-            <Button onClick={() => { navegar('/login') }} variant="outline-primary">Login</Button>
+            <Dropdown>
+              <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
+                Login
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <LoginForm />
+              </Dropdown.Menu>
+            </Dropdown>
           </Navbar.Collapse>
         </Container>
       </Navbar>
