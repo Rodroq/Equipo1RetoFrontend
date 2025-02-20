@@ -9,7 +9,13 @@ import { Form, Row, Col } from "react-bootstrap";
  * @returns {JSX.Element}
  */
 function EntrenadorForm({ formData, handleChange, onValidation }) {
-    const handleBlur = () => {
+    /**
+     * Funcion que maneja cuando se deselecciona un input
+     * Cuando se ejecuta, valida que todos los campos se hayan rellenado y cambia el onValidation por el valor actual
+     * 
+     * @returns {void}
+     */
+    function handleBlur() {
         const { nombre, apellido1, apellido2 } = formData.entrenador;
         const isValid = nombre.trim() !== "" &&
             apellido1.trim() !== "" &&

@@ -1,6 +1,13 @@
 import { Carousel, Image } from "react-bootstrap";
 
+/**
+ * 
+ * @param {Array} imagenes //Imagenes que se muestran en el carrusel
+ * @param {Number} tiempo //Tiempo que tarda el carrusel en cambiar de imagen 
+ * @returns 
+ */
 function Carrusel({ imagenes, tiempo = 3000, alto = '30em', ancho = '100%' }) {
+    // Estilo que se le aplica a las imagenes
     const imgStyle = {
         width: ancho,
         height: alto,
