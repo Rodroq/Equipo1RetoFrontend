@@ -29,7 +29,7 @@ function EquiposPage() {
                     return;
                 }
 
-                setEquipos(equiposData.data.equipos);
+                setEquipos(equiposData.equipos);
             } catch (err) {
                 setError('Error al cargar los equipos');
                 console.error(err);

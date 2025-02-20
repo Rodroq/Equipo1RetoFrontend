@@ -83,7 +83,10 @@ function DetallesEquipoPage() {
                                         />
                                         <h5 className="fw-bold text-dark">{jugador.nombre}</h5>
                                         <p className="text-muted fst-italic">{jugador.tipo}</p>
-                                        <p className="fw-light">{jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º</p>
+                                        <p className="fw-light">
+                                            CICLO - CURSO
+                                            {/* {jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º */}
+                                        </p>
                                         <Table borderless size="sm" className="text-center">
                                             <tbody>
                                                 <tr className="fw-semibold">

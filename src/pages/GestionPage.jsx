@@ -2,7 +2,7 @@
 function GestionPage() {
     return (
         <>
-            <h1>GestionPage</h1>
+            <h2 className="text-center mb-5 section-titulo">Gestión</h2>
             <a href="/gestion/imagenes">Gestión de Imágenes</a><br/>
             <a href="/gestion/usuarios">Gestión de Usuarios</a><br/>
             <a href="/gestion/equipos">Gestión de Equipos</a><br/>
