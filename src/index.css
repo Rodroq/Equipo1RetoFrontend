@@ -8,6 +8,7 @@ main {
     flex: 1;
 }
 
+/* Títulos H2 */
 h2.section-titulo {
     font-size: 1.7rem;
     font-weight: 700;
@@ -22,4 +23,42 @@ h2.section-titulo::after {
     background-color: #007bff;
     margin: 8px auto 0;
     border-radius: 2px;
+}
+
+/* Portada */
+.portada {
+    min-height: 650px;
+}
+
+.fondo-portada {
+    background-image: url('/portada.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Transición para aumentar al hacer hover */
+.aumentar-escala {
+    transition: transform 0.3s ease-in-out;
+}
+
+.aumentar-escala:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+/* Animación de pulso */
+@keyframes pulso {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulso {
+    animation: pulso 2s infinite;
 }
