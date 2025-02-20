@@ -67,7 +67,8 @@ function EditarImagenesPage() {
     }
 
     return (
-        <Container className="mt-5">
+        <Container className="mt-5 mb-5">
+            <h2 className="text-center mb-5 section-titulo">Imágenes</h2>
             <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                 <Card.Body>
                     <Tabla
