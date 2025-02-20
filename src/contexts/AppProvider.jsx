@@ -1,9 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import $negocio from "../core/negocio";
 
+// Creación del contexto
 const AppContext = createContext();
 
 function AppProvider({ children }) {
+    // Estados
+    const [usuarioActual, setUsuarioActual] = useState(null);
+
+    // Funciones
     const logIn = async (username, password) => {
 
     };
@@ -12,6 +17,7 @@ function AppProvider({ children }) {
 
     };
 
+    // Exponer valores de contexto. Renderiza a sus hijos.
     return (
         <AppContext.Provider value={{
             logIn,

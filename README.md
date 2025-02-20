@@ -1,8 +1,10 @@
-# React + Vite
+# Reto DAW2 - Torneo de Fútbol Solidario 2025
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend para visualizar la celebración del torneo de fútbol solidario en Torrelavega.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Autores
+- [Pablo Mata](https://github.com/pmatag01)
+- [Álvaro Berodia](https://github.com/Isalvan)
+- [Rodrigo Ruiz](https://github.com/Rodroq)
+- [David Llanillo](https://github.com/LLANNILLO)
+- [Víctor Sánchez](https://github.com/victorllada)
