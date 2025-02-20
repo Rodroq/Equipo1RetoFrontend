@@ -10,7 +10,7 @@ function Header() {
   const navegar = useNavigate();
 
   return (
-    <header className="sticky-top border-bottom border-primary">
+    <header className="sticky-top border-bottom border-primary border-2">
       <Navbar expand="lg" bg="light" shadow="sm" className="border-bottom">
         <Container>
           {/* LOGO */}

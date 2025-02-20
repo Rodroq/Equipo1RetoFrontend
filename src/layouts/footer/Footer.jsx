@@ -2,7 +2,7 @@ import { Container, Row, Col, Nav } from 'react-bootstrap';
 
 function Footer() {
   return (
-    <footer className="border-top border-primary py-3 bg-light">
+    <footer className="border-top border-primary py-3 bg-light border-2">
       <Container>
         <Row className="w-100">
           {/* Columna con el texto copyright */}
