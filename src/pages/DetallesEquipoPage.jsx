@@ -69,7 +69,7 @@ function DetallesEquipoPage() {
                         {equipo.jugadores.map((jugador, index) => (
                             <Col key={`${idComponente}-${index}`} md={6} lg={4} className="mb-4">
                                 <Card
-                                    className="h-100 shadow-sm text-center border-0 rounded-3 bg-white"
+                                    className="h-100 shadow-sm text-center border-0 rounded-3 bg-white aumentar-escala"
                                     style={{ cursor: 'pointer' }}
                                     onClick={() => navegar(`/jugadores/${null}`, { state: { jugador: jugador } })}
                                 >
