@@ -3,12 +3,25 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import './Tabla.css';
 
+/**
+ * Componente que recibe datos y los muestra en forma de tabla, junto a 3 funciones para ver, editar y borrar
+ * 
+ * @param {Array} informacion //Son los datos que le llegan a la tabla
+ * @param {Array} columnas //Son las columnas que se muestran de la informacion pasada
+ * @param {Function} handleVer //Funcion que maneja el boton Ver
+ * @param {Function} handleEditar //Funcion que maneja el boton Editar
+ * @param {Function} handleBorrar //Funcion que maneja el boton Borrar
+ * @returns 
+ */
 function Tabla({ informacion, columnas, handleVer, handleEditar, handleBorrar }) {
+    // Comprobamos que haya datos, en caso contrario mostramos un mensaje
     if (!informacion || informacion.length === 0) {
         return <p className="text-center mt-3">No hay datos disponibles</p>;
     }
 
+    // Guardamos las columnas que hay que mostrar
     const columnasAMostrar = columnas || Object.keys(informacion[0]);
+    // Verificamos que haya acciones, en caso contrario no se mostrara la columna Acciones
     const hayAcciones = handleVer || handleEditar || handleBorrar;
 
     return (
