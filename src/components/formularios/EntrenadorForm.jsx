@@ -1,11 +1,23 @@
 import { Form, Row, Col } from "react-bootstrap";
 
+/**
+ * Componente del formulario de inscripción, de la pestaña de Entrenador
+ * @param {Object} formData //Datos del formulario para poder cargarlos cuando se cambia de pestaña
+ * @param {Function} handleChange //Funcion que hace que cuando algun input cambie se validen las pestañas
+ * @param {Function} onValidation //Funcion que permite cambiar si la pestaña actual es valida
+ * @returns {JSX.Element}
+ */
 function EntrenadorForm({ formData, handleChange, onValidation }) {
-    const handleBlur = () => {
+    /**
+     * Funcion que maneja cuando se deselecciona un input
+     * Cuando se ejecuta, valida que todos los campos se hayan rellenado y cambia el onValidation por el valor actual
+     * @returns {void}
+     */
+    function handleBlur() {
         const { nombre, apellido1, apellido2 } = formData.entrenador;
-        const isValid = nombre.trim() !== "" && 
-                       apellido1.trim() !== "" && 
-                       apellido2.trim() !== "";
+        const isValid = nombre.trim() !== "" &&
+            apellido1.trim() !== "" &&
+            apellido2.trim() !== "";
         onValidation(isValid);
     };
 

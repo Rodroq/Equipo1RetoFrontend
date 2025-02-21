@@ -1,12 +1,13 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout.jsx";
 import InicioPage from "../pages/InicioPage.jsx";
-import EquiposPage from "../pages/EquiposPage.jsx";
+//import EquiposPage from "../pages/EquiposPage.jsx";
 import RetosPage from "../pages/RetosPage.jsx";
 import PublicacionesPage from "../pages/PublicacionesPage.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
-import DetallesEquipoPage from "../pages/DetallesEquipoPage.jsx";
-import DetallesJugadorPage from "../pages/DetallesJugadorPage.jsx";
+//import DetallesEquipoPage from "../pages/DetallesEquipoPage.jsx";
+//import DetallesJugadorPage from "../pages/DetallesJugadorPage.jsx";
 import DetallesPublicacionPage from "../pages/DetallesPublicacionPage.jsx";
 import DetallesRetoPage from "../pages/DetallesRetoPage.jsx";
 import InscripcionPage from "../pages/InscripcionPage.jsx";
@@ -19,7 +20,11 @@ import GestionPage from "../pages/GestionPage.jsx";
 import ReglamentoPage from "../pages/ReglamentoPage.jsx";
 import PartidosPage from "../pages/PartidosPage.jsx";
 import ClasificacionPage from "../pages/ClasificacionPage.jsx";
+import LoadingDisplay from "../components/LoadingDisplay.jsx";
 
+const EquiposPage = lazy(() => import("../pages/EquiposPage.jsx"));
+const DetallesEquipoPage = lazy(() => import("../pages/DetallesEquipoPage.jsx"));
+const DetallesJugadorPage = lazy(() => import("../pages/DetallesJugadorPage.jsx"));
 
 /**
  * Devuelve el enrutador con todas las rutas del proyecto, tanto públicas como privadas
@@ -40,11 +45,23 @@ function AppEnrutador() {
                     <Route path="clasificacion" element={<ClasificacionPage />} />
 
                     {/* Rutas de los equipos */}
-                    <Route path="equipos" element={<EquiposPage />} />
-                    <Route path="equipos/:id" element={<DetallesEquipoPage />} />
+                    <Route path="equipos" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <EquiposPage />
+                        </Suspense>
+                    } />
+                    <Route path="equipos/:id" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <DetallesEquipoPage />
+                        </Suspense>
+                    } />
 
                     {/* Ruta de los jugadores */}
-                    <Route path="jugadores/:id" element={<DetallesJugadorPage />} />
+                    <Route path="equipos/:idEquipo/:idJugador" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <DetallesJugadorPage />
+                        </Suspense>
+                    } />
 
                     {/* Rutas de los retos */}
                     <Route path="retos" element={<RetosPage />} />

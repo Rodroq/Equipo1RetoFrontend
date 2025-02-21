@@ -34,7 +34,7 @@ function DetallesEquipoPage() {
                         return;
                     }
 
-                    setEquipo(datos);
+                    setEquipo(datos.equipo);
                 } else {
                     setEquipo(state.entidad);
                 }
@@ -69,9 +69,9 @@ function DetallesEquipoPage() {
                         {equipo.jugadores.map((jugador, index) => (
                             <Col key={`${idComponente}-${index}`} md={6} lg={4} className="mb-4">
                                 <Card
-                                    className="h-100 shadow-sm text-center border-0 rounded-3 bg-white"
+                                    className="h-100 shadow-sm text-center border-0 rounded-3 bg-white aumentar-escala"
                                     style={{ cursor: 'pointer' }}
-                                    onClick={() => navegar(`/jugadores/${null}`, { state: { jugador: jugador } })}
+                                    onClick={() => navegar(`${null}`, { state: { jugador: jugador } })}
                                 >
                                     <Card.Body>
                                         <Image
@@ -83,7 +83,10 @@ function DetallesEquipoPage() {
                                         />
                                         <h5 className="fw-bold text-dark">{jugador.nombre}</h5>
                                         <p className="text-muted fst-italic">{jugador.tipo}</p>
-                                        <p className="fw-light">{jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º</p>
+                                        <p className="fw-light">
+                                            CICLO - CURSO
+                                            {/* {jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º */}
+                                        </p>
                                         <Table borderless size="sm" className="text-center">
                                             <tbody>
                                                 <tr className="fw-semibold">

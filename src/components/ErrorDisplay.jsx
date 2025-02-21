@@ -1,10 +1,20 @@
 import { Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Componente que se muestra cuando hay algún error
+ * @param {String} mensaje //Mensaje que se muestra en el error
+ * @param {Function} onVolver //Permite personalizar la accion a realizar cuando se pulsa el boton
+ * @returns {JSX.Element}
+ */
 function ErrorDisplay({ mensaje, onVolver }) {
     const navegar = useNavigate();
 
-    const handleVolver = () => {
+    /**
+     * Función que permite personalizar la función del botón Volver
+     * @returns {void}
+     */
+    function handleVolver() {
         if (onVolver) {
             onVolver();
         } else {

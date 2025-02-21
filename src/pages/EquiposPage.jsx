@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState, useId } from "react";
 import Tarjeta from "../components/Tarjeta";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Container } from "react-bootstrap";
 import { AppContext } from "../contexts/AppProvider";
 import ErrorDisplay from "../components/ErrorDisplay";
-import LoadingDisplay from "../components/LoadingDisplay";
 
 function EquiposPage() {
     // ID de componente
@@ -13,7 +11,6 @@ function EquiposPage() {
     // Estados
     const [equipos, setEquipos] = useState([]);
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
 
     //Contexto
     const { negocio } = useContext(AppContext);
@@ -29,21 +26,15 @@ function EquiposPage() {
                     return;
                 }
 
-                setEquipos(equiposData.data.equipos);
+                setEquipos(equiposData.equipos);
             } catch (err) {
                 setError('Error al cargar los equipos');
                 console.error(err);
-            } finally {
-                setLoading(false);
             }
         }
 
         fetchEquipos();
     }, [negocio]);
-
-    if (loading) {
-        return <LoadingDisplay />;
-    }
 
     if (error) {
         return <ErrorDisplay mensaje={error} />;
@@ -57,7 +48,7 @@ function EquiposPage() {
                 <Card.Body>
                     <div className="row justify-content-center">
                         {equipos.map((equipo, index) => (
-                            <div className="col-lg-3 col-md-4 mb-4" key={`${idComponente}-${index}`}>
+                            <div className="col-lg-3 col-md-4 mb-4 aumentar-escala" key={`${idComponente}-${index}`}>
                                 <Tarjeta
                                     tituloTarjeta={equipo.nombre}
                                     textoTarjeta={equipo.centro.nombre}

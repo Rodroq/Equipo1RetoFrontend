@@ -8,6 +8,7 @@ main {
     flex: 1;
 }
 
+/* Títulos H2 */
 h2.section-titulo {
     font-size: 1.7rem;
     font-weight: 700;
@@ -22,4 +23,151 @@ h2.section-titulo::after {
     background-color: #007bff;
     margin: 8px auto 0;
     border-radius: 2px;
+}
+
+/* Portada */
+.portada {
+    min-height: 650px;
+}
+
+.fondo-portada {
+    background-image: url('/portada.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    mask-image: linear-gradient(to top, transparent, black 7%);
+}
+
+.contenedor-titulo-portada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1b1b1b8e; /* Fondo oscurecido para que la letra se lea mejor respecto a la imagen de fondo */
+    border-radius: 8px;
+    width: fit-content; /* Ajustar el tamaño del contenedor al contenido */
+    padding: 16px;
+    align-content: center;
+    margin: 0 auto;
+    gap: 16px;
+}
+
+.titulo-portada {
+    overflow: hidden; /* Oculta el texto que no cabe en el contenedor */
+    border-right: .15em solid #ffffff;
+    white-space: nowrap; /* Hace que el texto que no entra no salte de línea */
+    margin: 0;
+    animation: 
+        typing 3s steps(40, end),
+        cursor-typing .75s step-end infinite;
+}
+
+/* Transición para aumentar al hacer hover */
+.aumentar-escala {
+    transition: transform 0.3s ease-in-out;
+}
+
+.aumentar-escala:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+/* Animación de pulso */
+@keyframes pulso {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulso {
+    animation: pulso 2s infinite;
+}
+
+/* Anmimación de typing */
+@keyframes typing {
+    from {
+        width: 0 /* Anchura de la caja inicial */
+    }
+    to {
+        width: 100% /* Anchura de la caja final */
+    }
+}
+
+@keyframes cursor-typing {
+    from, to { /* 0% y 100% */
+        border-color: transparent;
+    }
+    50% {
+        border-color: #ffffff;
+    }
+}
+
+.bordes-redondeados {
+    border-radius: 8px;
+}
+
+/* Animación aparecer desde abajo y arriba */
+@keyframes aparecerAbajo {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecerArriba {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.aparecerAbajo {
+    animation: aparecerAbajo 2s ease-in-out;
+}
+
+.aparecerArriba {
+    animation: aparecerArriba 2s ease-in-out;
+}
+
+/* Animación aparecer desde izquieda y derecha */
+@keyframes aparecerIzquierda {
+    0% {
+        opacity: 0;
+        transform: translateX(-70px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes aparecerDerecha {
+    0% {
+        opacity: 0;
+        transform: translateX(70px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.aparecerIzquierda {
+    animation: aparecerIzquierda 2s ease-in-out;
+}
+
+.aparecerDerecha {
+    animation: aparecerDerecha 2s ease-in-out;
 }

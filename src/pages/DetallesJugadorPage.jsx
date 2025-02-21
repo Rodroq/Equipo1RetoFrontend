@@ -81,7 +81,8 @@ function DetallesJugadorPage() {
                     <div className="text-center mb-5">
                         <h1 className="display-5 fw-bold">{jugador.nombre}</h1>
                         <h5 className="text-secondary">
-                            {jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º
+                            CICLO - CURSO
+                            {/* {jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º */}
                         </h5>
                     </div>
 
