@@ -57,7 +57,7 @@ function EquiposPage() {
                 <Card.Body>
                     <div className="row justify-content-center">
                         {equipos.map((equipo, index) => (
-                            <div className="col-lg-3 col-md-4 mb-4" key={`${idComponente}-${index}`}>
+                            <div className="col-lg-3 col-md-4 mb-4 aumentar-escala" key={`${idComponente}-${index}`}>
                                 <Tarjeta
                                     tituloTarjeta={equipo.nombre}
                                     textoTarjeta={equipo.centro.nombre}
