@@ -58,7 +58,7 @@ function AppEnrutador() {
                     } />
 
                     {/* Ruta de los jugadores */}
-                    <Route path="jugadores/:id" element={
+                    <Route path="equipos/:idEquipo/:idJugador" element={
                         <Suspense fallback={<LoadingDisplay />}>
                             <DetallesJugadorPage />
                         </Suspense>
