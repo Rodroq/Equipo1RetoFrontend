@@ -3,7 +3,6 @@ import { useId } from "react";
 
 /**
  * Componente del formulario de inscripción, de la pestaña de Entrenador
- * 
  * @param {Object} formData //Datos del formulario para poder cargarlos cuando se cambia de pestaña
  * @param {Function} handleChange //Funcion que hace que cuando algun input cambie se validen las pestañas
  * @param {Function} onValidation //Funcion que permite cambiar si la pestaña actual es valida
@@ -16,7 +15,6 @@ function JugadoresForm({ formData, handleChange, eliminarJugador, agregarJugador
     /**
      * Funcion que maneja cuando se deselecciona un input
      * Cuando se ejecuta, valida que todos los campos se hayan rellenado y cambia el onValidation por el valor actual
-     * 
      * @returns {void}
      */
     function handleBlur() {

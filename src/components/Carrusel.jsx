@@ -2,7 +2,6 @@ import { Carousel, Image } from "react-bootstrap";
 
 /**
  * Componente que muestra imágenes en forma de carrusel
- * 
  * @param {Array} imagenes //Imagenes que se muestran en el carrusel
  * @param {Number} tiempo //Tiempo que tarda el carrusel en cambiar de imagen 
  * @returns 
