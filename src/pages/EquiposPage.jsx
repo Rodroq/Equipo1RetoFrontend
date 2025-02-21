@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState, useId } from "react";
 import Tarjeta from "../components/Tarjeta";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Container } from "react-bootstrap";
 import { AppContext } from "../contexts/AppProvider";
 import ErrorDisplay from "../components/ErrorDisplay";
-import LoadingDisplay from "../components/LoadingDisplay";
 
 function EquiposPage() {
     // ID de componente
@@ -13,7 +11,6 @@ function EquiposPage() {
     // Estados
     const [equipos, setEquipos] = useState([]);
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
 
     //Contexto
     const { negocio } = useContext(AppContext);
@@ -33,17 +30,11 @@ function EquiposPage() {
             } catch (err) {
                 setError('Error al cargar los equipos');
                 console.error(err);
-            } finally {
-                setLoading(false);
             }
         }
 
         fetchEquipos();
     }, [negocio]);
-
-    if (loading) {
-        return <LoadingDisplay />;
-    }
 
     if (error) {
         return <ErrorDisplay mensaje={error} />;
