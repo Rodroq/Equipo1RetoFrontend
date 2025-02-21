@@ -71,7 +71,7 @@ function DetallesEquipoPage() {
                                 <Card
                                     className="h-100 shadow-sm text-center border-0 rounded-3 bg-white aumentar-escala"
                                     style={{ cursor: 'pointer' }}
-                                    onClick={() => navegar(`/jugadores/${null}`, { state: { jugador: jugador } })}
+                                    onClick={() => navegar(`${null}`, { state: { jugador: jugador } })}
                                 >
                                     <Card.Body>
                                         <Image
