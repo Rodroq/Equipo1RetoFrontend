@@ -7,6 +7,7 @@ import RetosPage from "../pages/RetosPage.jsx";
 import PublicacionesPage from "../pages/PublicacionesPage.jsx";
 import LoginPage from "../pages/LoginPage.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
+import PrivacidadPage from "../pages/PrivacidadPage.jsx";
 //import DetallesEquipoPage from "../pages/DetallesEquipoPage.jsx";
 //import DetallesJugadorPage from "../pages/DetallesJugadorPage.jsx";
 import DetallesPublicacionPage from "../pages/DetallesPublicacionPage.jsx";
@@ -77,6 +78,9 @@ function AppEnrutador() {
 
                     {/* Ruta del inicio de sesión */}
                     <Route path="login" element={<LoginPage />} />
+
+                    {/* Ruta de políticas de privacidad */}
+                    <Route path="privacidad" element={<PrivacidadPage />} />
 
                     {/* Ruta de la página de error */}
                     <Route path="*" element={<ErrorPage />} />
