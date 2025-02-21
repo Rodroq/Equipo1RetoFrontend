@@ -4,7 +4,6 @@ import InicioPage from "../pages/InicioPage.jsx";
 import EquiposPage from "../pages/EquiposPage.jsx";
 import RetosPage from "../pages/RetosPage.jsx";
 import PublicacionesPage from "../pages/PublicacionesPage.jsx";
-import LoginPage from "../pages/LoginPage.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
 import DetallesEquipoPage from "../pages/DetallesEquipoPage.jsx";
 import DetallesJugadorPage from "../pages/DetallesJugadorPage.jsx";
