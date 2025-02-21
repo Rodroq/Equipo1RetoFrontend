@@ -25,7 +25,6 @@ function Header() {
           {/* LOGO DEL HEADER */}
           <Navbar.Brand href="/" className="fw-bold link-hover m-0" title="Ir a Inicio.">
             <img src={logo} alt="Logo" style={{ height: '110px' }} className="logo" />
-            <i className="bi bi-0-square"></i>
           </Navbar.Brand>
 
           {/* BOTÓN MENU RESPONSIVO */}
@@ -51,10 +50,10 @@ function Header() {
                     Torneo
                   </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="reglamento">Reglamento</Dropdown.Item>
-                    <Dropdown.Item href="partidos">Partidos</Dropdown.Item>
-                    <Dropdown.Item href="clasificacion">Clasificación</Dropdown.Item>
+                  <Dropdown.Menu className="border-primary border-1">
+                    <Dropdown.Item href="reglamento" title="Ir a Reglamento.">Reglamento</Dropdown.Item>
+                    <Dropdown.Item href="partidos" title="Ir a Partidos.">Partidos</Dropdown.Item>
+                    <Dropdown.Item href="clasificacion" title="Ir a Clasificación.">Clasificación</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Nav.Item>
