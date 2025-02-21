@@ -1,4 +1,4 @@
-import { Container } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 
 /**
  * Componente que se muestra cuando algo esta cargando
@@ -7,7 +7,9 @@ import { Container } from 'react-bootstrap';
 function LoadingDisplay() {
     return (
         <Container className="mt-5 text-center">
-            <h2>Cargando...</h2>
+            <Spinner animation="border" role="status">
+                <span className="visually-hidden">Cargando...</span>
+            </Spinner>
         </Container>
     );
 }

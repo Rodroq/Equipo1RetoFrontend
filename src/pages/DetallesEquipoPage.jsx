@@ -34,7 +34,7 @@ function DetallesEquipoPage() {
                         return;
                     }
 
-                    setEquipo(datos);
+                    setEquipo(datos.equipo);
                 } else {
                     setEquipo(state.entidad);
                 }
