@@ -5,13 +5,12 @@ import './Tabla.css';
 
 /**
  * Componente que recibe datos y los muestra en forma de tabla, junto a 3 funciones para ver, editar y borrar
- * 
  * @param {Array} informacion //Son los datos que le llegan a la tabla
  * @param {Array} columnas //Son las columnas que se muestran de la informacion pasada
  * @param {Function} handleVer //Funcion que maneja el boton Ver
  * @param {Function} handleEditar //Funcion que maneja el boton Editar
  * @param {Function} handleBorrar //Funcion que maneja el boton Borrar
- * @returns 
+ * @returns {JSX.Element}
  */
 function Tabla({ informacion, columnas, handleVer, handleEditar, handleBorrar }) {
     // Comprobamos que haya datos, en caso contrario mostramos un mensaje
