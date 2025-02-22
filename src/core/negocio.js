@@ -3,13 +3,14 @@ const $negocio = (function () {
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
     // Variable para almacenar el token de autenticación
-    let authToken = null;
+    let authToken = sessionStorage.getItem('token') || null;
 
     // Función para actualizar el token almacenado
     function setAuthToken(nuevoToken) {
         if (nuevoToken) {
             authToken = nuevoToken;
             sessionStorage.setItem('token', authToken);
+            console.log('a');
         }
     }
 
@@ -21,9 +22,9 @@ const $negocio = (function () {
           }
         try {
             const loginData = await postDatos('login', datos);
-
+            console.log(loginData);
             if (loginData.success) {
-                setAuthToken(loginData.token);
+                setAuthToken(loginData.data.token);
                 sessionStorage.setItem('rol', loginData.data.usuario.rol);
             }
             return loginData.success;
