@@ -7,18 +7,38 @@ const AppContext = createContext();
 function AppProvider({ children }) {
     const [rol, setRol] = useState(sessionStorage.getItem('rol') || null);
 
-    // Funciones
-    const logIn = async (username, password) => {
+    /**
+     * Funcion que permite iniciar sesión
+     * @param {String} username 
+     * @param {String} password 
+     * @returns {Boolean} //Devuelve si se ha iniciado sesión o no
+     */
+    async function logIn(username, password) {
         const valido = await $negocio.logIn(username, password);
         setRol(sessionStorage.getItem('rol'));
         return valido;
     }
 
-    const logOut = () => {
+    /**
+     * Funcion que permite cerrar sesion
+     * @returns {void}
+     */
+    function logOut() {
         $negocio.logOut();
         setRol(null);
     };
 
+    // Estado del modal
+    const [showModal, setShowModal] = useState(false);
+
+    /**
+     * Funcion que permite abrir y cerrar el modal de login
+     */
+    function toggleModal() {
+        setShowModal(!showModal);
+    }
+
+    // UseEffect que guarda el rol del sessionStorage
     useEffect(() => {
         const rolGuardado = sessionStorage.getItem('rol');
         if (rolGuardado) {
@@ -31,6 +51,8 @@ function AppProvider({ children }) {
             logIn,
             logOut,
             rol,
+            showModal,
+            toggleModal,
             negocio: $negocio
         }}>
             {children}
