@@ -80,36 +80,36 @@ function AppEnrutador() {
                     {/* Rutas privadas */}
                     {/* Rutas de publicaciones */}
                     <Route path="publicaciones/editar" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarPublicacionesPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarPublicacionesPage /></RutaPrivada>
                     } />
                     <Route path="publicaciones/editar/:id" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarPublicacionPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarPublicacionPage /></RutaPrivada>
                     } />
 
                     {/* Rutas de gestión */}
                     <Route path="gestion" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><GestionPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><GestionPage /></RutaPrivada>
                     } />
                     {/* Rutas de imagenes en gestión */}
                     <Route path="gestion/imagenes/" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarImagenesPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarImagenesPage /></RutaPrivada>
                     } />
                     <Route path="gestion/imagenes/:id" element={
                         <RutaPrivada>{ }</RutaPrivada>
                     } />
                     {/* Rutas de usuarios en gestión */}
                     <Route path="gestion/usuarios" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarUsuariosPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarUsuariosPage /></RutaPrivada>
                     } />
                     <Route path="gestion/usuarios/:id" element={
-                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
                     } />
                     {/* Rutas de actas en gestión */}
                     <Route path="gestion/actas" element={
-                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
                     } />
                     <Route path="gestion/equipos" element={
-                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
                     } />
 
                 </Route>

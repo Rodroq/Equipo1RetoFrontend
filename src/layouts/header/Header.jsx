@@ -2,8 +2,9 @@ import { Button, Dropdown, Container, Nav, Navbar } from "react-bootstrap";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import logo from '../../assets/logo_sede_torrelavega.png';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LoginForm from "../../components/formularios/LoginForm";
+import { AppContext } from "../../contexts/AppProvider";
 
 /**
  * Devuelve el componente Header
@@ -15,6 +16,13 @@ function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   // Definimos la variable que llama a useNavigate
   const navegar = useNavigate();
+
+  function handleClick() {
+    logOut();
+    navegar('/')
+  }
+
+  const { rol, logOut } = useContext(AppContext);
 
   return (
     <header className="sticky-top border-bottom border-primary border-2">
@@ -75,18 +83,26 @@ function Header() {
                   Inscripción
                 </Nav.Link>
               </Nav.Item>
+
+              {rol == 'administrador' ? (<Nav.Link href="/gestion" title="Ir a Gestion." className="fw-semibold text-dark link-hover">
+                Gestión
+              </Nav.Link>) : (<></>)}
             </Nav>
 
             {/* BOTÓN LOGIN */}
-            <Dropdown>
-              <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
-                Login
-              </Dropdown.Toggle>
+            {!rol ?
+              (<Dropdown>
+                <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
+                  Iniciar sesión
+                </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-                <LoginForm />
-              </Dropdown.Menu>
-            </Dropdown>
+                <Dropdown.Menu>
+                  <LoginForm />
+                </Dropdown.Menu>
+              </Dropdown>) :
+              (<Button onClick={handleClick}>
+                Cerrar sesión
+              </Button>)}
           </Navbar.Collapse>
         </Container>
       </Navbar>

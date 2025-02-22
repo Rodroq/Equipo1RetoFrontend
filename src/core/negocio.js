@@ -7,7 +7,36 @@ const $negocio = (function () {
 
     // Función para actualizar el token almacenado
     function setAuthToken(nuevoToken) {
-        authToken = nuevoToken;
+        if (nuevoToken) {
+            authToken = nuevoToken;
+            sessionStorage.setItem('token', authToken);
+        }
+    }
+
+    //Función para iniciar sesión
+    async function logIn(username, password) {
+        const datos = {
+            "email": username,
+            "password": password
+          }
+        try {
+            const loginData = await postDatos('login', datos);
+
+            if (loginData.success) {
+                setAuthToken(loginData.token);
+                sessionStorage.setItem('rol', loginData.data.usuario.rol);
+            }
+            return loginData.success;
+        } catch (error) {
+            console.error('Error en el login:', error);
+            return false;
+        }
+    }
+
+    function logOut() {
+        setAuthToken('');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('rol');
     }
 
     // Función para obtener la URL base de la API
@@ -106,7 +135,9 @@ const $negocio = (function () {
         getDatos,
         postDatos,
         putDatos,
-        deleteDatos
+        deleteDatos,
+        logIn,
+        logOut
     };
 })();
 
