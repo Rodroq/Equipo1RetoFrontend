@@ -3,11 +3,41 @@ const $negocio = (function () {
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
     // Variable para almacenar el token de autenticación
-    let authToken = null;
+    let authToken = sessionStorage.getItem('token') || null;
 
     // Función para actualizar el token almacenado
     function setAuthToken(nuevoToken) {
-        authToken = nuevoToken;
+        if (nuevoToken) {
+            authToken = nuevoToken;
+            sessionStorage.setItem('token', authToken);
+            console.log('a');
+        }
+    }
+
+    //Función para iniciar sesión
+    async function logIn(username, password) {
+        const datos = {
+            "email": username,
+            "password": password
+          }
+        try {
+            const loginData = await postDatos('login', datos);
+            console.log(loginData);
+            if (loginData.success) {
+                setAuthToken(loginData.data.token);
+                sessionStorage.setItem('rol', loginData.data.usuario.rol);
+            }
+            return loginData.success;
+        } catch (error) {
+            console.error('Error en el login:', error);
+            return false;
+        }
+    }
+
+    function logOut() {
+        setAuthToken('');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('rol');
     }
 
     // Función para obtener la URL base de la API
@@ -106,7 +136,9 @@ const $negocio = (function () {
         getDatos,
         postDatos,
         putDatos,
-        deleteDatos
+        deleteDatos,
+        logIn,
+        logOut
     };
 })();
 
