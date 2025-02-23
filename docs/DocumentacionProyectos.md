@@ -203,20 +203,172 @@ Las animaciones se han aplicado al logo principal de la barra de navegación med
 La aplicación se desplegará en un servidor linux con ...
 
 ### AWS
+Para la instalación en AWS, configuramos los siguientes apartados:
+
+#### BACKEND:
+* ##### VPC
+  Los ajustes con los cuales hemos configurado la VPC han sido los siguientes:
+  * Nombre: proyecto-vpc
+  * CIDR: 10.0.0.0/16
+  * Zona de disponibilidad: us-east-1
+  * Red Pública: 10.0.0.0/24
+  * Subred privada: 10.0.1.0/24
+  * GateAway: Ninguna
+* ##### Grupo de Seguridad
+  * Nombre: GrupoSeguridadEquipoReto1
+  * VPC : VPC creada en el paso anterior
+  * Reglas de Entrada:
+    * HTTP: Protocolo TCP y puerto 80
+    * SSH: Protocolo TCP y puerto 22
+* ##### Máquina virtual(EC2)
+  * Nombre: ServidorWebEquipo1
+  * Servidor: Ubuntu Server 24.04 LTS
+  * Tipo de instancia: T2 medium
+  * Par de claves: vockey
+  * VPC : Le asignamos la ya creada
+  * Subred : Le asignamos los subnet que tiene asociada la VPC de nuestro proyecto
+  * Asignación automática de IP Pública : Habilitar
+  * Grupo de Seguridad : El creado previamente
+##### Grupo de Seguridad de la base de datos
+  * Nombre: GrupoSeguridadDB
+  * VPC : La del proyecto 
+  * Reglas de Entrada:
+    * MYSQL/Aurora: Protocolo TCP , Puerto 3306 y cuyo origen va a ser el grupo de seguridad
+    ![](imgs/ReglaEntradaDB.png)
+
+##### Zona de disponibilidad
+  Para la creación de la nueva zona de disponibilidad lo que haremos será crear dos nuevas subredes una pública y otra privada.
+  * Subred Pública: 10.0.3.0/24
+  * Subred Privada: 10.0.2.0/24
+##### Grupo de Subredes RDS
+  * Nombre: gruposubredesdb
+  * VPC : La que creamos anteriormente
+  * Zona de disponibilidad: us-east-1a y us-east-1b
+  * Bloque CIDR: 10.0.0.0/16
+  * Bloque de CIDR de la subred: Añadimos dos subredes, la sunet con el bloque CIDR 10.0.1.0/24 y la subnet con el bloque CIDR 10.0.3.0/24
+##### Creación de la base de datos
+  * Nombre: database-1
+  * Metodo de creación: Estandar
+  * Opciones del motor: MySQL
+  * Plantillas: Producción
+  * Disponibilidad y durabilidad: instancia de base de datos Multi-AZ.
+  * Configuración:
+    * Identificador de la instancia: lab-db 
+    * Nombre de usuario maestro: admin
+    * Administrador de credenciales: Autoadministrado
+    * Contraseña maestra: La definida por el equipo
+  * Configuración de la instancia:
+    * Clases con ráfagas(incluye clases t) y seleccionamos db.t3.micro
+  * Almacenamiento:
+    * Tipo de almacenamiento: SSD de uso general(gp3)
+    * Almacenamiento asignado: 20
+  * Conectividad : 
+    * VPC: La creada anteriormente
+    * Grupo de Subredes: El creado anteriormente para la base de datos
+    * Acceso público: Si
+    * Grupo de seguridad de VPC(firewall): Seleccionaremos la opción de crear nuevo, y en nuestro caso lo hemos nombrado como grupoAccesoExteriorBD.
+  
+##### Ultimas modificaciones
+  * grupoAccesoExteriorBD: Añadimos una nueva regla de entrada para que se permita la conexión desde cualquier ip por el puerto 3306 para esto configuraremos el tipo de origen como Anywhere-IPv4
+  * Grupo de Subredes: El siguiente paso que hemos realizado fue dirigirnos a la esta sección para entrar en el grupo de subredes creado anteriormente, en el cual entraremos en cada una de las subredes de este grupo para acceder a la tabla de enrutamiento y dentro de estas tablas en la sección rutas las hemos editado añadiendo una nueva ruta en cada una de las subredes con acceso a internet.
+
+    ![](imgs/RutaInternetDB3.jpg)  
+    ![](imgs/RutaInternetDB2.jpg)
+  
+  * Comprobación del correcto funcionamiento de la BD
+
+    ![](imgs/TestConection.png)
+  
+
+#### FRONTEND:
+##### Creación de un bucket S3
+  * Nombre: equipo1retobucket
+  * Bloquear todo el acceso publico: Desactivado
+  * Alojmiento de sitios web esáticos: Habilitado
+    * Documento de Índice: index.html
+    * Documento de error: index.html
+  * Subida de datos:
+  Tras realizar un npm run build en el proyecto en react, se nos creará una carpeta **dist**, de la cual obtendremos todos los archivos que hay que cargar en el bucket.
+  * Comprobación de funcionamiento: Una vez realizados todos los pasos, introduciremos en el navegador el Punto de enlace de sitio web del bucket
+    ![](imgs/Bucket.png)
 
 ### Instalación Apache2
+A continuación mostraremos los comando que hemos utilizado tanto para la instalación de apache como para la puesta en marcha de la Instancia para poder Correr el backend del proyecto:
+#### Comandos para la instalación de apache
+```bash
+#Instalar apache
+sudo apt install apache2
 
+#Creación de la carpeta donde guardaremos el proyecto
+mkdir var/www/html/www.reto1.es/public_html
+
+#Dar permisos y cambiar la propiedad al usuario de apache
+sudo chown -R www-data:www-data /var/www/html/www.reto1.es/public_html/Equipo1RetoBackend
+
+#Establecemos los permisos adecuados
+sudo chmod -R 755 /var/www/html/www.reto1.es/public_html/Equipo1RetoBackend
+
+#Creación de los archivos para los sitios virtuales
+sudo cp /etc/apache2/sites-available/000-dafault.conf /etc/apache2/sites-available/equipo1.es.conf
+
+#Creación de un directorio para los ficheros de log
+sudo mkdir -p ${APACHE_LOG_DIR}/sitios/empleados.es
+
+#Configuración del archivo para el host virtual, donde configuraremos en el DocumentRoot  la ruta de la carpeta public de nuestro proyecto
+sudo nano /etc/apache2/sites-available/equipo1.es.conf
+
+#Activación del host mediante los siguientes comandos:
+sudo a2dissite 000-default.conf
+sudo a2ensite equipo1.es.conf
+sudo systemctl restart apache2
+```
 ### Instalación de MySQL
 
 ### Instalación de PHP y librerías
+Al igual que otras instalaciónes que hemos realizado, PHP lo hemos instalado mediante chocolatery
+```bash
+#Comando de instalación de PHP
+choco install php
+```
 
 #### Configuración de PHP
+Para la correcta configuración de PHP, hay que descomentar las siguientes lineas en el php.ini
+```bash
+extension=curl
+extension=mbstring
+extension=mysqli
+extension=pdo_mysql
+extension=zip
+error_reporting=E_ALL & ~E_DEPRECATED & ~E_STRICT
+display_errors=On
+display_startup_errors=On
 
+```
 ### Habilitar PHP sobre Apache2
+
+```bash
+#Instalación de PHP
+sudo apt install php libapache2-mod-php php-mysql
+
+#Lo siguiente, será modificar el php.ini, donde descomentaremos los errores y las extensiones de zip y curl ademas de otras que nos haran falta mas adelante para poder lanzar el proyecto como son mbstring o mysql
+sudo nano /etc/php/8.3/apache2/php.ini
+
+#Ademas, al igual que nos pasa con las extensiones mencionadas anteriormente, habra que instalar una extension de php llamada php-xml, sin este tipo de extensiones,cuando queramos realizar el composer update en el servidor nos saldrá un error, en el caso de esta extension nos aparecerá el error: - tijsverkoyen/css-to-inline-styles[2.2.5, ..., v2.3.0] require ext-dom * -> it is missing from your system. Install or enable PHP's dom extension..
+sudo apt-get install php-xml
+
+#Para comprobar que PHP ha sido instalado correctamente, crearemos un info.php en el public_html, dentro del cual introduciremos un codigo php para que nos muestre la información de PHP.CUIDADO, para mostrarlo habría que modificar el equipo1.es.conf y decirle que la ruta llega hasta public_html y no como ahora que llega a /public
+sudo nano /var/www/html/www.reto1.es//public_html/info.php
+```
 
 ### Instalar phpMyAdmin
 
 ### Instalar Composer
+Para la instalación de Composer, hemos utilizado la aplicación chocolatery, la cual nos hemos instalado seleccionando la opción de instalación de la misma cuando instalas NodeJS.
+
+```bash
+#Comando utilizando para la instalación de composer desde el power shell
+choco install composer
+```
 
 ### Instalar NodeJS
 
