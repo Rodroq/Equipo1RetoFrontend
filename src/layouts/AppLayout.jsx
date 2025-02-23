@@ -3,6 +3,7 @@ import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import MigasDePan from "../components/MigasDePan";
 import ModalLogin from "../components/ModalLogin";
+import ToastGroup from "../components/ToastGroup";
 
 function AppLayout() {
     return (
@@ -14,6 +15,7 @@ function AppLayout() {
             </main>
             <Footer />
             <ModalLogin />
+            <ToastGroup/>
         </>
     );
 }

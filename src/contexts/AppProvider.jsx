@@ -46,6 +46,27 @@ function AppProvider({ children }) {
         }
     }, []);
 
+    // UseState para guardar los toast que existen
+    const [toasts, setToasts] = useState([]);
+
+    /**
+     * Funcion que permite añadir un toast
+     * @param {String} tipo //Tipo de Toast (ej. login)
+     * @returns {void}
+     */
+    function agregarToast(tipo) {
+        setToasts([...toasts, { id: Date.now(), type: tipo }]);
+    }
+
+    /**
+     * Funcion que borra un toast
+     * @param {String} id //Variable que identifica el toast a borrar
+     * @returns {void}
+     */
+    function borrarToast(id) {
+        setToasts(toasts.filter(toast => toast.id != id));
+    }
+
     return (
         <AppContext.Provider value={{
             logIn,
@@ -53,6 +74,9 @@ function AppProvider({ children }) {
             rol,
             showModal,
             toggleModal,
+            toasts,
+            agregarToast,
+            borrarToast,
             negocio: $negocio
         }}>
             {children}
