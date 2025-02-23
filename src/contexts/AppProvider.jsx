@@ -26,6 +26,7 @@ function AppProvider({ children }) {
     function logOut() {
         $negocio.logOut();
         setRol(null);
+        agregarToast('Sesión cerrada', 'Has cerrado sesión correctamente.');
     };
 
     // Estado del modal

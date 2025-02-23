@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
  */
 function ModalLogin() {
     const [showPassword, setShowPassword] = useState(false);
-    const { showModal, toggleModal, logIn } = useContext(AppContext);
+    const { showModal, toggleModal, logIn, agregarToast } = useContext(AppContext);
     const navegar = useNavigate();
 
     /**
@@ -31,7 +31,7 @@ function ModalLogin() {
 
         if (valido) {
             toggleModal();
-            navegar('/');
+            agregarToast('Sesión iniciada', 'Has iniciado sesión correctamente.');
         } else {
             console.error("Correo o contraseña incorrectas");
         }
