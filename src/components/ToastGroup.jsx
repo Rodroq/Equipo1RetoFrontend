@@ -1,6 +1,6 @@
 import { ToastContainer } from "react-bootstrap";
 import Toast from "./Toast";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "../contexts/AppProvider";
 
 /**
@@ -17,7 +17,7 @@ function ToastGroup() {
      */
     function generarToast() {
         return toasts.map((toast) =>
-            <Toast key={`${toast.id}`} id={toast.id} type={toast.type} borrarToast={borrarToast} />
+            <Toast key={`${toast.id}`} id={toast.id} titulo={toast.datos[0]} texto={toast.datos[1]} borrarToast={borrarToast} />
         );
     }
 

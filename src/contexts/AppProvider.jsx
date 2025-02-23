@@ -51,11 +51,12 @@ function AppProvider({ children }) {
 
     /**
      * Funcion que permite añadir un toast
-     * @param {String} tipo //Tipo de Toast (ej. login)
+     * @param {String} titulo //Titulo del toast
+     * @param {String} texto //Cuerpo del toast
      * @returns {void}
      */
-    function agregarToast(tipo) {
-        setToasts([...toasts, { id: Date.now(), type: tipo }]);
+    function agregarToast(titulo, texto) {
+        setToasts([...toasts, { id: Date.now(), datos: [titulo, texto] }]);
     }
 
     /**
