@@ -26,6 +26,7 @@ function AppProvider({ children }) {
     function logOut() {
         $negocio.logOut();
         setRol(null);
+        agregarToast('Sesión cerrada', 'Has cerrado sesión correctamente.');
     };
 
     // Estado del modal
@@ -46,6 +47,28 @@ function AppProvider({ children }) {
         }
     }, []);
 
+    // UseState para guardar los toast que existen
+    const [toasts, setToasts] = useState([]);
+
+    /**
+     * Funcion que permite añadir un toast
+     * @param {String} titulo //Titulo del toast
+     * @param {String} texto //Cuerpo del toast
+     * @returns {void}
+     */
+    function agregarToast(titulo, texto) {
+        setToasts([...toasts, { id: Date.now(), datos: [titulo, texto] }]);
+    }
+
+    /**
+     * Funcion que borra un toast
+     * @param {String} id //Variable que identifica el toast a borrar
+     * @returns {void}
+     */
+    function borrarToast(id) {
+        setToasts(toasts.filter(toast => toast.id != id));
+    }
+
     return (
         <AppContext.Provider value={{
             logIn,
@@ -53,6 +76,9 @@ function AppProvider({ children }) {
             rol,
             showModal,
             toggleModal,
+            toasts,
+            agregarToast,
+            borrarToast,
             negocio: $negocio
         }}>
             {children}
