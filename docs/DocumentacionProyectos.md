@@ -323,6 +323,47 @@ sudo a2ensite equipo1.es.conf
 sudo systemctl restart apache2
 ```
 ### Instalación de MySQL
+Para la instalación de MySQL se puede hacer de dos formas:
+
+##### XAMPP
+1. **Descarga XAMPP**  
+   - Visita la página oficial de [Apache Friends](https://www.apachefriends.org/index.html).  
+   - Selecciona la versión compatible con tu sistema operativo (Windows, Linux, macOS).  
+
+2. **Ejecuta el instalador**  
+   - Descarga el archivo ejecutable (`.exe` para Windows, por ejemplo) y ábrelo.  
+   - Durante el proceso, se te pedirá seleccionar componentes. Asegúrate de marcar **MySQL** (o MariaDB) para incluirlo en la instalación.  
+
+3. **Configura el entorno**  
+   - Una vez instalado, abre el **XAMPP Control Panel**.  
+   - Inicia el módulo de MySQL haciendo clic en "Start" junto a su nombre. Si se pone en verde, está funcionando.  
+
+4. **Accede a MySQL**  
+   - Abre un navegador y escribe `http://localhost/phpmyadmin` para acceder a phpMyAdmin, una interfaz gráfica que te permite gestionar la base de datos.  
+   - Usa el usuario predeterminado `root` (sin contraseña inicial, aunque se recomienda establecer una).  
+
+##### MySQL Server
+1. **Descarga MySQL**  
+   - Ve al sitio oficial de [MySQL](https://dev.mysql.com/downloads/mysql/).  
+   - Selecciona **MySQL Community Server** y descarga el instalador para tu sistema operativo (por ejemplo, `.msi` para Windows).  
+
+2. **Ejecuta el instalador**  
+   - Abre el archivo descargado y sigue el asistente de instalación.  
+   - Elige el tipo de instalación:  
+     - **Developer Default**: Incluye herramientas para desarrolladores.  
+     - **Server Only**: Solo el servidor MySQL.  
+     - **Custom**: Personaliza los componentes.  
+
+3. **Configura el servidor**  
+   - Define la contraseña para el usuario `root`.  
+   - Selecciona el puerto (por defecto, 3306) y otras opciones como el modo de autenticación.  
+
+4. **Verifica la instalación**  
+   - Abre una terminal (en Windows, usa el "Command Prompt" o "PowerShell").  
+   - Ejecuta `mysql -u root -p` y escribe la contraseña para conectarte.  
+
+5. **Instalación de Herramientas**  
+   - Descarga e instala **MySQL Workbench** desde el mismo sitio para gestionar bases de datos con una interfaz gráfica.
 
 ### Instalación de PHP y librerías
 Al igual que otras instalaciónes que hemos realizado, PHP lo hemos instalado mediante chocolatery
@@ -330,6 +371,89 @@ Al igual que otras instalaciónes que hemos realizado, PHP lo hemos instalado me
 #Comando de instalación de PHP
 choco install php
 ```
+#### Librerías y Dependencias para el Proyecto
+
+A continuación, se listan las librerías utilizadas en el proyecto, junto con los comandos para instalarlas mediante Composer y una breve descripción de su propósito.
+
+##### Dependencias de Producción (`require`)
+
+Estas son las librerías necesarias para el funcionamiento del proyecto en producción:
+```bash
+#darkaonline/l5-swagger  
+##Integra Swagger en Laravel para generar documentación automática de APIs RESTful.  
+composer require darkaonline/l5-swagger  
+
+#laravel/framework  
+##Núcleo de Laravel, proporciona las funcionalidades principales del framework como rutas, controladores, modelos y más.  
+composer require laravel/framework  
+
+#laravel/sanctum  
+##Proporciona autenticación basada en tokens para APIs y aplicaciones SPA (Single Page Applications).  
+composer require laravel/sanctum  
+
+#laravel/tinker  
+##Herramienta interactiva de línea de comandos para experimentar con el código de Laravel en tiempo real.  
+composer require laravel/tinker  
+
+#spatie/laravel-medialibrary  
+##Facilita la gestión de archivos multimedia asociados a modelos (como imágenes o PDFs) en Laravel.  
+composer require spatie/laravel-medialibrary  
+
+#spatie/laravel-permission  
+##Sistema de gestión de roles y permisos para controlar el acceso en aplicaciones Laravel.  
+composer require spatie/laravel-permission  
+
+#spatie/laravel-sluggable  
+##Genera slugs (URLs amigables) automáticamente a partir de campos como títulos o nombres.  
+composer require spatie/laravel-sluggable  
+
+#zircote/swagger-php  
+##Biblioteca base para generar especificaciones Swagger en PHP, complementa l5-swagger.  
+composer require zircote/swagger-php  
+```
+
+##### Dependencias de Desarrollo (`require-dev`)
+
+Estas librerías son útiles durante el desarrollo y pruebas, pero no son necesarias en producción:
+
+```bash
+#fakerphp/faker  
+##Genera datos falsos (nombres, correos, etc.) para pruebas y llenado de bases de datos.  
+composer require --dev fakerphp/faker  
+
+#laravel/pail  
+##Herramienta para inspeccionar y depurar logs de Laravel desde la línea de comandos.  
+composer require --dev laravel/pail  
+
+#laravel/pint  
+##Linter y formateador de código para mantener un estilo consistente en el proyecto.  
+composer require --dev laravel/pint  
+
+#laravel/sail  
+##Entorno de desarrollo basado en Docker para Laravel, simplifica la configuración local.  
+composer require --dev laravel/sail  
+
+#mockery/mockery  
+##Biblioteca para crear mocks (objetos simulados) en pruebas unitarias.  
+composer require --dev mockery/mockery  
+
+#nunomaduro/collision  
+##Mejora la experiencia de manejo de errores en la terminal durante el desarrollo y pruebas.  
+composer require --dev nunomaduro/collision  
+
+#phpunit/phpunit  
+##Framework de pruebas unitarias para PHP, esencial para verificar el correcto funcionamiento del código.  
+composer require --dev phpunit/phpunit
+```
+---
+
+## Instalación Completa
+
+Si deseas instalar todas las dependencias de una vez, usa:  
+- Producción: `composer install`  
+- Desarrollo: `composer install --dev`
+
+Asegúrate de tener Composer configurado correctamente en tu entorno.
 
 #### Configuración de PHP
 Para la correcta configuración de PHP, hay que descomentar las siguientes lineas en el php.ini
@@ -361,7 +485,7 @@ sudo nano /var/www/html/www.reto1.es//public_html/info.php
 ```
 
 ### Instalar phpMyAdmin
-
+Para la instalación de phpMyAdmin, tendríamos que dirigirnos al apartado [Instalación de MySQL](#instalación-de-mysql) y deberíamos seguir la opción de mysql con xampp. Una vez descargado xampp podemos acceder a phpMyAdmin introduciendo la siguiente url en el navegador `http://localhost/phpmyadmin` o podríamos dirigirnos al panel de control de xampp y seleccionar la opcion admin que aparece sobre mysql.
 ### Instalar Composer
 Para la instalación de Composer, hemos utilizado la aplicación chocolatery, la cual nos hemos instalado seleccionando la opción de instalación de la misma cuando instalas NodeJS.
 
@@ -371,6 +495,27 @@ choco install composer
 ```
 
 ### Instalar NodeJS
+
+Para la instalación de NodeJS hemos seguido los siguientes pasos:
+1. **Descarga el instalador**  
+   - Visita la página oficial de [Node.js](https://nodejs.org/).  
+   - Descarga la versión recomendada (LTS) haciendo clic en el botón "LTS" (por ejemplo, `node-v20.x.x-x64.msi`).  
+
+2. **Ejecuta el instalador**  
+   - Abre el archivo `.msi` descargado.  
+   - Sigue el asistente de instalación:  
+     - Acepta los términos de la licencia.  
+     - Elige la carpeta de instalación (por defecto, `C:\Program Files\nodejs\`).  
+     - Marca la opción para instalar **npm** (el gestor de paquetes de Node.js) automáticamente.
+     - Añade la opción de instalar chocolatery, el cual hemos utilizado para otras instalaciones como composer.  
+
+3. **Verifica la instalación**  
+   - Abre una terminal (puedes usar "Command Prompt" o "PowerShell").  
+   - Ejecuta:  
+     ```bash
+     #Comprueba la version del NodeJS instalado
+     node -v
+     ```
 
 #### Desinstalar versión pre-instalada
 
