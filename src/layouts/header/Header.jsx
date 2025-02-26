@@ -44,6 +44,11 @@ function Header() {
                 Publicaciones
               </Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/inscripcion" className="fw-semibold text-dark link-hover">
+                Inscripción
+              </Nav.Link>
+            </Nav.Item>
           </Nav>
 
           {/* BOTÓN LOGIN */}

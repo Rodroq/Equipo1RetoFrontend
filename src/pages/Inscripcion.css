@@ -1,0 +1,29 @@
+.icono {
+    width: 40px;
+    height: 40px;
+    fill: currentColor;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+.mt-1 {
+    margin-top: 0.25rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-6 {
+    margin-top: 1.5rem;
+}
+
+.p-1 {
+    padding: 0.25rem;
+}
+
+.pointer {
+    cursor: pointer;
+}

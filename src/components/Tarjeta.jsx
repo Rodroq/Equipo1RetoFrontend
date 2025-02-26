@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
+import './Tarjeta.css'
 
 function Tarjeta({ tituloTarjeta, textoTarjeta, imagenTarjeta, textoBoton, nombreEntidad, datosObjeto }) {
     const navegar = useNavigate();
@@ -11,7 +12,7 @@ function Tarjeta({ tituloTarjeta, textoTarjeta, imagenTarjeta, textoBoton, nombr
                 <Card.Img variant="top" src={imagenTarjeta || "https://placehold.co/600x400/png"} />
                 <Card.Body>
                     <Card.Title>{tituloTarjeta}</Card.Title>
-                    <Card.Text>
+                    <Card.Text className='limiteTexto'>
                         {textoTarjeta}
                     </Card.Text>
                     <Button onClick={() => { navegar(`/${nombreEntidad}/${datosObjeto.slug}`, { state: { entidad: datosObjeto } }) }} variant="primary">{textoBoton}</Button>
