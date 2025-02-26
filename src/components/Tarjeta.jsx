@@ -14,7 +14,7 @@ function Tarjeta({ tituloTarjeta, textoTarjeta, imagenTarjeta, textoBoton, nombr
                     <Card.Text>
                         {textoTarjeta}
                     </Card.Text>
-                    <Button onClick={() => { navegar(`/${nombreEntidad}/${datosObjeto.id}`, { state: { entidad: datosObjeto } }) }} variant="primary">{textoBoton}</Button>
+                    <Button onClick={() => { navegar(`/${nombreEntidad}/${datosObjeto.slug}`, { state: { entidad: datosObjeto } }) }} variant="primary">{textoBoton}</Button>
                 </Card.Body>
             </Card>
         </div>
