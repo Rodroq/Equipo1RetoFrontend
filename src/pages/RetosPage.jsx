@@ -14,7 +14,6 @@ function RetosPage() {
     useEffect(() => {
         async function fetchRetos() {
             const retosData = await negocio.getDatos('retos');
-            console.log(retosData);
             setRetos(retosData.reto);
         }
         fetchRetos();
