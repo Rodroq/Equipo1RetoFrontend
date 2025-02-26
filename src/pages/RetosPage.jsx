@@ -13,8 +13,9 @@ function RetosPage() {
 
     useEffect(() => {
         async function fetchRetos() {
-            const retosData = await negocio.obtenerRetos();
-            setRetos(retosData);
+            const retosData = await negocio.getDatos('retos');
+            console.log(retosData);
+            setRetos(retosData.reto);
         }
         fetchRetos();
     }, [negocio]);
@@ -55,8 +56,8 @@ function RetosPage() {
                             {retos.map((reto) => (
                                 <div className="col-lg-3 col-md-4 mb-4" key={reto.id}>
                                     <Tarjeta
-                                        tituloTarjeta={reto.nombre}
-                                        textoTarjeta={reto.descripcion}
+                                        tituloTarjeta={reto.titulo}
+                                        textoTarjeta={reto.texto}
                                         imagenTarjeta={reto.imagen}
                                         textoBoton={'Ver reto'}
                                         nombreEntidad={'retos'}
