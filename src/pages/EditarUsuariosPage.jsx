@@ -1,69 +1,61 @@
 import { Card, Container } from "react-bootstrap";
-import Tabla from '../components/Tabla.jsx'
-import Modal from '../components/Modal.jsx'
+import Tabla from '../components/Tabla.jsx';
+import Modal from '../components/Modal.jsx';
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../contexts/AppProvider.jsx";
 
 function EditarUsuariosPage() {
     const navegar = useNavigate();
-    const [usuarios, setUsuarios] = useState([
-        {
-            id: 1,
-            usuario: 'admin',
-            rol: 'admin',
-        },
-        {
-            id: 2,
-            usuario: 'juan.perez',
-            rol: 'usuario',
-        },
-        {
-            id: 3,
-            usuario: 'maria.garcia',
-            rol: 'editor',
-        },
-        {
-            id: 4,
-            usuario: 'carlos.rodriguez',
-            rol: 'usuario',
-        },
-        {
-            id: 5,
-            usuario: 'ana.martinez',
-            rol: 'editor',
-        },
-        {
-            id: 6,
-            usuario: 'roberto.lopez',
-            rol: 'usuario',
-        },
-    ]);
+    const [usuarios, setUsuarios] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [publicacionABorrar, setPublicacionABorrar] = useState(null);
+    const [usuarioABorrar, setUsuarioABorrar] = useState(null);
+    const [error, setError] = useState(null);
 
-    function handleVer(elemento) {
-        navegar(`/usuarios/${elemento.id}`);
+    // Contexto
+    const { negocio } = useContext(AppContext);
+
+    // Efecto al montar el componente
+    useEffect(() => {
+        async function fetchUsuarios() {
+            try {
+                const usuariosData = await negocio.getDatos('usuarios');
+                console.log(usuariosData);
+
+                if (!usuariosData) {
+                    setError('No se han encontrado usuarios');
+                    return;
+                }
+
+                setUsuarios(usuariosData.data);
+            } catch (err) {
+                setError('Error al cargar los usuarios');
+                console.error(err);
+            }
+        }
+
+        fetchUsuarios();
+    }, [negocio]);
+
+    function handleEditar(usuario) {
+        navegar(`${usuario.slug}`);
     }
 
-    function handleEditar(elemento) {
-        navegar(`${elemento.id}`);
-    }
-
-    function handleBorrar(elemento) {
-        setPublicacionABorrar(elemento);
+    function handleBorrar(usuario) {
+        setUsuarioABorrar(usuario);
         setShowModal(true);
     }
 
     function confirmarBorrado() {
-        const nuevasUsuarios = usuarios.filter(pub => pub.id !== publicacionABorrar.id);
-        setUsuarios(nuevasUsuarios);
+        const nuevosUsuarios = usuarios.filter(user => user.id !== usuarioABorrar.id);
+        setUsuarios(nuevosUsuarios);
         setShowModal(false);
-        setPublicacionABorrar(null);
+        setUsuarioABorrar(null);
     }
 
     function cancelarBorrado() {
         setShowModal(false);
-        setPublicacionABorrar(null);
+        setUsuarioABorrar(null);
     }
 
     return (
@@ -71,22 +63,21 @@ function EditarUsuariosPage() {
             <h2 className="text-center mb-5 section-titulo">Usuarios</h2>
             <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                 <Card.Body>
-                    <Tabla
+                    {usuarios && (<><Tabla
                         informacion={usuarios}
-                        columnas={['usuario', 'rol']}
-                        handleVer={handleVer}
+                        columnas={['nombre', 'email', 'rol']}
                         handleEditar={handleEditar}
                         handleBorrar={handleBorrar}
                     />
-                    <Modal
-                        show={showModal}
-                        handleClose={cancelarBorrado}
-                        handleConfirm={confirmarBorrado}
-                        titulo="Confirmar eliminación"
-                        texto="¿Estás seguro de que deseas eliminar este usuario?"
-                        confirmar="Eliminar"
-                        cancelar="Cancelar"
-                    />
+                        <Modal
+                            show={showModal}
+                            handleClose={cancelarBorrado}
+                            handleConfirm={confirmarBorrado}
+                            titulo="Confirmar eliminación"
+                            texto="¿Estás seguro de que deseas eliminar este usuario?"
+                            confirmar="Eliminar"
+                            cancelar="Cancelar"
+                        /></>) || (<><p>{error}</p></>)}
                 </Card.Body>
             </Card>
         </Container>
