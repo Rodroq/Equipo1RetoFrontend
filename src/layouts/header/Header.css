@@ -1,6 +1,55 @@
+/* Estilos para enlaces con efecto hover */
 .link-hover {
     transition: color 0.3s ease-in-out;
+    /* Transición suave del color en 0.3s */
 }
+
 .link-hover:hover {
     color: #007bff !important;
+    /* Cambia el color al azul de Bootstrap al hacer hover */
+}
+
+/* Muestra el menú desplegable al hacer hover sobre el contenedor */
+.hover-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Ajusta el margen del menú desplegable para que no se desplace hacia abajo */
+.hover-dropdown .dropdown-menu {
+    margin-top: 0 !important;
+}
+
+/* Estilos para el logo */
+.logo {
+    transition: transform 0.3s;
+    /* Transición suave en el cambio de transformación */
+}
+
+.logo:hover {
+    animation: rebote 1s linear;
+    /* Aplica la animación de rebote al hacer hover */
+}
+
+/* Animación de rebote */
+@keyframes rebote {
+
+    /* Posiciones clave de la animación */
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+        /* Mantiene la posición original */
+    }
+
+    40% {
+        transform: translateY(-17px);
+        /* Sube el elemento */
+    }
+
+    60% {
+        transform: translateY(-7px);
+        /* Baja un poco antes de volver */
+    }
 }

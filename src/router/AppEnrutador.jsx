@@ -1,66 +1,115 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout.jsx";
 import InicioPage from "../pages/InicioPage.jsx";
-import EquiposPage from "../pages/EquiposPage.jsx";
-import TorneoPage from "../pages/TorneoPage.jsx";
+//import EquiposPage from "../pages/EquiposPage.jsx";
 import RetosPage from "../pages/RetosPage.jsx";
 import PublicacionesPage from "../pages/PublicacionesPage.jsx";
-import LoginPage from "../pages/LoginPage.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
-import DetallesEquipoPage from "../pages/DetallesEquipoPage.jsx";
-import DetallesJugadorPage from "../pages/DetallesJugadorPage.jsx";
+//import DetallesEquipoPage from "../pages/DetallesEquipoPage.jsx";
+//import DetallesJugadorPage from "../pages/DetallesJugadorPage.jsx";
 import DetallesPublicacionPage from "../pages/DetallesPublicacionPage.jsx";
 import DetallesRetoPage from "../pages/DetallesRetoPage.jsx";
-import DetallesUsuarioPage from "../pages/DetallesUsuarioPage.jsx";
 import InscripcionPage from "../pages/InscripcionPage.jsx";
 import RutaPrivada from "../components/RutaPrivada.jsx";
 import EditarPublicacionPage from "../pages/EditarPublicacionPage.jsx"
 import EditarPublicacionesPage from "../pages/EditarPublicacionesPage.jsx";
 import EditarImagenesPage from "../pages/EditarImagenesPage.jsx";
 import EditarUsuariosPage from "../pages/EditarUsuariosPage.jsx";
+import GestionPage from "../pages/GestionPage.jsx";
+import ReglamentoPage from "../pages/ReglamentoPage.jsx";
+import PartidosPage from "../pages/PartidosPage.jsx";
+import ClasificacionPage from "../pages/ClasificacionPage.jsx";
+import LoadingDisplay from "../components/LoadingDisplay.jsx";
 
+const EquiposPage = lazy(() => import("../pages/EquiposPage.jsx"));
+const DetallesEquipoPage = lazy(() => import("../pages/DetallesEquipoPage.jsx"));
+const DetallesJugadorPage = lazy(() => import("../pages/DetallesJugadorPage.jsx"));
+
+/**
+ * Devuelve el enrutador con todas las rutas del proyecto, tanto públicas como privadas
+ * 
+ * @returns {JSX.Element}
+ */
 function AppEnrutador() {
     return (
         <BrowserRouter>
             <Routes>
+                {/* Conjunto de rutas que usan el AppLayout */}
                 <Route path="/" element={<AppLayout />}>
+                    {/* Ruta de la página de inicio */}
                     <Route index element={<InicioPage />} />
-                    <Route path="torneo" element={<TorneoPage />} />
-                    <Route path="equipos" element={<EquiposPage />} />
-                    <Route path="equipos/:id" element={<DetallesEquipoPage />} />
+                    {/* Rutas de torneo */}
+                    <Route path="reglamento" element={<ReglamentoPage />} />
+                    <Route path="partidos" element={<PartidosPage />} />
+                    <Route path="clasificacion" element={<ClasificacionPage />} />
+
+                    {/* Rutas de los equipos */}
+                    <Route path="equipos" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <EquiposPage />
+                        </Suspense>
+                    } />
+                    <Route path="equipos/:id" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <DetallesEquipoPage />
+                        </Suspense>
+                    } />
+
+                    {/* Ruta de los jugadores */}
+                    <Route path="equipos/:idEquipo/:idJugador" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <DetallesJugadorPage />
+                        </Suspense>
+                    } />
+
+                    {/* Rutas de los retos */}
                     <Route path="retos" element={<RetosPage />} />
                     <Route path="retos/:id" element={<DetallesRetoPage />} />
+
+                    {/* Rutas de las publicaciónes */}
                     <Route path="publicaciones" element={<PublicacionesPage />} />
                     <Route path="publicaciones/:id" element={<DetallesPublicacionPage />} />
-                    <Route path="login" element={<LoginPage />} />
-                    <Route path="jugadores/:id" element={<DetallesJugadorPage />} />
+
+                    {/* Ruta de inscripcion de equipo */}
                     <Route path="inscripcion" element={<InscripcionPage />} />
+
+                    {/* Ruta de la página de error */}
                     <Route path="*" element={<ErrorPage />} />
 
                     {/* Rutas privadas */}
-                    <Route path="editar/publicaciones" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarPublicacionesPage /></RutaPrivada>
+                    {/* Rutas de publicaciones */}
+                    <Route path="publicaciones/editar" element={
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarPublicacionesPage /></RutaPrivada>
                     } />
-                    <Route path="editar/publicaciones/:id" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarPublicacionPage /></RutaPrivada>
+                    <Route path="publicaciones/editar/:id" element={
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarPublicacionPage /></RutaPrivada>
                     } />
-                    <Route path="editar/imagenes" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarImagenesPage /></RutaPrivada>
+
+                    {/* Rutas de gestión */}
+                    <Route path="gestion" element={
+                        <RutaPrivada rolesPermitidos={['administrador']}><GestionPage /></RutaPrivada>
                     } />
-                    <Route path="editar/imagenes/:id" element={
+                    {/* Rutas de imagenes en gestión */}
+                    <Route path="gestion/imagenes/" element={
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarImagenesPage /></RutaPrivada>
+                    } />
+                    <Route path="gestion/imagenes/:id" element={
                         <RutaPrivada>{ }</RutaPrivada>
                     } />
-                    <Route path="editar/usuarios" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarUsuariosPage /></RutaPrivada>
+                    {/* Rutas de usuarios en gestión */}
+                    <Route path="gestion/usuarios" element={
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarUsuariosPage /></RutaPrivada>
                     } />
-                    <Route path="editar/usuarios/:id" element={
-                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
+                    <Route path="gestion/usuarios/:id" element={
+                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
                     } />
+                    {/* Rutas de actas en gestión */}
                     <Route path="gestion/actas" element={
-                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
                     } />
                     <Route path="gestion/equipos" element={
-                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
                     } />
 
                 </Route>

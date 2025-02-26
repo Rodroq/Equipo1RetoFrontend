@@ -1,5 +1,5 @@
 import { useEffect, useId, useState } from "react";
-import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumb, Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { capitalizarPrimeraLetra } from "../utils/CadenasTexto";
 
@@ -12,7 +12,7 @@ function MigasDePan() {
     const idComponente = useId();
 
     // Estados
-    const  [partesURL, setPartesURL] = useState([]);
+    const [partesURL, setPartesURL] = useState([]);
     const location = useLocation();
 
     // Efecto al cambiar el 'location'
@@ -31,22 +31,25 @@ function MigasDePan() {
 
     // Renderizado
     return (
-        <Breadcrumb className="bg-light p-2 m-2 border border-primary rounded">
-            <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
-            {partesURL.map((parteUrl, index) => {
-                pathAcumulado += `/${parteUrl}`;
+        <Container className="mt-4">
+            <Breadcrumb className="bg-light p-3 border border-primary rounded shadow-sm">
+                <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
+                {partesURL.map((parteUrl, index) => {
+                    pathAcumulado += `/${parteUrl}`;
 
-                return (
-                    <Breadcrumb.Item 
-                        key={`${idComponente}-${index}`} 
-                        href={pathAcumulado} 
-                        active={index === partesURL.length - 1}
-                    >
-                        {capitalizarPrimeraLetra(parteUrl)}
-                    </Breadcrumb.Item>
-                );
-            })}
-        </Breadcrumb>
+                    return (
+                        <Breadcrumb.Item
+                            key={`${idComponente}-${index}`}
+                            href={pathAcumulado}
+                            active={index === partesURL.length - 1}
+                            className={index === partesURL.length - 1 ? "text-secondary fw-bold" : "text-primary"}
+                        >
+                            {capitalizarPrimeraLetra(parteUrl)}
+                        </Breadcrumb.Item>
+                    );
+                })}
+            </Breadcrumb>
+        </Container>
     );
 }
 

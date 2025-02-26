@@ -3,7 +3,18 @@ import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 import './Tarjeta.css'
 
+/**
+ * Componente que muestra una imágen junto a un texto y un botón
+ * @param {String} tituloTarjeta //Titulo que se muestra en la tarjeta 
+ * @param {String} textoTarjeta //Cuerpo de la tarjeta
+ * @param {String} imagenTarjeta //Ruta de la imágen que se muestra en la tarjeta
+ * @param {String} textoBoton //Texto que muestra el botón
+ * @param {String} nombreEntidad //Ruta a la que se navega (por ejemplo /equipos/)
+ * @param {Object} datosObjeto //Datos que se envian cuando pulsas el botón
+ * @returns {JSX.Element}
+ */
 function Tarjeta({ tituloTarjeta, textoTarjeta, imagenTarjeta, textoBoton, nombreEntidad, datosObjeto }) {
+    // Guardamos el useNavigate en una variable, lo que permite redirigir a una ruta
     const navegar = useNavigate();
 
     return (
