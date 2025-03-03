@@ -28,14 +28,31 @@
         - [Navbar (Barra de navegación)](#navbar-barra-de-navegación)
         - [Modals (Modales)](#modals-modales)
         - [Pagination (Paginación)](#pagination-paginación)
+        - [Carousel (Carrusel)](#carousel-carrusel)
+        - [Accordion (Acordeón)](#accordion-acordeón)
     - [Responsividad](#responsividad)
     - [Accesibilidad](#accesibilidad)
     - [Animaciones](#animaciones)
   - [Despliegue de la aplicación](#despliegue-de-la-aplicación)
     - [AWS](#aws)
+      - [BACKEND:](#backend)
+        - [Grupo de Seguridad de la base de datos](#grupo-de-seguridad-de-la-base-de-datos)
+        - [Zona de disponibilidad](#zona-de-disponibilidad)
+        - [Grupo de Subredes RDS](#grupo-de-subredes-rds)
+        - [Creación de la base de datos](#creación-de-la-base-de-datos)
+        - [Ultimas modificaciones](#ultimas-modificaciones)
+      - [FRONTEND:](#frontend)
+        - [Creación de un bucket S3](#creación-de-un-bucket-s3)
     - [Instalación Apache2](#instalación-apache2)
+      - [Comandos para la instalación de apache](#comandos-para-la-instalación-de-apache)
     - [Instalación de MySQL](#instalación-de-mysql)
+        - [XAMPP](#xampp)
+        - [MySQL Server](#mysql-server)
     - [Instalación de PHP y librerías](#instalación-de-php-y-librerías)
+      - [Librerías y Dependencias para el Proyecto](#librerías-y-dependencias-para-el-proyecto)
+        - [Dependencias de Producción (`require`)](#dependencias-de-producción-require)
+        - [Dependencias de Desarrollo (`require-dev`)](#dependencias-de-desarrollo-require-dev)
+  - [Instalación Completa](#instalación-completa)
       - [Configuración de PHP](#configuración-de-php)
     - [Habilitar PHP sobre Apache2](#habilitar-php-sobre-apache2)
     - [Instalar phpMyAdmin](#instalar-phpmyadmin)
@@ -43,6 +60,7 @@
     - [Instalar NodeJS](#instalar-nodejs)
   - [Documentación de código](#documentación-de-código)
     - [Generación de documentación](#generación-de-documentación)
+      - [phpDocumentor](#phpdocumentor)
   - [Implementaciones faltantes](#implementaciones-faltantes)
   - [Mejoras o posibles cambios a futuro](#mejoras-o-posibles-cambios-a-futuro)
   - [Problemas encontrados](#problemas-encontrados)
@@ -157,6 +175,7 @@ Hemos usado Bootstap, aplicando componentes predefinidos y estilos para que conc
 * Navbar (Barra de navegación)
 * Pagination (Paginación)
 * Carousel (Carrusel)
+* Accordion (Acordeón)
 
 ##### Breadcrumb (Migas de pan)
 
@@ -182,6 +201,14 @@ Proporciona información al usuario antes de realizar acciones críticas, como b
 
 Para mostrar registros paginados y evitar listados demasiados grandes en pantalla.
 
+##### Carousel (Carrusel)
+
+Para mostrar imágenes junto a texto con un efecto de desplazamiento lateral.
+
+##### Accordion (Acordeón)
+
+Utilizado para mostrar gran cantidad de información en pantalla, ocultándola en diferentes secciones que se pueden desplegar y/o ocultar.
+
 ### Responsividad
 
 Gracias al uso de Bootstrap la aplicación se adaptará a los diferentes tamaños de pantallas y dispositivos.
@@ -192,7 +219,8 @@ Hemos aplicado el uso de tooltips para proporcionar más información al usuario
 
 ### Animaciones
 
-Las animaciones se han aplicado al logo principal de la barra de navegación mediante el uso de keyframes haciendo que cuando se ha 'hover' sobre el logo rebote como un balón. También se tienen carruseles con imágenes de avance automático y manual.
+Las animaciones se han aplicado al logo principal de la barra de navegación mediante el uso de keyframes haciendo que cuando se ha 'hover' sobre el logo rebote como un balón. También se tienen carruseles con imágenes de avance automático y manual. Además se han creado animaciones de 'pulso' para ciertos botones y otras de 'aparacer' que hace que ciertos elementos aparezcan en pantalla desde una ubicación concreta. Por otro lado, se ha creado un aumento en la escala de ciertos elementos que reciben el foco del ratón.
+Se ha añadido un typing en la portada que hace que al cargarse se escriba el nombre de la liga y el cursor se quede parpadeando.
 
 ## Despliegue de la aplicación
 
