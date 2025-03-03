@@ -141,9 +141,9 @@ function InscripcionPage() {
     return (
         <>
             <Container className="mt-5 mb-5">
+                <h2 className="text-center mb-5 section-titulo">Formulario de Inscripción</h2>
                 <Card className="shadow-lg p-3 border-0 rounded-4 bg-light">
                     <Card.Body>
-                        <h2 className="text-center mb-5 section-titulo">Formulario de Inscripción</h2>
                         <div className="d-flex justify-content-around mb-6">
                             {/* Formulario Equipo */}
                             <div
