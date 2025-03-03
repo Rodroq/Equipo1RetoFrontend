@@ -1,3 +1,5 @@
+import { Container } from "react-bootstrap";
+
 /**
  * Página que muestra los partidos del torneo
  * 
@@ -5,9 +7,9 @@
  */
 function PartidosPage() {
     return (
-        <>
-            <h1>Partidos del torneo</h1>
-        </>
+        <Container className="mt-5 mb-5">
+            <h2 className="text-center mb-5 section-titulo">Partidos</h2>
+        </Container>
     );
 }
 

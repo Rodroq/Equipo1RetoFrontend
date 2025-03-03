@@ -59,6 +59,7 @@ function DetallesJugadorPage() {
     // Renderizado
     return (
         <Container className="mt-5">
+            <h2 className="text-center mb-5 section-titulo">{jugador.nombre + ' ' + jugador.apellido1 + ' ' + jugador.apellido2}</h2>
             <Card className="shadow-lg border-0 rounded-4">
                 {/* Carousel Section */}
                 <div className="mb-4">
@@ -75,7 +76,6 @@ function DetallesJugadorPage() {
 
                 <Card.Body className="px-4 pb-4">
                     <div className="text-center mb-5">
-                        <h1 className="display-5 fw-bold">{jugador.nombre + ' ' + jugador.apellido1 + ' ' + jugador.apellido2}</h1>
                         <h5 className="text-secondary">
                         {jugador.estudio.curso}º - {jugador.estudio.ciclo.nombre}
                         </h5>
