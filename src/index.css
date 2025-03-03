@@ -67,7 +67,7 @@ h2.section-titulo::after {
 
 .aumentar-escala:hover {
     transform: scale(1.03);
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 /* Animación de pulso */
