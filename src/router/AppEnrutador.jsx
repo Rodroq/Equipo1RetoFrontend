@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout.jsx";
 import InicioPage from "../pages/InicioPage.jsx";
 //import EquiposPage from "../pages/EquiposPage.jsx";
-import RetosPage from "../pages/RetosPage.jsx";
+//import RetosPage from "../pages/RetosPage.jsx";
 import PublicacionesPage from "../pages/PublicacionesPage.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
 //import DetallesEquipoPage from "../pages/DetallesEquipoPage.jsx";
@@ -25,6 +25,7 @@ import LoadingDisplay from "../components/LoadingDisplay.jsx";
 const EquiposPage = lazy(() => import("../pages/EquiposPage.jsx"));
 const DetallesEquipoPage = lazy(() => import("../pages/DetallesEquipoPage.jsx"));
 const DetallesJugadorPage = lazy(() => import("../pages/DetallesJugadorPage.jsx"));
+const RetosPage = lazy(() => import("../pages/RetosPage.jsx"));
 
 /**
  * Devuelve el enrutador con todas las rutas del proyecto, tanto públicas como privadas
@@ -64,8 +65,16 @@ function AppEnrutador() {
                     } />
 
                     {/* Rutas de los retos */}
-                    <Route path="retos" element={<RetosPage />} />
-                    <Route path="retos/:id" element={<DetallesRetoPage />} />
+                    <Route path="retos" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <RetosPage />
+                        </Suspense>
+                    } />
+                    <Route path="retos/:id" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <DetallesRetoPage />
+                        </Suspense>
+                    } />
 
                     {/* Rutas de las publicaciónes */}
                     <Route path="publicaciones" element={<PublicacionesPage />} />
