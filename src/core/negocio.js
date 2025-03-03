@@ -3,14 +3,13 @@ const $negocio = (function () {
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
     // Variable para almacenar el token de autenticación
-    let authToken = sessionStorage.getItem('token') || null;
+    let authToken = sessionStorage.getItem('token') || null; // TODO: probar a utilizar utils local o session
 
     // Función para actualizar el token almacenado
     function setAuthToken(nuevoToken) {
         if (nuevoToken) {
             authToken = nuevoToken;
             sessionStorage.setItem('token', authToken);
-            console.log('a');
         }
     }
 

@@ -11,7 +11,6 @@ function DetallesJugadorPage() {
     const [jugador, setJugador] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { state } = useLocation();
     const navegar = useNavigate();
 
     // Contexto
@@ -27,20 +26,17 @@ function DetallesJugadorPage() {
     useEffect(() => {
         async function recuperarDatos() {
             try {
-                if (!state?.jugador) {
-                    // Obtener el ID del jugador de la URL
-                    const id = window.location.pathname.split('/').pop();
-                    const datos = await negocio.getDatos(`jugadores/${id}`);
+                // Obtener el ID del jugador de la URL
+                const id = window.location.pathname.split('/').pop();
+                const datos = await negocio.getDatos(`jugadores/${id}`);
+                console.log(datos);
 
-                    if (!datos) {
-                        setError('No se han encontrado los datos del jugador');
-                        return;
-                    }
-
-                    setJugador(datos);
-                } else {
-                    setJugador(state.jugador);
+                if (!datos) {
+                    setError('No se han encontrado los datos del jugador');
+                    return;
                 }
+
+                setJugador(datos.jugador);
             } catch (err) {
                 setError('Error al cargar los datos del jugador');
                 console.error(err);
@@ -50,7 +46,7 @@ function DetallesJugadorPage() {
         }
 
         recuperarDatos();
-    }, [state, negocio]);
+    }, [negocio]);
 
     if (loading) {
         return <LoadingDisplay />;
@@ -67,7 +63,7 @@ function DetallesJugadorPage() {
                 {/* Carousel Section */}
                 <div className="mb-4">
                     {imagenes.length <= 1 ? (
-                        <Image 
+                        <Image
                             src={imagenes[0][0]}
                             className="w-100"
                             style={{ height: '250px', objectFit: 'contain' }}
@@ -79,29 +75,28 @@ function DetallesJugadorPage() {
 
                 <Card.Body className="px-4 pb-4">
                     <div className="text-center mb-5">
-                        <h1 className="display-5 fw-bold">{jugador.nombre}</h1>
+                        <h1 className="display-5 fw-bold">{jugador.nombre + ' ' + jugador.apellido1 + ' ' + jugador.apellido2}</h1>
                         <h5 className="text-secondary">
-                            CICLO - CURSO
-                            {/* {jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º */}
+                        {jugador.estudio.curso}º - {jugador.estudio.ciclo.nombre}
                         </h5>
                     </div>
 
                     <h3 className="text-primary border-bottom pb-3 mb-4">Estadísticas</h3>
-                    
+
                     <Row className="g-4">
                         <Col md={4}>
                             <Card className="border-0 bg-light h-100">
                                 <Card.Body className="text-center">
-                                    <h3 className="display-3 fw-bold text-primary">{jugador.goles}</h3>
+                                    <h3 className="display-3 fw-bold text-primary">{jugador.estadisticas.goles}</h3>
                                     <h6 className="text-muted text-uppercase">Goles</h6>
                                 </Card.Body>
                             </Card>
                         </Col>
-                        
+
                         <Col md={4}>
                             <Card className="border-0 bg-light h-100">
                                 <Card.Body className="text-center">
-                                    <h3 className="display-3 fw-bold text-success">{jugador.asistencias}</h3>
+                                    <h3 className="display-3 fw-bold text-success">{jugador.estadisticas.asistencias}</h3>
                                     <h6 className="text-muted text-uppercase">Asistencias</h6>
                                 </Card.Body>
                             </Card>
@@ -110,7 +105,7 @@ function DetallesJugadorPage() {
                         <Col md={4}>
                             <Card className="border-0 bg-light h-100">
                                 <Card.Body className="text-center">
-                                    <h3 className="display-3 fw-bold text-danger">{jugador.lesiones}</h3>
+                                    <h3 className="display-3 fw-bold text-danger">{jugador.estadisticas.lesiones}</h3>
                                     <h6 className="text-muted text-uppercase">Lesiones</h6>
                                 </Card.Body>
                             </Card>
@@ -120,16 +115,12 @@ function DetallesJugadorPage() {
                     <Card className="mt-4 border-0 bg-light">
                         <Card.Body>
                             <Row className="text-center g-3">
-                                <Col sm={4}>
-                                    <h2 className="fw-bold text-warning mb-0">{jugador.faltas}</h2>
-                                    <small className="text-muted text-uppercase">Faltas</small>
-                                </Col>
-                                <Col sm={4}>
-                                    <h2 className="fw-bold text-warning mb-0">{jugador["tarjetas-amarillas"]}</h2>
+                                <Col sm={6}>
+                                    <h2 className="fw-bold text-warning mb-0">{jugador.estadisticas.tarjetas_amarillas}</h2>
                                     <small className="text-muted text-uppercase">Tarjetas Amarillas</small>
                                 </Col>
-                                <Col sm={4}>
-                                    <h2 className="fw-bold text-danger mb-0">{jugador["tarjetas-rojas"]}</h2>
+                                <Col sm={6}>
+                                    <h2 className="fw-bold text-danger mb-0">{jugador.estadisticas.tarjetas_rojas}</h2>
                                     <small className="text-muted text-uppercase">Tarjetas Rojas</small>
                                 </Col>
                             </Row>
