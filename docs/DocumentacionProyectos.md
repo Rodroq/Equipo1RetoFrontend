@@ -41,10 +41,6 @@
     - [Instalar phpMyAdmin](#instalar-phpmyadmin)
     - [Instalar Composer](#instalar-composer)
     - [Instalar NodeJS](#instalar-nodejs)
-      - [Desinstalar versión pre-instalada](#desinstalar-versión-pre-instalada)
-      - [Instalar versión XX](#instalar-versión-xx)
-    - [Crear sitio web](#crear-sitio-web)
-    - [Script de despliegue](#script-de-despliegue)
   - [Documentación de código](#documentación-de-código)
     - [Generación de documentación](#generación-de-documentación)
   - [Implementaciones faltantes](#implementaciones-faltantes)
@@ -200,7 +196,7 @@ Las animaciones se han aplicado al logo principal de la barra de navegación med
 
 ## Despliegue de la aplicación
 
-La aplicación se desplegará en un servidor linux con ...
+La aplicación se desplegará de la siguiente forma:
 
 ### AWS
 Para la instalación en AWS, configuramos los siguientes apartados:
@@ -460,6 +456,7 @@ Para la correcta configuración de PHP, hay que descomentar las siguientes linea
 ```bash
 extension=curl
 extension=mbstring
+extension=exif
 extension=mysqli
 extension=pdo_mysql
 extension=zip
@@ -481,7 +478,7 @@ sudo nano /etc/php/8.3/apache2/php.ini
 sudo apt-get install php-xml
 
 #Para comprobar que PHP ha sido instalado correctamente, crearemos un info.php en el public_html, dentro del cual introduciremos un codigo php para que nos muestre la información de PHP.CUIDADO, para mostrarlo habría que modificar el equipo1.es.conf y decirle que la ruta llega hasta public_html y no como ahora que llega a /public
-sudo nano /var/www/html/www.reto1.es//public_html/info.php
+sudo nano /var/www/html/www.reto1.es/public_html/info.php
 ```
 
 ### Instalar phpMyAdmin
@@ -517,14 +514,6 @@ Para la instalación de NodeJS hemos seguido los siguientes pasos:
      node -v
      ```
 
-#### Desinstalar versión pre-instalada
-
-#### Instalar versión XX
-
-### Crear sitio web
-
-### Script de despliegue
-
 ## Documentación de código
 
 Para la documentación del código, clases, atributos o métodos, se han utilizado los estándares correspondientes a cada lenguaje.
@@ -534,6 +523,16 @@ Para la documentación del código, clases, atributos o métodos, se han utiliza
 Se han generado páginas HTML estáticas con la documentación del código PHP y JS.
 
 Para la generación de la documentación de PHP se ha utilizado la herramienta 'phpDocumentor' y para JS se ha utilizado 'JSDoc'.
+
+#### phpDocumentor
+Para la generación de la documentación con phpDocumentor, los pasos a seguir son los siguientes:
+
+* Comenzamos pegando el archivo phar en la carpeta del proyecto, el cual encontraremos en la web de phpDocumentor
+
+* El siguiente paso, será ejecutar el siguiente comando en la terminal, donde -d es el directorio del proyecto a documentar y -t es el directorio donde quieres generar la documentación
+```bash
+php .\phpDocumentor.phar run -d --ignore vendor/ -t 
+```
 
 ## Implementaciones faltantes
 
