@@ -31,6 +31,15 @@ function AppProvider({ children }) {
 
     // Estado del modal
     const [showModal, setShowModal] = useState(false);
+    const [showImageModal, setShowImageModal] = useState(false);
+
+
+    /**
+     * Funcion que permite abrir y cerrar el modal de login
+     */
+    function toggleImageModal() {
+        setShowImageModal(!showImageModal);
+    }
 
     /**
      * Funcion que permite abrir y cerrar el modal de login
@@ -76,6 +85,8 @@ function AppProvider({ children }) {
             rol,
             showModal,
             toggleModal,
+            showImageModal,
+            toggleImageModal,            
             toasts,
             agregarToast,
             borrarToast,
