@@ -129,7 +129,7 @@ function PrivacidadPage() {
                 <h3>Destinatarios de los datos personales</h3>
                 <div className="apartado_privacidad">
                     <ul>
-                        <li>IES Augusto Gonzalez de Linares (Pº Julio Hauzeur, 59,, 39300 Santander, Cantabria)</li>
+                        <li>IES Miguel Herrero (Pº Julio Hauzeur, 59,, 39300 Santander, Cantabria)</li>
                         <li>Federación Cantabra de Fútbol (C. Marqués de la Hermida, 14, 39009 Santander, Cantabria)</li>
                     </ul>
                     <p>En caso de que el Responsable del tratamiento tenga la intención de transferir datos personales a un tercer
