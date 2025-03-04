@@ -3,6 +3,11 @@ import Carrusel from "../components/Carrusel";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../contexts/AppProvider";
+import logo_ies_besaya from '../assets/logo_ies_besaya.png';
+import logo_ies_miguelherrero from '../assets/logo_ies_miguelherrero.png';
+import logo_ies_zapaton from '../assets/logo_ies_zapaton.jpg';
+import logo_liga_solidaria_fp_cantabria from '../assets/logo_liga_solidaria_fp_cantabria.png';
+import logo_RFCF from '../assets/logo_RFCF.png';
 
 function InicioPage() {
     // Estados
@@ -159,6 +164,56 @@ function InicioPage() {
                             />
                         </Col>
                     ))}
+                </Row>
+            </Container>
+
+            <Container className="my-5">
+                <h2 className="text-center mb-4 section-titulo">Colaboradores</h2>
+                <Row className="text-center align-items-center">
+                    <Col>
+                        <a href="https://www.educantabria.es/web/ies-besaya" title="Ir a IES Besaya.">
+                            <Image 
+                                src={logo_ies_besaya} 
+                                style={{ width: "150px", objectFit: "cover" }} 
+                                className="mb-3"
+                            />
+                        </a>
+                        
+                    </Col>
+                    <Col>
+                        <a href="https://www.ieszapaton.es/" title="Ir a IES Zapatón.">
+                            <Image 
+                                src={logo_ies_zapaton} 
+                                style={{ width: "80px", objectFit: "cover" }} 
+                                className="mb-3"
+                            />
+                        </a>
+                    </Col>
+                    <Col>
+                        <a href="https://www.educantabria.es/web/ies-miguel-herrero-pereda" title="Ir a IES Miguel Herrero Pereda.">
+                            <Image 
+                                src={logo_ies_miguelherrero} 
+                                style={{ width: "210px", objectFit: "cover" }} 
+                                className="mb-3"
+                            />
+                        </a>
+                    </Col>
+                    <Col>
+                        <Image 
+                            src={logo_liga_solidaria_fp_cantabria} 
+                            style={{ width: "110px", objectFit: "cover" }} 
+                            className="mb-3"
+                        />
+                    </Col>
+                    <Col>
+                        <a href="https://www.rfcf.es/" title="Ir a RFCF.">
+                            <Image 
+                                src={logo_RFCF} 
+                                style={{ width: "160px", objectFit: "cover" }} 
+                                className="mb-3"
+                            />
+                        </a>
+                    </Col>
                 </Row>
             </Container>
         </>
