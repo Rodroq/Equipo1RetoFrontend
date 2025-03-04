@@ -20,7 +20,7 @@ function Header() {
         <Container>
           {/* LOGO DEL HEADER */}
           <Navbar.Brand href="/" className="fw-bold link-hover m-0" title="Ir a Inicio.">
-            <img src={logo} alt="Logo" style={{ height: '110px' }} className="logo" />
+            <img src={logo} alt="Logo" style={{ height: '130px' }} className="logo" />
           </Navbar.Brand>
 
           {/* BOTÓN MENU RESPONSIVO */}
