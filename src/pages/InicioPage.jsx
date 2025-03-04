@@ -175,7 +175,7 @@ function InicioPage() {
                             <Image 
                                 src={logo_ies_besaya} 
                                 style={{ width: "150px", objectFit: "cover" }} 
-                                className="mb-3"
+                                className="mb-3 aumentar-escala-logos"
                             />
                         </a>
                         
@@ -185,7 +185,7 @@ function InicioPage() {
                             <Image 
                                 src={logo_ies_zapaton} 
                                 style={{ width: "80px", objectFit: "cover" }} 
-                                className="mb-3"
+                                className="mb-3 aumentar-escala-logos"
                             />
                         </a>
                     </Col>
@@ -194,7 +194,7 @@ function InicioPage() {
                             <Image 
                                 src={logo_ies_miguelherrero} 
                                 style={{ width: "210px", objectFit: "cover" }} 
-                                className="mb-3"
+                                className="mb-3 aumentar-escala-logos"
                             />
                         </a>
                     </Col>
@@ -202,7 +202,7 @@ function InicioPage() {
                         <Image 
                             src={logo_liga_solidaria_fp_cantabria} 
                             style={{ width: "110px", objectFit: "cover" }} 
-                            className="mb-3"
+                            className="mb-3 aumentar-escala-logos"
                         />
                     </Col>
                     <Col>
@@ -210,7 +210,7 @@ function InicioPage() {
                             <Image 
                                 src={logo_RFCF} 
                                 style={{ width: "160px", objectFit: "cover" }} 
-                                className="mb-3"
+                                className="mb-3 aumentar-escala-logos"
                             />
                         </a>
                     </Col>
