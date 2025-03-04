@@ -18,15 +18,15 @@ function Tarjeta({ tituloTarjeta, textoTarjeta, imagenTarjeta, textoBoton, nombr
     const navegar = useNavigate();
 
     return (
-        <div className="d-flex justify-content-around">
-            <Card style={{ width: '18rem' }}>
+        <div className="d-flex justify-content-around h-100">
+            <Card className="h-100 d-flex flex-column" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={imagenTarjeta || "https://placehold.co/600x400/png"} />
-                <Card.Body>
+                <Card.Body className="flex-grow-1 d-flex flex-column">
                     <Card.Title>{tituloTarjeta}</Card.Title>
-                    <Card.Text className='limiteTexto'>
+                    <Card.Text className='limiteTexto flex-grow-1'>
                         {textoTarjeta}
                     </Card.Text>
-                    <Button onClick={() => { navegar(`/${nombreEntidad}/${datosObjeto.id}`, { state: { entidad: datosObjeto } }) }} variant="primary">{textoBoton}</Button>
+                    <Button onClick={() => { navegar(`/${nombreEntidad}/${datosObjeto.slug}`, { state: { entidad: datosObjeto } }) }} variant="primary">{textoBoton}</Button>
                 </Card.Body>
             </Card>
         </div>

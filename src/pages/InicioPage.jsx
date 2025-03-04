@@ -1,16 +1,44 @@
 import { Button, Card, Image, Container, Row, Col, Badge } from "react-bootstrap";
 import Carrusel from "../components/Carrusel";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../contexts/AppProvider";
 
 function InicioPage() {
+    // Estados
+    const [donaciones, setDonaciones] = useState({ kilos: 0, importe: 0});
+
     // Navegación
     const navegar = useNavigate();
+
+    //Contexto
+    const { negocio } = useContext(AppContext);
 
     const imagenes = [
         ["https://placehold.co/1920x500", "Texto1"],
         ["https://placehold.co/1820x400", "Texto2"],
         ["https://placehold.co/1720x300", 'Texto3']
     ];
+
+    // Efecto al montar el componente
+    useEffect(() => {
+        async function fetchDonaciones() {
+            try {
+                const donacionesResponse = await negocio.getDatos('donaciones');
+
+                if (!donacionesResponse) {
+                    console.error('No se han obtenido donaciones.');
+                    return;
+                }
+
+                setDonaciones(donacionesResponse.donaciones[0]);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchDonaciones();
+    }, [negocio]);
 
     // Renderizado
     return (
@@ -78,12 +106,12 @@ function InicioPage() {
                                 <Row>
                                     <Col className="mb-3">
                                         <Card.Text>
-                                            <Badge pill bg="warning text-dark fs-3"><i className="bi bi-box2-heart"></i> 1234 Kg</Badge>
+                                            <Badge pill bg="warning text-dark fs-3"><i className="bi bi-box2-heart"></i> {donaciones.kilos || 0} Kg</Badge>
                                         </Card.Text>
                                     </Col>
                                     <Col className="mb-3">
                                         <Card.Text>
-                                            <Badge pill bg="warning text-dark fs-3"><i className="bi bi-bank"></i> 1234 €</Badge>
+                                            <Badge pill bg="warning text-dark fs-3"><i className="bi bi-bank"></i> {donaciones.importe || 0} €</Badge>
                                         </Card.Text>
                                     </Col>
                                 </Row>

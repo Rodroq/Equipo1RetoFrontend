@@ -3,9 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout.jsx";
 import InicioPage from "../pages/InicioPage.jsx";
 //import EquiposPage from "../pages/EquiposPage.jsx";
-import RetosPage from "../pages/RetosPage.jsx";
+//import RetosPage from "../pages/RetosPage.jsx";
 import PublicacionesPage from "../pages/PublicacionesPage.jsx";
-import LoginPage from "../pages/LoginPage.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
 import PrivacidadPage from "../pages/PrivacidadPage.jsx";
 //import DetallesEquipoPage from "../pages/DetallesEquipoPage.jsx";
@@ -27,6 +26,7 @@ import LoadingDisplay from "../components/LoadingDisplay.jsx";
 const EquiposPage = lazy(() => import("../pages/EquiposPage.jsx"));
 const DetallesEquipoPage = lazy(() => import("../pages/DetallesEquipoPage.jsx"));
 const DetallesJugadorPage = lazy(() => import("../pages/DetallesJugadorPage.jsx"));
+const RetosPage = lazy(() => import("../pages/RetosPage.jsx"));
 
 /**
  * Devuelve el enrutador con todas las rutas del proyecto, tanto públicas como privadas
@@ -66,8 +66,16 @@ function AppEnrutador() {
                     } />
 
                     {/* Rutas de los retos */}
-                    <Route path="retos" element={<RetosPage />} />
-                    <Route path="retos/:id" element={<DetallesRetoPage />} />
+                    <Route path="retos" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <RetosPage />
+                        </Suspense>
+                    } />
+                    <Route path="retos/:id" element={
+                        <Suspense fallback={<LoadingDisplay />}>
+                            <DetallesRetoPage />
+                        </Suspense>
+                    } />
 
                     {/* Rutas de las publicaciónes */}
                     <Route path="publicaciones" element={<PublicacionesPage />} />
@@ -88,36 +96,36 @@ function AppEnrutador() {
                     {/* Rutas privadas */}
                     {/* Rutas de publicaciones */}
                     <Route path="publicaciones/editar" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarPublicacionesPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarPublicacionesPage /></RutaPrivada>
                     } />
                     <Route path="publicaciones/editar/:id" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarPublicacionPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarPublicacionPage /></RutaPrivada>
                     } />
 
                     {/* Rutas de gestión */}
                     <Route path="gestion" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><GestionPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><GestionPage /></RutaPrivada>
                     } />
                     {/* Rutas de imagenes en gestión */}
                     <Route path="gestion/imagenes/" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarImagenesPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarImagenesPage /></RutaPrivada>
                     } />
                     <Route path="gestion/imagenes/:id" element={
                         <RutaPrivada>{ }</RutaPrivada>
                     } />
                     {/* Rutas de usuarios en gestión */}
                     <Route path="gestion/usuarios" element={
-                        <RutaPrivada rolesPermitidos={['admin']}><EditarUsuariosPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}><EditarUsuariosPage /></RutaPrivada>
                     } />
                     <Route path="gestion/usuarios/:id" element={
-                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
                     } />
                     {/* Rutas de actas en gestión */}
                     <Route path="gestion/actas" element={
-                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
                     } />
                     <Route path="gestion/equipos" element={
-                        <RutaPrivada rolesPermitidos={['admin']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
                     } />
 
                 </Route>

@@ -11,7 +11,6 @@ function DetallesEquipoPage() {
     const idComponente = useId();
 
     // Estados
-    const { state } = useLocation();
     const navegar = useNavigate();
     const [equipo, setEquipo] = useState(null);
     const [error, setError] = useState(null);
@@ -24,10 +23,9 @@ function DetallesEquipoPage() {
     useEffect(() => {
         async function recuperarDatos() {
             try {
-                if (!state?.entidad) {
                     // Obtener el ID del equipo de la URL
-                    const id = window.location.pathname.split('/').pop();
-                    const datos = await negocio.getDatos(`equipos/${id}`);
+                    const slug = window.location.pathname.split('/').pop();
+                    const datos = await negocio.getDatos(`equipos/${slug}`);
 
                     if (!datos) {
                         setError('No se han encontrado los datos del equipo');
@@ -35,9 +33,6 @@ function DetallesEquipoPage() {
                     }
 
                     setEquipo(datos.equipo);
-                } else {
-                    setEquipo(state.entidad);
-                }
             } catch (err) {
                 setError('Error al cargar los datos del equipo');
                 console.error(err);
@@ -47,7 +42,7 @@ function DetallesEquipoPage() {
         }
 
         recuperarDatos();
-    }, [state, negocio]);
+    }, [negocio]);
 
     if (loading) {
         return <LoadingDisplay />;
@@ -60,9 +55,9 @@ function DetallesEquipoPage() {
     // Renderizado
     return (
         <Container className="mt-5 mb-5">
+            <h2 className="text-center mb-5 section-titulo">{equipo.nombre}</h2>
             <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                 <Card.Body>
-                    <h2 className="text-center mb-4 text-primary fw-bold">{equipo.nombre}</h2>
                     <h5 className="text-center text-secondary border-bottom border-primary p-2">Grupo {equipo.grupo} - {equipo.centro.nombre}</h5>
                     <h4 className="mt-4 text-dark">📋 Plantilla</h4>
                     <Row className="mt-3">
@@ -71,7 +66,7 @@ function DetallesEquipoPage() {
                                 <Card
                                     className="h-100 shadow-sm text-center border-0 rounded-3 bg-white aumentar-escala"
                                     style={{ cursor: 'pointer' }}
-                                    onClick={() => navegar(`${null}`, { state: { jugador: jugador } })}
+                                    onClick={() => navegar(`${jugador.slug}`, { state: { jugador: jugador } })}
                                 >
                                     <Card.Body>
                                         <Image
@@ -83,20 +78,6 @@ function DetallesEquipoPage() {
                                         />
                                         <h5 className="fw-bold text-dark">{jugador.nombre}</h5>
                                         <p className="text-muted fst-italic">{jugador.tipo}</p>
-                                        <p className="fw-light">
-                                            CICLO - CURSO
-                                            {/* {jugador.estudio.ciclo.nombre} - {jugador.estudio.curso}º */}
-                                        </p>
-                                        <Table borderless size="sm" className="text-center">
-                                            <tbody>
-                                                <tr className="fw-semibold">
-                                                    <td className="text-success">🥅 {jugador.goles}</td>
-                                                    <td className="text-info">🎯 {jugador.asistencias}</td>
-                                                    <td className="text-warning">🟨 {jugador["tarjetas-amarillas"]}</td>
-                                                    <td className="text-danger">🟥 {jugador["tarjetas-rojas"]}</td>
-                                                </tr>
-                                            </tbody>
-                                        </Table>
                                     </Card.Body>
                                 </Card>
                             </Col>

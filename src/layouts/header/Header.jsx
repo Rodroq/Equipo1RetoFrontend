@@ -1,11 +1,8 @@
-import { Button, Dropdown } from "react-bootstrap";
+import { Button, Dropdown, Container, Nav, Navbar } from "react-bootstrap";
 import "./Header.css";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { useNavigate } from "react-router-dom";
 import logo from '../../assets/logo_sede_torrelavega.png';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../contexts/AppProvider";
 
 /**
  * Devuelve el componente Header
@@ -15,8 +12,7 @@ import { useState } from "react";
 function Header() {
   // Estado para manejar la visibilidad del dropdown
   const [showDropdown, setShowDropdown] = useState(false);
-  // Definimos la variable que llama a useNavigate
-  const navegar = useNavigate();
+  const { toggleModal, rol, logOut } = useContext(AppContext);
 
   return (
     <header className="sticky-top border-bottom border-primary border-2">
@@ -77,10 +73,19 @@ function Header() {
                   Inscripción
                 </Nav.Link>
               </Nav.Item>
+
+              {rol == 'administrador' ? (<Nav.Link href="/gestion" title="Ir a Gestion." className="fw-semibold text-dark link-hover">
+                Gestión
+              </Nav.Link>) : (<></>)}
             </Nav>
 
             {/* BOTÓN LOGIN */}
-            <Button onClick={() => { navegar('/login') }} variant="outline-primary">Login</Button>
+            {!rol ?
+              (<Button onClick={toggleModal} className="btn-lg">
+                Iniciar sesión
+              </Button>) : (<Button onClick={logOut} className="btn-lg">
+                Cerrar sesión
+              </Button>)}
           </Navbar.Collapse>
         </Container>
       </Navbar>

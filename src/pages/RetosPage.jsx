@@ -13,8 +13,8 @@ function RetosPage() {
 
     useEffect(() => {
         async function fetchRetos() {
-            const retosData = await negocio.obtenerRetos();
-            setRetos(retosData);
+            const retosData = await negocio.getDatos('retos');
+            setRetos(retosData.retos);
         }
         fetchRetos();
     }, [negocio]);
@@ -45,18 +45,15 @@ function RetosPage() {
         <>
             <Carrusel imagenes={imagenesCarrusel} />
             <Container className="mt-5 mb-5">
+                <h2 className="text-center mb-5 section-titulo">Retos</h2>
                 <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                     <Card.Body>
-                        <h2 className="text-center mb-5 section-titulo">Retos</h2>
-                        <p>En esta página encontrarás un resumen de los retos más recientes y emocionantes. Cada reto está diseñado para desafiar tus habilidades y ayudarte a crecer. ¡Explora los retos y acepta el desafío!</p>
-                        <br />
-                        <br />
                         <div className="row justify-content-center">
                             {retos.map((reto) => (
-                                <div className="col-lg-3 col-md-4 mb-4" key={reto.id}>
+                                <div className="col-lg-3 col-md-4 mb-4 aumentar-escala" key={reto.slug}>
                                     <Tarjeta
-                                        tituloTarjeta={reto.nombre}
-                                        textoTarjeta={reto.descripcion}
+                                        tituloTarjeta={reto.titulo}
+                                        textoTarjeta={reto.texto}
                                         imagenTarjeta={reto.imagen}
                                         textoBoton={'Ver reto'}
                                         nombreEntidad={'retos'}

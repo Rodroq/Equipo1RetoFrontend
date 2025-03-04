@@ -1,3 +1,5 @@
+import { Container } from "react-bootstrap";
+
 /**
  * Página que muestra la clasificación del torneo
  * 
@@ -5,9 +7,9 @@
  */
 function ClasificacionPage() {
     return (
-        <>
-            <h1>Página de la clasificación</h1>
-        </>
+        <Container className="mt-5 mb-5">
+            <h2 className="text-center mb-5 section-titulo">Clasificación</h2>
+        </Container>
     );
 }
 
