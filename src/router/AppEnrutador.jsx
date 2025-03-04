@@ -21,6 +21,7 @@ import ReglamentoPage from "../pages/ReglamentoPage.jsx";
 import PartidosPage from "../pages/PartidosPage.jsx";
 import ClasificacionPage from "../pages/ClasificacionPage.jsx";
 import LoadingDisplay from "../components/LoadingDisplay.jsx";
+import PrivacidadPage from "../pages/PrivacidadPage.jsx";
 
 const EquiposPage = lazy(() => import("../pages/EquiposPage.jsx"));
 const DetallesEquipoPage = lazy(() => import("../pages/DetallesEquipoPage.jsx"));
@@ -82,6 +83,9 @@ function AppEnrutador() {
 
                     {/* Ruta de inscripcion de equipo */}
                     <Route path="inscripcion" element={<InscripcionPage />} />
+
+                    {/* Ruta de políticas de privacidad */}
+                    <Route path="privacidad" element={<PrivacidadPage />} />
 
                     {/* Ruta de la página de error */}
                     <Route path="*" element={<ErrorPage />} />

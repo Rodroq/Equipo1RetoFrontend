@@ -9,7 +9,7 @@ function ReglamentoPage() {
     return (
         <Container className="mt-5 mb-5">
             <h2 className="text-center mb-5 section-titulo">Reglamento</h2>
-            <Accordion>
+            <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
                     <Accordion.Header><strong><i className="bi bi-clipboard-check-fill"></i> Reglas de juego</strong></Accordion.Header>
                     <Accordion.Body>
