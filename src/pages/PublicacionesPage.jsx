@@ -12,8 +12,8 @@ function PublicacionesPage() {
 
   useEffect(() => {
     async function fetchRetos() {
-      const publicacionesData = await negocio.obtenerPublicaciones();
-      setPublicaciones(publicacionesData);
+      const publicacionesData = await negocio.getDatos('publicaciones');
+      setPublicaciones(publicacionesData.publicaciones);
     }
     fetchRetos();
   }, [negocio]);
@@ -35,10 +35,10 @@ function PublicacionesPage() {
             <br />
             <div className="row justify-content-center">
               {publicaciones.map((publicacion) => (
-                <div className="col-lg-3 col-md-4 mb-4" key={publicacion.id}>
+                <div className="col-lg-3 col-md-4 mb-4" key={publicacion.slug}>
                   <Tarjeta
-                    tituloTarjeta={publicacion.nombre}
-                    textoTarjeta={publicacion.descripcion}
+                    tituloTarjeta={publicacion.titulo}
+                    textoTarjeta={publicacion.tipo}
                     imagenTarjeta={publicacion.imagen}
                     textoBoton={'Ver publicación'}
                     nombreEntidad={'publicaciones'}

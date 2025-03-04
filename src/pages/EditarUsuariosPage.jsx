@@ -20,7 +20,6 @@ function EditarUsuariosPage() {
         async function fetchUsuarios() {
             try {
                 const usuariosData = await negocio.getDatos('usuarios');
-                console.log(usuariosData);
 
                 if (!usuariosData) {
                     setError('No se han encontrado usuarios');
