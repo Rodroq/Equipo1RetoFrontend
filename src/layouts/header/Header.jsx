@@ -81,9 +81,9 @@ function Header() {
 
             {/* BOTÓN LOGIN */}
             {!rol ?
-              (<Button onClick={toggleModal} className="btn-lg">
+              (<Button onClick={toggleModal} className="btn-md">
                 Iniciar sesión
-              </Button>) : (<Button onClick={logOut} className="btn-lg">
+              </Button>) : (<Button onClick={logOut} className="btn-md">
                 Cerrar sesión
               </Button>)}
           </Navbar.Collapse>
