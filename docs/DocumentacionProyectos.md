@@ -622,16 +622,20 @@ php .\phpDocumentor.phar run -d --ignore vendor/ -t
 
 ## Implementaciones faltantes
 
-* Paginación.
-* Apartado de 'Gestión' para hacer CRUD de las entidades.
+* Paginación para listados con muchos elementos.
+* Apartado de 'Gestión' para hacer CRUD de las entidades, además de añadir imágenes, publicaciones y usuarios.
 * Páginas de 'Partidos' y 'Clasificación'.
-* Restablecer contraseña de usuario.
-* Envío de emails.
+* Restablecer contraseña de usuario por parte del administrador del sistema.
+* Cambio de contraseña por parte del usuario del sistema.
+* Envío de emails para notificaciones.
+* Gestión de las actas de los partidos.
+* Caducidad y renovación del token de usuario.
 
 ## Mejoras o posibles cambios a futuro
 
 * Personalizar Bootstrap, con el 'pero' que eso conlleva, para tener un diseño menos predefinido y estándar.
 * Hacer mejoras de UX/UI, para hacer más cómodo el uso de la aplicación.
+* Modo oscuro para la aplicación.
 
 ## Problemas encontrados
 
