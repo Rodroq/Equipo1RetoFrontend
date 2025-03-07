@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>components/Tabla.jsx - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#AppEnrutador">AppEnrutador</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#CapitanForm">CapitanForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Carrusel">Carrusel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ClasificacionPage">ClasificacionPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#EntrenadorForm">EntrenadorForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#EquipoForm">EquipoForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ErrorDisplay">ErrorDisplay</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Header">Header</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#JugadoresForm">JugadoresForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#LoadingDisplay">LoadingDisplay</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#LoginForm">LoginForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#MigasDePan">MigasDePan</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Modal">Modal</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ModalLogin">ModalLogin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#PartidosPage">PartidosPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#PrivacidadPage">PrivacidadPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ReglamentoPage">ReglamentoPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#RutaPrivada">RutaPrivada</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Tabla">Tabla</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Tarjeta">Tarjeta</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Toast">Toast</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ToastGroup">ToastGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#almacenarDatosEnLocalStorage">almacenarDatosEnLocalStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#almacenarDatosEnSessionStorage">almacenarDatosEnSessionStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#capitalizarPrimeraLetra">capitalizarPrimeraLetra</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#eliminarDatosDeLocalStorage">eliminarDatosDeLocalStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#eliminarDatosDeSessionStorage">eliminarDatosDeSessionStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#obtenerDatosDeLocalStorage">obtenerDatosDeLocalStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#obtenerDatosDeSessionStorage">obtenerDatosDeSessionStorage</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/Tabla.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Container from 'react-bootstrap/Container';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import './Tabla.css';
+
+/**
+ * Componente que recibe datos y los muestra en forma de tabla, junto a 3 funciones para ver, editar y borrar
+ * @param {Array} informacion //Son los datos que le llegan a la tabla
+ * @param {Array} columnas //Son las columnas que se muestran de la informacion pasada
+ * @param {Function} handleVer //Funcion que maneja el boton Ver
+ * @param {Function} handleEditar //Funcion que maneja el boton Editar
+ * @param {Function} handleBorrar //Funcion que maneja el boton Borrar
+ * @returns {JSX.Element}
+ */
+function Tabla({ informacion, columnas, handleVer, handleEditar, handleBorrar }) {
+    // Comprobamos que haya datos, en caso contrario mostramos un mensaje
+    if (!informacion || informacion.length === 0) {
+        return &lt;p className="text-center mt-3">No hay datos disponibles&lt;/p>;
+    }
+
+    // Guardamos las columnas que hay que mostrar
+    const columnasAMostrar = columnas || Object.keys(informacion[0]);
+    // Verificamos que haya acciones, en caso contrario no se mostrara la columna Acciones
+    const hayAcciones = handleVer || handleEditar || handleBorrar;
+
+    return (
+        &lt;Container fluid>
+            &lt;Table striped bordered hover responsive className="text-center align-middle">
+                &lt;thead className="tabla-header">
+                    &lt;tr>
+                        {columnasAMostrar.map((columna, index) => (
+                            &lt;th key={index} className="text-capitalize">
+                                {columna}
+                            &lt;/th>
+                        ))}
+                        {hayAcciones &amp;&amp; (&lt;th>Acciones&lt;/th>)}
+                    &lt;/tr>
+                &lt;/thead>
+                &lt;tbody>
+                    {informacion.map((item, index) => (
+                        &lt;tr key={index}>
+                            {columnasAMostrar.map((columna, colIndex) => (
+                                &lt;td key={colIndex} className="text-secondary textoTruncado">
+                                    {item[columna]}
+                                &lt;/td>
+                            ))}
+                            {hayAcciones &amp;&amp; (&lt;td>
+                                &lt;div className="d-flex justify-content-center align-items-center gap-2 py-2">
+                                    {handleVer &amp;&amp; (&lt;Button
+                                        variant="outline-primary"
+                                        size="sm"
+                                        className="d-flex align-items-center gap-1"
+                                        onClick={() => handleVer(item)}
+                                        title="Ver detalles"
+                                    >
+                                        &lt;i className="bi bi-eye" style={{ fontSize: '16px'}}>&lt;/i>
+                                        &lt;span className="d-none d-md-inline">Ver&lt;/span>
+                                    &lt;/Button>)}
+                                    {handleEditar &amp;&amp; (&lt;Button
+                                        variant="outline-success"
+                                        size="sm"
+                                        className="d-flex align-items-center gap-1"
+                                        onClick={() => handleEditar(item)}
+                                        title="Editar elemento"
+                                    >
+                                        &lt;i className="bi bi-pen" style={{ fontSize: '16px'}}>&lt;/i>
+                                        &lt;span className="d-none d-md-inline">Editar&lt;/span>
+                                    &lt;/Button>)}
+                                    {handleBorrar &amp;&amp; (&lt;Button
+                                        variant="outline-danger"
+                                        size="sm"
+                                        className="d-flex align-items-center gap-1"
+                                        onClick={() => handleBorrar(item)}
+                                        title="Borrar elemento"
+                                    >
+                                        &lt;i className="bi bi-trash3" style={{ fontSize: '16px'}}>&lt;/i>
+                                        &lt;span className="d-none d-md-inline">Borrar&lt;/span>
+                                    &lt;/Button>)}
+                                &lt;/div>
+                            &lt;/td>)}
+                        &lt;/tr>
+                    ))}
+                &lt;/tbody>
+            &lt;/Table>
+        &lt;/Container>
+    );
+}
+
+export default Tabla;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Mar 04 2025 19:47:42 GMT+0100 (hora estándar de Europa central) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

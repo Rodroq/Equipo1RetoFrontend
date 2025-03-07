@@ -47,9 +47,9 @@ function Header() {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="border-primary border-1">
-                    <Dropdown.Item href="reglamento" title="Ir a Reglamento.">Reglamento</Dropdown.Item>
-                    <Dropdown.Item href="partidos" title="Ir a Partidos.">Partidos</Dropdown.Item>
-                    <Dropdown.Item href="clasificacion" title="Ir a Clasificación.">Clasificación</Dropdown.Item>
+                    <Dropdown.Item href="/reglamento" title="Ir a Reglamento.">Reglamento</Dropdown.Item>
+                    <Dropdown.Item href="/partidos" title="Ir a Partidos.">Partidos</Dropdown.Item>
+                    <Dropdown.Item href="/clasificacion" title="Ir a Clasificación.">Clasificación</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Nav.Item>
@@ -81,7 +81,7 @@ function Header() {
 
             {/* BOTÓN LOGIN */}
             {!rol ?
-              (<Button onClick={toggleModal} className="btn-lg">
+              (<Button onClick={toggleModal} className="btn-md">
                 Iniciar sesión
               </Button>) : (<>{/* BOTÓN 'AÑADIR IMÁGEN' */}<Button onClick={toggleImageModal} className="btn-img">Añadir imagen</Button>
               <Button onClick={logOut} className="btn-lg">

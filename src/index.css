@@ -70,6 +70,15 @@ h2.section-titulo::after {
     /*cursor: pointer;*/
 }
 
+.aumentar-escala-logos {
+    transition: transform 0.3s ease-in-out;
+}
+
+.aumentar-escala-logos:hover {
+    transform: scale(1.10);
+    /*cursor: pointer;*/
+}
+
 /* Animación de pulso */
 @keyframes pulso {
     0% {

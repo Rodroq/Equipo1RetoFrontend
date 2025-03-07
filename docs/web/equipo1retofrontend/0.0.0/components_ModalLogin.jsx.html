@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>components/ModalLogin.jsx - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#AppEnrutador">AppEnrutador</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#CapitanForm">CapitanForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Carrusel">Carrusel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ClasificacionPage">ClasificacionPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#EntrenadorForm">EntrenadorForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#EquipoForm">EquipoForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ErrorDisplay">ErrorDisplay</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Header">Header</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#JugadoresForm">JugadoresForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#LoadingDisplay">LoadingDisplay</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#LoginForm">LoginForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#MigasDePan">MigasDePan</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Modal">Modal</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ModalLogin">ModalLogin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#PartidosPage">PartidosPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#PrivacidadPage">PrivacidadPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ReglamentoPage">ReglamentoPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#RutaPrivada">RutaPrivada</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Tabla">Tabla</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Tarjeta">Tarjeta</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#Toast">Toast</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#ToastGroup">ToastGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#almacenarDatosEnLocalStorage">almacenarDatosEnLocalStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#almacenarDatosEnSessionStorage">almacenarDatosEnSessionStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#capitalizarPrimeraLetra">capitalizarPrimeraLetra</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#eliminarDatosDeLocalStorage">eliminarDatosDeLocalStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#eliminarDatosDeSessionStorage">eliminarDatosDeSessionStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#obtenerDatosDeLocalStorage">obtenerDatosDeLocalStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#obtenerDatosDeSessionStorage">obtenerDatosDeSessionStorage</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/ModalLogin.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useContext, useState } from "react";
+import { Modal as ModalDialog, Form, Button, FloatingLabel } from "react-bootstrap";
+import "./ModalLogin.css";
+import { AppContext } from "../contexts/AppProvider";
+import { useNavigate } from "react-router-dom";
+
+
+/**
+ * Componente modal utilizado para el formulario de login
+ * @returns {JSX.Element}
+ */
+function ModalLogin() {
+    const [showPassword, setShowPassword] = useState(false);
+    const { showModal, toggleModal, logIn, agregarToast } = useContext(AppContext);
+    const navegar = useNavigate();
+
+    /**
+     * Funcion que inicia sesión cuando se envia el formulario
+     * @param {Event} e 
+     * @returns {void}
+     */
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        const usuario = formData.get('email');
+        const contrasena = formData.get('password');
+
+        const valido = await logIn(usuario, contrasena);
+
+        if (valido) {
+            toggleModal();
+            agregarToast('Sesión iniciada', 'Has iniciado sesión correctamente.');
+        } else {
+            console.error("Correo o contraseña incorrectas");
+        }
+    }
+
+    return (
+        &lt;ModalDialog show={showModal} onHide={toggleModal} centered className="custom-modal">
+            &lt;ModalDialog.Body className="modal-content-custom">
+                &lt;h3 className="text-center">Iniciar Sesión&lt;/h3>
+                &lt;p className="text-center">Accede con tu cuenta&lt;/p>
+                &lt;Form onSubmit={handleSubmit}>
+                    {/* Email con Floating Label */}
+                    &lt;FloatingLabel controlId="email" label="Email" className="mb-3">
+                        &lt;Form.Control
+                            type="email"
+                            placeholder="Introduce tu email"
+                            name="email"
+                            required
+                        />
+                    &lt;/FloatingLabel>
+
+                    {/* Contraseña con Floating Label */}
+                    &lt;FloatingLabel controlId="password" label="Contraseña" className="mb-3 d-flex">
+                        &lt;Form.Control
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Introduce tu contraseña"
+                            name="password"
+                            required
+                        />
+                        &lt;Button
+                            variant="outline-secondary"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            &lt;i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`} style={{ fontSize: '24px' }}>&lt;/i>
+                        &lt;/Button>
+                    &lt;/FloatingLabel>
+
+                    {/* Botón de login */}
+                    &lt;div className="d-grid">
+                        &lt;Button type="submit" className="btn-login">
+                            Iniciar Sesión
+                        &lt;/Button>
+                    &lt;/div>
+                &lt;/Form>
+            &lt;/ModalDialog.Body>
+        &lt;/ModalDialog>
+    );
+}
+
+export default ModalLogin;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Mar 04 2025 19:47:42 GMT+0100 (hora estándar de Europa central) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

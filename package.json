@@ -13,10 +13,12 @@
     "@tinymce/tinymce-react": "^5.1.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "minami": "^1.2.3",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.1.5"
+    "react-router-dom": "^7.1.5",
+    "taffydb": "^2.7.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

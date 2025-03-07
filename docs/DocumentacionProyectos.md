@@ -27,9 +27,9 @@
         - [Cards (Tarjetas)](#cards-tarjetas)
         - [Navbar (Barra de navegación)](#navbar-barra-de-navegación)
         - [Modals (Modales)](#modals-modales)
-        - [Pagination (Paginación)](#pagination-paginación)
         - [Carousel (Carrusel)](#carousel-carrusel)
         - [Accordion (Acordeón)](#accordion-acordeón)
+        - [Toast](#toast)
     - [Responsividad](#responsividad)
     - [Accesibilidad](#accesibilidad)
     - [Animaciones](#animaciones)
@@ -60,6 +60,7 @@
     - [Instalar NodeJS](#instalar-nodejs)
   - [Documentación de código](#documentación-de-código)
     - [Generación de documentación](#generación-de-documentación)
+      - [JSDoc](#jsdoc)
       - [phpDocumentor](#phpdocumentor)
   - [Implementaciones faltantes](#implementaciones-faltantes)
   - [Mejoras o posibles cambios a futuro](#mejoras-o-posibles-cambios-a-futuro)
@@ -173,9 +174,9 @@ Hemos usado Bootstap, aplicando componentes predefinidos y estilos para que conc
 * Cards (Tarjetas)
 * Modals (Modales)
 * Navbar (Barra de navegación)
-* Pagination (Paginación)
 * Carousel (Carrusel)
 * Accordion (Acordeón)
+* Toast
 
 ##### Breadcrumb (Migas de pan)
 
@@ -197,10 +198,6 @@ Usado en la cabecera de la página, contiene el logo con los distintos enlaces a
 
 Proporciona información al usuario antes de realizar acciones críticas, como borrado y modificación.
 
-##### Pagination (Paginación)
-
-Para mostrar registros paginados y evitar listados demasiados grandes en pantalla.
-
 ##### Carousel (Carrusel)
 
 Para mostrar imágenes junto a texto con un efecto de desplazamiento lateral.
@@ -208,6 +205,10 @@ Para mostrar imágenes junto a texto con un efecto de desplazamiento lateral.
 ##### Accordion (Acordeón)
 
 Utilizado para mostrar gran cantidad de información en pantalla, ocultándola en diferentes secciones que se pueden desplegar y/o ocultar.
+
+##### Toast
+
+Notificación que se ha usado al hacer login o logout.
 
 ### Responsividad
 
@@ -552,22 +553,89 @@ Se han generado páginas HTML estáticas con la documentación del código PHP y
 
 Para la generación de la documentación de PHP se ha utilizado la herramienta 'phpDocumentor' y para JS se ha utilizado 'JSDoc'.
 
+#### JSDoc
+
+Para la generación de la documentación con JSDoc, los pasos a seguir son los siguientes:
+
+* Instalar JSDoc:
+
+```bash
+npm install -g jsdoc
+```
+
+* Instalación de plantilla minami y taffydb:
+
+```bash
+npm install minami
+npm install taffydb
+```
+
+* Configuración:
+
+```json
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc"]
+    },
+    "source": {
+        "include": ["package.json", "README.md", "src"],
+        "includePattern": ".(js|jsx)$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": true,
+        "useLongnameInNav": false,
+        "showInheritedInNav": true
+    },
+    "opts": {
+        "destination": "./docs/web/",
+        "encoding": "utf8",
+        "private": true,
+        "recurse": true,
+        "template": "./node_modules/minami"
+    }
+}
+```
+
+* Generación de documentación:
+
+```bash
+jsdoc -c jsdoc.json
+```
+
 #### phpDocumentor
+
 Para la generación de la documentación con phpDocumentor, los pasos a seguir son los siguientes:
 
-* Comenzamos pegando el archivo phar en la carpeta del proyecto, el cual encontraremos en la web de phpDocumentor
+* Comenzamos pegando el archivo phar en la carpeta del proyecto, el cual encontraremos en la web de phpDocumentor.
 
-* El siguiente paso, será ejecutar el siguiente comando en la terminal, donde -d es el directorio del proyecto a documentar y -t es el directorio donde quieres generar la documentación
+* El siguiente paso, será ejecutar el siguiente comando en la terminal, donde -d es el directorio del proyecto a documentar y -t es el directorio donde quieres generar la documentación.
+
 ```bash
 php .\phpDocumentor.phar run -d --ignore vendor/ -t 
 ```
 
 ## Implementaciones faltantes
 
+* Paginación para listados con muchos elementos.
+* Apartado de 'Gestión' para hacer CRUD de las entidades, además de añadir imágenes, publicaciones y usuarios.
+* Páginas de 'Partidos' y 'Clasificación'.
+* Restablecer contraseña de usuario por parte del administrador del sistema.
+* Cambio de contraseña por parte del usuario del sistema.
+* Envío de emails para notificaciones.
+* Gestión de las actas de los partidos.
+* Caducidad y renovación del token de usuario.
+
 ## Mejoras o posibles cambios a futuro
 
 * Personalizar Bootstrap, con el 'pero' que eso conlleva, para tener un diseño menos predefinido y estándar.
 * Hacer mejoras de UX/UI, para hacer más cómodo el uso de la aplicación.
+* Modo oscuro para la aplicación.
 
 ## Problemas encontrados
 
@@ -605,4 +673,5 @@ Se han utilizado los apuntes aportados durante el curso por los profesores y los
 * [Laravel Sanctum](https://laravel.com/docs/11.x/sanctum)
 * [Laravel Spatie](https://spatie.be/docs/laravel-permission/v6/introduction)
 * [MDN](https://developer.mozilla.org/es/)
+* [W3Schools](https://www.w3schools.com/)
 * [TinyMCE](https://www.tiny.cloud/)
