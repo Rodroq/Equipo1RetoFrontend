@@ -8,8 +8,10 @@ import logo_ies_miguelherrero from '../assets/logo_ies_miguelherrero.png';
 import logo_ies_zapaton from '../assets/logo_ies_zapaton.jpg';
 import logo_liga_solidaria_fp_cantabria from '../assets/logo_liga_solidaria_fp_cantabria.png';
 import logo_RFCF from '../assets/logo_RFCF.png';
+import patrocinadoresData from "../data/Patrocinadores";
 
 function InicioPage() {
+    console.log(patrocinadoresData);
     // Estados
     const [donaciones, setDonaciones] = useState({ kilos: 0, importe: 0});
 
@@ -154,12 +156,12 @@ function InicioPage() {
             <Container className="my-5">
                 <h2 className="text-center mb-4 section-titulo">Patrocinadores</h2>
                 <Row className="text-center">
-                    {[...Array(7)].map((_, index) => (
+                    {patrocinadoresData.map((imagen, index) => (
                         <Col key={index}>
                             <Image 
-                                src={"https://placehold.co/600x400/png"} 
-                                roundedCircle  
-                                style={{ width: "110px", height: "110px", objectFit: "cover" }} 
+                                src={imagen.img} 
+                                // roundedCircle  
+                                style={{ width: "200px", height: "80px"}} 
                                 className="mb-3"
                             />
                         </Col>
