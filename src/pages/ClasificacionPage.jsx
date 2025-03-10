@@ -257,7 +257,7 @@ function ClasificacionPage() {
                 <td>
                   <div className="d-flex align-items-center">
                     <span>{equipo.nombre}</span>
-                    {index === 0 && (
+                    {index === 0 && equipo.jugados > 0 && (
                       <Badge bg="warning" text="dark" className="ms-2">
                         <i className="bi bi-trophy-fill"></i>
                       </Badge>
