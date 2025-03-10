@@ -21,7 +21,7 @@ function PartidosPage() {
         async function fetchPartidos() {
             try {
                 setCargando(true);
-                const datosPartidos = negocio.getDatos('partidos');
+                const datosPartidos = await negocio.getDatos('partidos');
 
                 // Para desarrollo:
                 setPartidos(datosPartidos.partidos.partidos)
