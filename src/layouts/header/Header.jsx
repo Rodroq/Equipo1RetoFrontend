@@ -12,7 +12,7 @@ import { AppContext } from "../../contexts/AppProvider";
 function Header() {
   // Estado para manejar la visibilidad del dropdown
   const [showDropdown, setShowDropdown] = useState(false);
-  const { toggleModal, rol, logOut } = useContext(AppContext);
+  const { toggleImageModal, toggleModal, rol, logOut } = useContext(AppContext);
 
   return (
     <header className="sticky-top border-bottom border-primary border-2">
@@ -74,7 +74,7 @@ function Header() {
                 </Nav.Link>
               </Nav.Item>
 
-              {rol == 'administrador' ? (<Nav.Link href="/gestion" title="Ir a Gestion." className="fw-semibold text-dark link-hover">
+              {rol == 'administrador' || rol == 'periodista' || rol == 'entrenador' || rol == 'director' ? (<Nav.Link href="/gestion" title="Ir a Gestion." className="fw-semibold text-dark link-hover">
                 Gestión
               </Nav.Link>) : (<></>)}
             </Nav>
@@ -83,9 +83,10 @@ function Header() {
             {!rol ?
               (<Button onClick={toggleModal} className="btn-md">
                 Iniciar sesión
-              </Button>) : (<Button onClick={logOut} className="btn-md">
+              </Button>) : (<>{/* BOTÓN 'AÑADIR IMÁGEN' */}<Button onClick={toggleImageModal} className="btn-img">Añadir imagen</Button>
+              <Button onClick={logOut} className="btn-lg">
                 Cerrar sesión
-              </Button>)}
+              </Button></>)}
           </Navbar.Collapse>
         </Container>
       </Navbar>

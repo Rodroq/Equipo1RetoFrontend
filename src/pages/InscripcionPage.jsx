@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Card, Row, Col } from "react-bootstrap";
 import { AppContext } from "../contexts/AppProvider";
-import "./Inscripcion.css";
+import "./css/Inscripcion.css";
 import EquipoForm from "../components/formularios/EquipoForm";
 import EntrenadorForm from "../components/formularios/EntrenadorForm";
 import CapitanForm from "../components/formularios/CapitanForm";
