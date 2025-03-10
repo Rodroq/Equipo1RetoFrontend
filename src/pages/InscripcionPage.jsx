@@ -48,9 +48,7 @@ function InscripcionPage() {
         try {
             const datosAPI = prepararDatosParaAPI();
             await negocio.postDatos('equipos', datosAPI);
-            console.log(datosAPI);
             setShow(false);
-            console.log('Equipo inscrito correctamente');
         } catch (error) {
             console.error('Error al inscribir el equipo:', error);
             // Aquí podrías añadir un toast o mensaje de error
@@ -140,9 +138,6 @@ function InscripcionPage() {
             // Aquí enviamos el formulario, primero mostrando un modal
             // Mostramos el modal
             setShow(true);
-            console.log("Formulario válido y enviado");
-        } else {
-            console.log("Formulario inválido");
         }
     };
 

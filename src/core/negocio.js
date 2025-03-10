@@ -21,7 +21,6 @@ const $negocio = (function () {
           }
         try {
             const loginData = await postDatos('login', datos);
-            console.log(loginData);
             if (loginData.success) {
                 setAuthToken(loginData.data.token);
                 sessionStorage.setItem('rol', loginData.data.usuario.rol);

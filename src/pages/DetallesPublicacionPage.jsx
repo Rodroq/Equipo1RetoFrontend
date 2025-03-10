@@ -26,7 +26,6 @@ function DetallesPublicacionPage() {
                     setError('No se han encontrado los datos de la publicación');
                     return;
                 }
-                console.log(datos);
                 setPublicacion(datos.punlicacion);
             } catch (err) {
                 setError('Error al cargar los datos de la publicación');
