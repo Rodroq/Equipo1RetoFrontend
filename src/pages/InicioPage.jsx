@@ -11,7 +11,6 @@ import logo_RFCF from '../assets/logo_RFCF.png';
 import patrocinadoresData from "../data/Patrocinadores";
 
 function InicioPage() {
-    console.log(patrocinadoresData);
     // Estados
     const [donaciones, setDonaciones] = useState({ kilos: 0, importe: 0});
 
@@ -113,12 +112,12 @@ function InicioPage() {
                                 <Row>
                                     <Col className="mb-3">
                                         <Card.Text>
-                                            <Badge pill bg="warning text-dark fs-3"><i className="bi bi-box2-heart"></i> {donaciones.kilos || 0} Kg</Badge>
+                                            <Badge pill bg="warning text-dark fs-3"><i className="bi bi-box2-heart"></i> {donaciones?.kilos || 0} Kg</Badge>
                                         </Card.Text>
                                     </Col>
                                     <Col className="mb-3">
                                         <Card.Text>
-                                            <Badge pill bg="warning text-dark fs-3"><i className="bi bi-bank"></i> {donaciones.importe || 0} €</Badge>
+                                            <Badge pill bg="warning text-dark fs-3"><i className="bi bi-bank"></i> {donaciones?.importe || 0} €</Badge>
                                         </Card.Text>
                                     </Col>
                                 </Row>

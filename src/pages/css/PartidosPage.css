@@ -1,0 +1,76 @@
+/* Estilos adicionales para la página de partidos */
+
+/* Animaciones para los elementos */
+.aparecerArriba {
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.aparecerIzquierda {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.aparecerDerecha {
+  animation: fadeInRight 0.8s ease-out;
+}
+
+/* Estilos para los resultados de partidos */
+.resultado-partido {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-weight: bold;
+  min-width: 70px;
+}
+
+.resultado-local,
+.resultado-visitante {
+  font-size: 1.1rem;
+  padding: 0 5px;
+}
+
+.separador {
+  color: #6c757d;
+  margin: 0 5px;
+}
+
+/* Estilos para los diferentes resultados */
+.partido-victoria-local .resultado-local {
+  color: #198754;
+  font-weight: bold;
+}
+
+.partido-victoria-visitante .resultado-visitante {
+  color: #198754;
+  font-weight: bold;
+}
+
+.partido-empate .resultado-local,
+.partido-empate .resultado-visitante {
+  color: #fd7e14;
+}
+
+/* Hover sobre filas de partidos */
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .table-responsive {
+    font-size: 0.85rem;
+  }
+
+  .resultado-partido {
+    min-width: 60px;
+    padding: 4px 8px;
+  }
+
+  .resultado-local,
+  .resultado-visitante {
+    font-size: 1rem;
+  }
+}
