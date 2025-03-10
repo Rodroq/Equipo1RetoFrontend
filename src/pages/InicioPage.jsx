@@ -27,15 +27,15 @@ function InicioPage() {
     const { negocio } = useContext(AppContext);
 
     const imagenesRetos = [
-        [{imgReto1}, "Texto1"],
-        [{imgReto2}, "Texto2"],
-        [{imgReto3}, 'Texto3']
+        [imgReto1, "Texto1"],
+        [imgReto2, "Texto2"],
+        [imgReto3, 'Texto3']
     ];
 
     const imagenesPublicaciones = [
-        [{imgPublicacion1}, "Texto1"],
-        [{imgPublicacion2}, "Texto2"],
-        [{imgPublicacion3}, 'Texto3']
+        [imgPublicacion1, "Texto1"],
+        [imgPublicacion2, "Texto2"],
+        [imgPublicacion3, 'Texto3']
     ];
 
 
