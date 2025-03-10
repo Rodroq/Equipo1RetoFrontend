@@ -442,4 +442,3 @@ function ClasificacionPage() {
 }
 
 export default ClasificacionPage
-
