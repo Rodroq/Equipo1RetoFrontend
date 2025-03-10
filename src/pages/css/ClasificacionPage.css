@@ -1,0 +1,47 @@
+/* Estilos adicionales para la página de clasificación */
+
+/* Animaciones para los elementos */
+.aparecerArriba {
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.aparecerIzquierda {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.aparecerDerecha {
+  animation: fadeInRight 0.8s ease-out;
+}
+
+/* Destacar filas de clasificación al pasar el ratón */
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.1) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo para los equipos clasificados */
+.table-success {
+  background-color: rgba(25, 135, 84, 0.1) !important;
+}
+
+/* Animación para el trofeo */
+.bi-trophy-fill {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .table-responsive {
+    font-size: 0.85rem;
+  }
+}
