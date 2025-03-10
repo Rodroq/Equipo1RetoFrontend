@@ -18,7 +18,7 @@ function Footer() {
           <Col className="d-flex justify-content-end">
             <Nav className="list-unstyled d-flex">
               <Nav.Item>
-                <Nav.Link href="https://www.instagram.com/" title='Ir a Instagram.' target="_blank" rel="noopener noreferrer" className="text-body-secondary ms-3">
+                <Nav.Link href="https://www.instagram.com/ligasolidariafp/" title='Ir a Instagram.' target="_blank" rel="noopener noreferrer" className="text-body-secondary ms-3">
                   <i className="bi bi-instagram link-hover" style={{ fontSize: '24px'}}></i>
                 </Nav.Link>
               </Nav.Item>

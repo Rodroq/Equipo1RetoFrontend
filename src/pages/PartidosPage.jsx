@@ -150,10 +150,59 @@ function PartidosPage() {
         })
     }
 
+    // Calcular estadísticas de equipos
+    const calcularEstadisticas = () => {
+        const stats = {};
+
+        partidos.forEach(partido => {
+            // Inicializar estadísticas si no existen
+            if (!stats[partido.equipoL]) {
+                stats[partido.equipoL] = { golesFavor: 0, golesContra: 0 };
+            }
+            if (!stats[partido.equipoV]) {
+                stats[partido.equipoV] = { golesFavor: 0, golesContra: 0 };
+            }
+
+            // Actualizar goles
+            stats[partido.equipoL].golesFavor += partido.golesL || 0;
+            stats[partido.equipoL].golesContra += partido.golesV || 0;
+            stats[partido.equipoV].golesFavor += partido.golesV || 0;
+            stats[partido.equipoV].golesContra += partido.golesL || 0;
+        });
+
+        return stats;
+    };
+
+    // Obtener mejor ataque
+    const obtenerMejorAtaque = (stats) => {
+        let mejorEquipo = { equipo: '', goles: 0 };
+        Object.entries(stats).forEach(([equipo, data]) => {
+            if (data.golesFavor > mejorEquipo.goles) {
+                mejorEquipo = { equipo, goles: data.golesFavor };
+            }
+        });
+        return mejorEquipo;
+    };
+
+    // Obtener mejor defensa
+    const obtenerMejorDefensa = (stats) => {
+        let mejorEquipo = { equipo: '', goles: Number.MAX_VALUE };
+        Object.entries(stats).forEach(([equipo, data]) => {
+            if (data.golesContra < mejorEquipo.goles) {
+                mejorEquipo = { equipo, goles: data.golesContra };
+            }
+        });
+        return mejorEquipo;
+    };
+
     // Partidos filtrados y agrupados
     const partidosFiltrados = filtrarPartidos()
     const partidosAgrupados = agruparPartidosPorFecha(partidosFiltrados)
     const fechasOrdenadas = ordenarFechas(Object.keys(partidosAgrupados))
+
+    const estadisticas = calcularEstadisticas();
+    const mejorAtaque = obtenerMejorAtaque(estadisticas);
+    const mejorDefensa = obtenerMejorDefensa(estadisticas);
 
     // Renderizado
     return (
@@ -261,10 +310,10 @@ function PartidosPage() {
                                     <h5 className="border-bottom pb-2">Mejor Ataque</h5>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="d-flex align-items-center">
-                                            <span className="fw-bold">Imperio ASIR</span>
+                                            <span className="fw-bold">{mejorAtaque.equipo}</span>
                                         </div>
                                         <Badge bg="success" className="p-2">
-                                            9 goles
+                                            {mejorAtaque.goles} goles
                                         </Badge>
                                     </div>
                                 </div>
@@ -272,24 +321,10 @@ function PartidosPage() {
                                     <h5 className="border-bottom pb-2">Mejor Defensa</h5>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="d-flex align-items-center">
-                                            <span className="fw-bold">Chatarreros FC</span>
+                                            <span className="fw-bold">{mejorDefensa.equipo}</span>
                                         </div>
                                         <Badge bg="primary" className="p-2">
-                                            3 goles
-                                        </Badge>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h5 className="border-bottom pb-2">Máximo Goleador</h5>
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <div className="d-flex align-items-center">
-                                            <div>
-                                                <span className="fw-bold d-block">Carlos Martínez</span>
-                                                <small className="text-muted">Volt Damm 01</small>
-                                            </div>
-                                        </div>
-                                        <Badge bg="warning" text="dark" className="p-2">
-                                            5 goles
+                                            {mejorDefensa.goles} goles
                                         </Badge>
                                     </div>
                                 </div>

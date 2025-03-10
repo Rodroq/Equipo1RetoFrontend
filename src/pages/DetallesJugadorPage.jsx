@@ -29,7 +29,6 @@ function DetallesJugadorPage() {
                 // Obtener el ID del jugador de la URL
                 const id = window.location.pathname.split('/').pop();
                 const datos = await negocio.getDatos(`jugadores/${id}`);
-                console.log(datos);
 
                 if (!datos) {
                     setError('No se han encontrado los datos del jugador');

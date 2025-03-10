@@ -44,10 +44,16 @@ function InscripcionPage() {
         setShow(false)
     };
 
-    function handleConfirm() {
-        setShow(false)
-        console.log('Se ha inscrito al equipo correctamente');
-    };
+    async function handleConfirm() {
+        try {
+            const datosAPI = prepararDatosParaAPI();
+            await negocio.postDatos('equipos', datosAPI);
+            setShow(false);
+        } catch (error) {
+            console.error('Error al inscribir el equipo:', error);
+            // Aquí podrías añadir un toast o mensaje de error
+        }
+    }
 
     function handleChange(seccion, index, campo, valor) {
         setFormData((estadoAnterior) => {
@@ -132,11 +138,86 @@ function InscripcionPage() {
             // Aquí enviamos el formulario, primero mostrando un modal
             // Mostramos el modal
             setShow(true);
-            console.log("Formulario válido y enviado");
-        } else {
-            console.log("Formulario inválido");
         }
     };
+
+    function prepararDatosParaAPI() {
+        // Función auxiliar para crear el objeto de jugador
+        function crearObjetoJugador(datos, tipo) {
+            // Crear slug desde el nombre
+            const slug = `${datos.nombre}-${datos.apellido1}-${datos.apellido2}`.toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9]+/g, "-");
+
+            // Campos específicos según el tipo de jugador
+            let camposEspecificos = {};
+            if (tipo !== "jugador") {
+                camposEspecificos = {
+                    dni: datos.dni ? datos.dni.toString().trim() : "no",
+                    email: datos.email ? datos.email.trim() : "no@example.com",
+                    telefono: datos.telefono ? datos.telefono.toString().trim() : "no"
+                };
+            } else {
+                camposEspecificos = {
+                    dni: "no",
+                    email: "no@example.com",
+                    telefono: "no"
+                };
+            }
+
+            return {
+                nombre: datos.nombre.trim(),
+                apellido1: datos.apellido1.trim(),
+                apellido2: datos.apellido2.trim(),
+                slug: slug,
+                tipo: tipo,
+                ...camposEspecificos,
+                estadisticas: {
+                    goles: 0,
+                    asistencias: 0,
+                    tarjetas_amarillas: 0,
+                    tarjetas_rojas: 0,
+                    lesiones: 0
+                },
+                estudios: {
+                    centro: "IES Leonardo Da Vinci",
+                    curso: 1,
+                    ciclos: {
+                        nombre: mapearCiclo(datos.ciclo),
+                        familia: {
+                            nombre: "Informática y Comunicaciones"
+                        }
+                    }
+                }
+            };
+        }
+
+        // Función para mapear el ID del ciclo a su nombre
+        function mapearCiclo(cicloId) {
+            const ciclos = {
+                "1": "Sistemas Microinformáticos y Redes",
+                "2": "Administración de Sistemas Informáticos en Red",
+                "3": "Desarrollo de Aplicaciones Multiplataforma",
+                "4": "Desarrollo de Aplicaciones Web"
+            };
+            return ciclos[cicloId] || "";
+        }
+
+        // Crear array de jugadores incluyendo entrenador, capitán y jugadores
+        const jugadores = [
+            crearObjetoJugador(formData.entrenador, "entrenador"),
+            crearObjetoJugador(formData.capitan, "capitan"),
+            ...formData.jugadores.map(jugador => crearObjetoJugador(jugador, "jugador"))
+        ];
+
+        // Crear objeto final
+        return {
+            nombre: formData.equipo,
+            centro_id: 1,
+            jugadores: jugadores
+        };
+    }
 
     return (
         <>
