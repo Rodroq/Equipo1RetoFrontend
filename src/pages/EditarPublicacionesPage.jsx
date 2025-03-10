@@ -1,4 +1,4 @@
-import { Card, Container } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import Tabla from '../components/Tabla.jsx'
 import Modal from '../components/Modal.jsx'
 import { useNavigate } from "react-router-dom";
@@ -74,6 +74,15 @@ function EditarPublicacionesPage() {
             <h2 className="text-center mb-5 section-titulo">Publicaciones</h2>
             <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                 <Card.Body>
+                    <div className="mb-3">
+                        <Button
+                            variant="primary"
+                            onClick={() => navegar('crear')}
+                            className="mb-3"
+                        >
+                            Crear Nueva Publicación
+                        </Button>
+                    </div>
                     <Tabla
                         informacion={publicaciones}
                         columnas={['titulo', 'tipo']}
