@@ -13,9 +13,6 @@ function PartidosPage() {
     const [filtroActivo, setFiltroActivo] = useState("todos")
     const [cargando, setCargando] = useState(true)
 
-    // Navegación
-    const navegar = useNavigate()
-
     // Contexto
     const { negocio } = useContext(AppContext)
 
@@ -23,70 +20,8 @@ function PartidosPage() {
     useEffect(() => {
         async function fetchPartidos() {
             try {
-                setCargando(true)
-                // En producción, usar la siguiente línea:
-                // const partidosResponse = await negocio.getDatos('partidos');
-                // setPartidos(partidosResponse.partidos.partidos);
-
-                // Datos de ejemplo para desarrollo
-                const datosPartidos = {
-                    success: true,
-                    message: "Partidos disponibles",
-                    partidos: {
-                        partidos: [
-                            {
-                                slug: "partido",
-                                fecha: "2025-02-19",
-                                hora: "16:34:00",
-                                equipoL: "Chatarreros FC",
-                                equipoV: "Chatgepeteros",
-                                golesL: 1,
-                                golesV: 3,
-                                pabellon: "Pabellon La Habana Vieja",
-                            },
-                            {
-                                slug: "partido-1",
-                                fecha: "2025-02-12",
-                                hora: "18:54:00",
-                                equipoL: "Imperio ASIR",
-                                equipoV: "Chatgepeteros",
-                                golesL: 4,
-                                golesV: 1,
-                                pabellon: "Pabellon La Habana Vieja",
-                            },
-                            {
-                                slug: "partido-2",
-                                fecha: "2025-02-24",
-                                hora: "13:03:00",
-                                equipoL: "Imperio ASIR",
-                                equipoV: "Yayo Vallecano",
-                                golesL: 5,
-                                golesV: 1,
-                                pabellon: "Pabellon La Habana Vieja",
-                            },
-                            {
-                                slug: "partido-3",
-                                fecha: "2025-02-25",
-                                hora: "13:10:00",
-                                equipoL: "Mag-nificos",
-                                equipoV: "Volt Damm 01",
-                                golesL: 2,
-                                golesV: 5,
-                                pabellon: "Pabellon La Habana Vieja",
-                            },
-                            {
-                                slug: "partido-4",
-                                fecha: "2025-02-14",
-                                hora: "12:26:00",
-                                equipoL: "Chatarreros FC",
-                                equipoV: "Chatgepeteros",
-                                golesL: 2,
-                                golesV: 2,
-                                pabellon: "Pabellon La Habana Vieja",
-                            },
-                        ],
-                    },
-                }
+                setCargando(true);
+                const datosPartidos = negocio.getDatos('partidos');
 
                 // Para desarrollo:
                 setPartidos(datosPartidos.partidos.partidos)
