@@ -430,11 +430,6 @@ function ClasificacionPage() {
                         </div>
                       </div>
                     ))}
-                    <div className="text-center mt-3">
-                      <Button variant="outline-primary" size="sm" onClick={() => navegar("/calendario")}>
-                        Ver calendario completo
-                      </Button>
-                    </div>
                   </>
                 )}
               </Card.Body>
@@ -447,4 +442,3 @@ function ClasificacionPage() {
 }
 
 export default ClasificacionPage
-
