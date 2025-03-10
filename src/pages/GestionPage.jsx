@@ -1,76 +1,75 @@
-import { Card, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../contexts/AppProvider";
 
 function GestionPage() {
-    const generarFichaGestion = () => {
-        // TODO: Generar las fichas según permisos de usuario
-    };
+    const navegar = useNavigate();
+    const { rol } = useContext(AppContext);
 
-    // Renderizado
+    // Define los botones y sus permisos según el enrutador
+    const botonesGestion = [
+        {
+            titulo: "Gestión de Imágenes",
+            descripcion: "Añadir, editar y eliminar imágenes del sistema",
+            icono: "bi bi-images",
+            ruta: "/gestion/imagenes",
+            roles: ["administrador"]
+        },
+        {
+            titulo: "Gestión de Usuarios",
+            descripcion: "Añadir, editar y eliminar usuarios del sistema",
+            icono: "bi bi-people",
+            ruta: "/gestion/usuarios",
+            roles: ["administrador"]
+        },
+        {
+            titulo: "Gestión de Actas",
+            descripcion: "Gestionar las actas de los partidos",
+            icono: "bi bi-file-text",
+            ruta: "/gestion/actas",
+            roles: ["administrador", "director"]
+        },
+        {
+            titulo: "Gestión de Equipos",
+            descripcion: "Gestionar los equipos del torneo",
+            icono: "bi bi-trophy",
+            ruta: "/gestion/equipos",
+            roles: ["administrador", "entrenador"]
+        },
+        {
+            titulo: "Gestión de Publicaciones",
+            descripcion: "Añadir, editar y eliminar publicaciones",
+            icono: "bi bi-newspaper",
+            ruta: "/publicaciones/editar",
+            roles: ["administrador", "periodista"]
+        }
+    ];
+
     return (
-        <Container className="mt-5 mb-5">
-            <h2 className="text-center mb-5 section-titulo">Gestión</h2>
-            <Row>
-                <Col className="mb-4">
-                    <Link to="/gestion/imagenes" title="Ir a Gestión de Imágenes." className="text-decoration-none">
-                        <Card className="text-center bg-primary h-100 mb-4 shadow text-white aumentar-escala">
-                            <Card.Body className="d-flex flex-column justify-content-center">
-                                <Card.Title>
-                                    <i className="bi bi-image" style={{ fontSize: '70px'}}></i>
-                                </Card.Title>
-                                <Card.Text className="fw-bold fs-4">Imágenes</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Link>
-                </Col>
-                <Col className="mb-4">
-                    <Link to="/gestion/usuarios" title="Ir a Gestión de Usuarios." className="text-decoration-none">
-                        <Card className="text-center bg-primary h-100 mb-4 shadow text-white aumentar-escala">
-                            <Card.Body className="d-flex flex-column justify-content-center">
-                                <Card.Title>
-                                    <i className="bi bi-people" style={{ fontSize: '70px'}}></i>
-                                </Card.Title>
-                                <Card.Text className="fw-bold fs-4">Usuarios</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Link>
-                </Col>
-                <Col className="mb-4">
-                    <Link to="/gestion/equipos" title="Ir a Gestión de Equipos." className="text-decoration-none">
-                        <Card className="text-center bg-primary h-100 mb-4 shadow text-white aumentar-escala">
-                            <Card.Body className="d-flex flex-column justify-content-center">
-                                <Card.Title>
-                                    <i className="bi bi-bus-front" style={{ fontSize: '70px'}}></i>
-                                </Card.Title>
-                                <Card.Text className="fw-bold fs-4">Equipos</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Link>
-                </Col>
-                <Col className="mb-4">
-                    <Link to="/gestion/actas" title="Ir a Gestión de Actas." className="text-decoration-none">
-                        <Card className="text-center bg-primary h-100 mb-4 shadow text-white aumentar-escala">
-                            <Card.Body className="d-flex flex-column justify-content-center">
-                                <Card.Title>
-                                    <i className="bi bi-book" style={{ fontSize: '70px'}}></i>
-                                </Card.Title>
-                                <Card.Text className="fw-bold fs-4">Actas</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Link>
-                </Col>
-                <Col className="mb-4">
-                    <Link to="/publicaciones/editar" title="Ir a Edición de Publicaciones." className="text-decoration-none">
-                        <Card className="text-center bg-primary h-100 mb-4 shadow text-white aumentar-escala">
-                            <Card.Body className="d-flex flex-column justify-content-center">
-                                <Card.Title>
-                                    <i className="bi bi-file-text" style={{ fontSize: '70px'}}></i>
-                                </Card.Title>
-                                <Card.Text className="fw-bold fs-4">Publicaciones</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Link>
-                </Col>
+        <Container className="my-5">
+            <h2 className="text-center mb-5">Panel de Gestión</h2>
+            <Row xs={1} md={2} lg={3} className="g-4">
+                {botonesGestion.map((boton, idx) => (
+                    // Solo mostrar el botón si el rol del usuario está incluido en los roles permitidos
+                    boton.roles.includes(rol) && (
+                        <Col key={idx}>
+                            <Card
+                                className="h-100 shadow-sm hover-card"
+                                onClick={() => navegar(boton.ruta)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <Card.Body className="d-flex flex-column align-items-center">
+                                    <i className={`${boton.icono} mb-3`} style={{ fontSize: '2rem' }}></i>
+                                    <Card.Title className="text-center">{boton.titulo}</Card.Title>
+                                    <Card.Text className="text-center text-muted">
+                                        {boton.descripcion}
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    )
+                ))}
             </Row>
         </Container>
     );

@@ -93,15 +93,15 @@ function AppEnrutador() {
                     {/* Rutas privadas */}
                     {/* Rutas de publicaciones */}
                     <Route path="publicaciones/editar" element={
-                        <RutaPrivada rolesPermitidos={['administrador']}><EditarPublicacionesPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador', 'periodista']}><EditarPublicacionesPage /></RutaPrivada>
                     } />
                     <Route path="publicaciones/editar/:id" element={
-                        <RutaPrivada rolesPermitidos={['administrador']}><EditarPublicacionPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador', 'periodista']}><EditarPublicacionPage /></RutaPrivada>
                     } />
 
                     {/* Rutas de gestión */}
                     <Route path="gestion" element={
-                        <RutaPrivada rolesPermitidos={['administrador']}><GestionPage /></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador', 'periodista', 'director', 'entrenador']}><GestionPage /></RutaPrivada>
                     } />
                     {/* Rutas de imagenes en gestión */}
                     <Route path="gestion/imagenes/" element={
@@ -119,10 +119,10 @@ function AppEnrutador() {
                     } />
                     {/* Rutas de actas en gestión */}
                     <Route path="gestion/actas" element={
-                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador', 'director']}></RutaPrivada>
                     } />
                     <Route path="gestion/equipos" element={
-                        <RutaPrivada rolesPermitidos={['administrador']}></RutaPrivada>
+                        <RutaPrivada rolesPermitidos={['administrador', 'entrenador']}></RutaPrivada>
                     } />
 
                 </Route>
