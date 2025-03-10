@@ -26,7 +26,6 @@ function DetallesRetoPage() {
                     setError('No se han encontrado los datos del reto');
                     return;
                 }
-                console.log(datos);
                 setReto(datos.reto);
             } catch (err) {
                 setError('Error al cargar los datos del reto');

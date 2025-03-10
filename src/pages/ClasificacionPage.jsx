@@ -127,21 +127,35 @@ function ClasificacionPage() {
 
     // Procesar cada partido para actualizar las estadísticas
     partidos.forEach((partido) => {
-      const equipoLocal = partido.equipoL
-      const equipoVisitante = partido.equipoV
-      const golesLocal = partido.golesL
-      const golesVisitante = partido.golesV
+      // Verificar si el partido ya se jugó (fecha anterior a hoy)
+      const fechaPartido = new Date(`${partido.fecha}T${partido.hora}`);
+      const hoy = new Date();
+      
+      if (fechaPartido > hoy) {
+        return; // El partido aún no se ha jugado
+      }
+
+      // Solo procesar partidos que tienen goles registrados
+      if (partido.golesL === null || partido.golesV === null || 
+          partido.golesL === undefined || partido.golesV === undefined) {
+        return; // Ignorar partidos sin resultados
+      }
+
+      const equipoLocal = partido.equipoL;
+      const equipoVisitante = partido.equipoV;
+      const golesLocal = partido.golesL;
+      const golesVisitante = partido.golesV;
 
       // Asegurarse de que ambos equipos existen en las estadísticas
       if (!estadisticas[equipoLocal] || !estadisticas[equipoVisitante]) {
-        console.warn(`Partido con equipos no registrados: ${equipoLocal} vs ${equipoVisitante}`)
-        return
+        console.warn(`Partido con equipos no registrados: ${equipoLocal} vs ${equipoVisitante}`);
+        return;
       }
 
       // Actualizar partidos jugados
-      estadisticas[equipoLocal].jugados += 1
-      estadisticas[equipoVisitante].jugados += 1
-
+      estadisticas[equipoLocal].jugados += 1;
+      estadisticas[equipoVisitante].jugados += 1;
+      
       // Actualizar goles
       estadisticas[equipoLocal].golesFavor += golesLocal
       estadisticas[equipoLocal].golesContra += golesVisitante
