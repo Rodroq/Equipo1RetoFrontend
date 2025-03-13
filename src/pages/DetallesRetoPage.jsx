@@ -18,14 +18,23 @@ function DetallesRetoPage() {
     useEffect(() => {
         async function recuperarDatos() {
             try {
-                // Obtener el slug de la publicación de la URL
+                // Obtener el slug del reto de la URL
                 const slug = window.location.pathname.split('/').pop();
                 const datos = await negocio.getDatos(`retos/${slug}`);
+                const todosRetos = await negocio.getDatos(`retos`);
 
                 if (!datos) {
                     setError('No se han encontrado los datos del reto');
                     return;
                 }
+
+                if (todosRetos) {
+                    const retoConImagen = todosRetos.retos.find(reto => reto.slug === slug);
+                    if (retoConImagen && retoConImagen.imagen) {
+                        datos.reto.imagenes = [retoConImagen.imagen.url];
+                    }
+                }
+
                 setReto(datos.reto);
             } catch (err) {
                 setError('Error al cargar los datos del reto');

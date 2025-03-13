@@ -11,16 +11,11 @@ function DetallesJugadorPage() {
     const [jugador, setJugador] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [imagenes, setImagenes] = useState([['']]);
     const navegar = useNavigate();
 
     // Contexto
     const { negocio } = useContext(AppContext);
-
-    const imagenes = [
-        ["https://placehold.co/1920x500", "Texto1"],
-        ["https://placehold.co/1820x400", "Texto2"],
-        ["https://placehold.co/1720x300", 'Texto3']
-    ];
 
     // Efecto al montar el componente y detectar cambios en 'state'
     useEffect(() => {
@@ -36,6 +31,7 @@ function DetallesJugadorPage() {
                 }
 
                 setJugador(datos.jugador);
+                setImagenes([[datos.jugador.imagenes[0]?.url || '']]);
             } catch (err) {
                 setError('Error al cargar los datos del jugador');
                 console.error(err);
@@ -46,6 +42,10 @@ function DetallesJugadorPage() {
 
         recuperarDatos();
     }, [negocio]);
+
+    useEffect(() => {
+        console.log(imagenes);
+    }, [imagenes]);
 
     if (loading) {
         return <LoadingDisplay />;
@@ -76,7 +76,7 @@ function DetallesJugadorPage() {
                 <Card.Body className="px-4 pb-4">
                     <div className="text-center mb-5">
                         <h5 className="text-secondary">
-                        {jugador.estudio.curso}º - {jugador.estudio.ciclo.nombre}
+                            {jugador.estudio.curso}º - {jugador.estudio.ciclo.nombre}
                         </h5>
                     </div>
 

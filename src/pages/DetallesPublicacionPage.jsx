@@ -21,12 +21,22 @@ function DetallesPublicacionPage() {
                 // Obtener el slug de la publicación de la URL
                 const slug = window.location.pathname.split('/').pop();
                 const datos = await negocio.getDatos(`publicaciones/${slug}`);
+                const imagenes = await negocio.getDatos(`publicaciones`);
 
                 if (!datos) {
                     setError('No se han encontrado los datos de la publicación');
                     return;
                 }
-                setPublicacion(datos.punlicacion);
+
+                if (imagenes) {
+                    const imagenPublicacion = imagenes.publicaciones.find(pub => pub.slug === slug);
+                    if (imagenPublicacion) {
+                        datos.publicacion.imagenes = [imagenPublicacion.imagen.url];
+                    }
+                }
+
+                setPublicacion(datos.publicacion);
+                console.log(datos);
             } catch (err) {
                 setError('Error al cargar los datos de la publicación');
                 console.error(err);
