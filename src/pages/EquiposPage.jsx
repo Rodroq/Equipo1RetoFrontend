@@ -12,7 +12,7 @@ function EquiposPage() {
     const [equipos, setEquipos] = useState([]);
     const [error, setError] = useState(null);
 
-    //Contexto
+    // Contexto
     const { negocio } = useContext(AppContext);
 
     // Efecto al montar el componente
@@ -20,12 +20,11 @@ function EquiposPage() {
         async function fetchEquipos() {
             try {
                 const equiposData = await negocio.getDatos('equipos');
-
+                console.log('Datos de equipos:', equiposData.equipos); // Depuración
                 if (!equiposData) {
                     setError('No se han encontrado equipos');
                     return;
                 }
-
                 setEquipos(equiposData.equipos);
             } catch (err) {
                 setError('Error al cargar los equipos');
@@ -53,9 +52,10 @@ function EquiposPage() {
                                     tituloTarjeta={equipo.nombre}
                                     textoTarjeta={equipo.centro.nombre}
                                     textoBoton="Ver equipo"
-                                    // imagenTarjeta={equipo.imagen}
+                                    imagenTarjeta={equipo.imagen?.url || ''} // Manejo seguro
                                     nombreEntidad="equipos"
-                                    datosObjeto={equipo} />
+                                    datosObjeto={equipo}
+                                />
                             </div>
                         ))}
                     </div>

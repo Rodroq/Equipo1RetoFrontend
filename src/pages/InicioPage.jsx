@@ -8,6 +8,12 @@ import logo_ies_miguelherrero from '../assets/logo_ies_miguelherrero.png';
 import logo_ies_zapaton from '../assets/logo_ies_zapaton.jpg';
 import logo_liga_solidaria_fp_cantabria from '../assets/logo_liga_solidaria_fp_cantabria.png';
 import logo_RFCF from '../assets/logo_RFCF.png';
+import imgReto1 from '../assets/retos/reto1.jpg';
+import imgReto2 from '../assets/retos/reto2.jpg';
+import imgReto3 from '../assets/retos/reto3.jpg';
+import imgPublicacion1 from '../assets/publicaciones/publicacion1.jpg';
+import imgPublicacion2 from '../assets/publicaciones/publicacion2.jpg';
+import imgPublicacion3 from '../assets/publicaciones/publicacion3.jpg';
 import patrocinadoresData from "../data/Patrocinadores";
 
 function InicioPage() {
@@ -20,11 +26,18 @@ function InicioPage() {
     //Contexto
     const { negocio } = useContext(AppContext);
 
-    const imagenes = [
-        ["https://placehold.co/1920x500", "Texto1"],
-        ["https://placehold.co/1820x400", "Texto2"],
-        ["https://placehold.co/1720x300", 'Texto3']
+    const imagenesRetos = [
+        [imgReto1, "Texto1"],
+        [imgReto2, "Texto2"],
+        [imgReto3, 'Texto3']
     ];
+
+    const imagenesPublicaciones = [
+        [imgPublicacion1, "Texto1"],
+        [imgPublicacion2, "Texto2"],
+        [imgPublicacion3, 'Texto3']
+    ];
+
 
     // Efecto al montar el componente
     useEffect(() => {
@@ -96,7 +109,7 @@ function InicioPage() {
 
             <Container className="my-5">
                 <h2 className="text-center mb-4 section-titulo">Retos de FP</h2>
-                <Carrusel imagenes={imagenes} />
+                <Carrusel imagenes={imagenesRetos} />
             </Container>
 
             <Container className="my-5">
@@ -149,7 +162,7 @@ function InicioPage() {
 
             <Container className="my-5">
                 <h2 className="text-center mb-4 section-titulo">Publicaciones</h2>
-                <Carrusel imagenes={imagenes} />
+                <Carrusel imagenes={imagenesPublicaciones} />
             </Container>
 
             <Container className="my-5">

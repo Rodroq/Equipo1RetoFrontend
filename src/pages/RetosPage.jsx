@@ -14,6 +14,7 @@ function RetosPage() {
     useEffect(() => {
         async function fetchRetos() {
             const retosData = await negocio.getDatos('retos');
+            console.log('Datos de retos:', retosData.retos); // Depuración
             setRetos(retosData.retos);
         }
         fetchRetos();
@@ -37,7 +38,12 @@ function RetosPage() {
     }
 
     function cargarImagenesCarrusel() {
-        const imagenes = retosAleatorios.map(reto => [reto.imagen, reto.nombre]);
+        const imagenes = retosAleatorios.map(reto => {
+            if (reto.imagen && reto.imagen.url) {
+                return reto.imagen.url; // Solo la URL si existe
+            }
+            return ''; // Fallback si no hay imagen
+        });
         setImagenesCarrusel(imagenes);
     }
 
@@ -54,7 +60,7 @@ function RetosPage() {
                                     <Tarjeta
                                         tituloTarjeta={reto.titulo}
                                         textoTarjeta={reto.texto}
-                                        imagenTarjeta={reto.imagen}
+                                        imagenTarjeta={reto.imagen?.url || ''} // Manejo seguro
                                         textoBoton={'Ver reto'}
                                         nombreEntidad={'retos'}
                                         datosObjeto={reto}

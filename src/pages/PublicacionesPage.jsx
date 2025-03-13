@@ -39,7 +39,7 @@ function PublicacionesPage() {
                   <Tarjeta
                     tituloTarjeta={publicacion.titulo}
                     textoTarjeta={publicacion.tipo}
-                    imagenTarjeta={publicacion.imagen}
+                    imagenTarjeta={publicacion.imagen.url}
                     textoBoton={'Ver publicación'}
                     nombreEntidad={'publicaciones'}
                     datosObjeto={publicacion}
