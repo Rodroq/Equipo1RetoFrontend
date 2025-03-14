@@ -27,15 +27,15 @@ function InicioPage() {
     const { negocio } = useContext(AppContext);
 
     const imagenesRetos = [
-        [imgReto1, "Texto1"],
-        [imgReto2, "Texto2"],
-        [imgReto3, 'Texto3']
+        [imgReto1, "Diseño| IES Besaya"],
+        [imgReto2, "EXPO| IES Besaya"],
+        [imgReto3, 'FoodTruck| IES Besaya' ]
     ];
 
     const imagenesPublicaciones = [
-        [imgPublicacion1, "Texto1"],
-        [imgPublicacion2, "Texto2"],
-        [imgPublicacion3, 'Texto3']
+        [imgPublicacion1, "Exhibición de un vehículo inercial para descensos |IES Miguel Herrero Pereda"],
+        [imgPublicacion2, "Jabones Solidarios|IES Zapatón"],
+        [imgPublicacion3, 'Entrenador Automatizado|IES Zapatón']
     ];
 
 
