@@ -33,7 +33,8 @@ function RetosPage() {
     }, [retosAleatorios]);
 
     function generarRetosAleatorios() {
-        const tarjetasAleatorias = [...retos].sort(() => Math.random() - 0.5);
+        const retosConImagen = retos.filter(reto => reto.imagen && reto.imagen.url);
+        const tarjetasAleatorias = [...retosConImagen].sort(() => Math.random() - 0.5);
         setRetosAleatorios(tarjetasAleatorias.slice(0, 5));
     }
 
