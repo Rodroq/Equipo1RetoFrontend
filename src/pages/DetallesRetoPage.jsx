@@ -64,11 +64,30 @@ function DetallesRetoPage() {
                 <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">
                     <Card.Body>
                         <h2 className="text-center text-primary border-bottom border-primary p-2">{reto.titulo}</h2>
-                        <div className="text-center"><strong>{reto.estudio.centro.nombre} - {reto.estudio.curso}º {reto.estudio.ciclo.nombre}</strong></div>
+                        <div className="text-center">
+                            <strong>{reto.estudio.centro.nombre} - {reto.estudio.curso}º {reto.estudio.ciclo.nombre}</strong>
+                        </div>
                         <br />
-                        {reto.imagenes.length == 1 && (<Image src={reto.imagenes[0]} />)}
-                        {reto.imagenes.length > 1 && (<Carrusel imagenes={reto.imagenes.map(imagen => [imagen, ''])} />)}
-                        <p>{reto.texto}</p>
+                        {reto.imagenes.length === 1 && (
+                            <div className="text-center">
+                                <Image
+                                    src={reto.imagenes[0]}
+                                    alt={reto.titulo}
+                                    fluid
+                                    style={{
+                                        maxWidth: "100%", // Asegura que no se desborde
+                                        height: "auto",   // Mantiene la proporción
+                                        maxHeight: "400px", // Limita la altura máxima
+                                        objectFit: "contain", // Ajusta sin recortar
+                                        borderRadius: "8px", // Redondea bordes
+                                    }}
+                                />
+                            </div>
+                        )}
+                        {reto.imagenes.length > 1 && (
+                            <Carrusel imagenes={reto.imagenes.map(imagen => [imagen, ''])} />
+                        )}
+                        <p className="mt-4">{reto.texto}</p>
                     </Card.Body>
                 </Card>
             </Container>
