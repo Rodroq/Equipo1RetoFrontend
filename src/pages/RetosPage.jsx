@@ -38,18 +38,27 @@ function RetosPage() {
     }
 
     function cargarImagenesCarrusel() {
-        const imagenes = retosAleatorios.map(reto => {
-            if (reto.imagen && reto.imagen.url) {
-                return reto.imagen.url; // Solo la URL si existe
-            }
-            return ''; // Fallback si no hay imagen
-        });
+        const imagenes = retosAleatorios
+            .map(reto => {
+                if (reto.imagen && reto.imagen.url) {
+                    return [reto.imagen.url, reto.titulo]; // Formato [url, nombre]
+                }
+                return null; // Excluir retos sin imagen
+            })
+            .filter(imagen => imagen !== null); // Filtrar entradas nulas
+        console.log('Imagenes para el carrusel:', imagenes); // Depuración
         setImagenesCarrusel(imagenes);
     }
 
     return (
         <>
-            <Carrusel imagenes={imagenesCarrusel} />
+            {imagenesCarrusel.length > 0 ? (
+                <Carrusel imagenes={imagenesCarrusel} />
+            ) : (
+                <Container className="mt-5 text-center">
+                    <p>No hay imágenes disponibles para el carrusel.</p>
+                </Container>
+            )}
             <Container className="mt-5 mb-5">
                 <h2 className="text-center mb-5 section-titulo">Retos</h2>
                 <Card className="shadow-lg p-4 border-0 rounded-4 bg-light">

@@ -66,9 +66,26 @@ function DetallesPublicacionPage() {
                     <Card.Body>
                         <h3 className="text-center text-secondary border-bottom border-primary p-2">{publicacion.titulo}</h3>
                         <br />
-                        {publicacion.imagenes.length == 1 && (<Image src={publicacion.imagenes[0]} />)}
-                        {publicacion.imagenes.length > 1 && (<Carrusel imagenes={publicacion.imagenes.map(imagen => [imagen, ''])} />)}
-                        <p>{publicacion.texto}</p>
+                        {publicacion.imagenes.length === 1 && (
+                            <div className="text-center">
+                                <Image
+                                    src={publicacion.imagenes[0]}
+                                    alt={publicacion.titulo}
+                                    fluid
+                                    style={{
+                                        maxWidth: "100%", // Asegura que no se desborde
+                                        height: "auto",   // Mantiene la proporción
+                                        maxHeight: "400px", // Limita la altura máxima
+                                        objectFit: "contain", // Ajusta la imagen sin recortarla
+                                        borderRadius: "8px", // Opcional: redondear bordes
+                                    }}
+                                />
+                            </div>
+                        )}
+                        {publicacion.imagenes.length > 1 && (
+                            <Carrusel imagenes={publicacion.imagenes.map(imagen => [imagen, ''])} />
+                        )}
+                        <p className="mt-4">{publicacion.texto}</p>
                     </Card.Body>
                 </Card>
             </Container>
