@@ -71,13 +71,13 @@ function ClasificacionPage() {
         const partidosGrupoA = partidos.filter((partido) => {
           const equipoLocalEnGrupoA = equiposGrupoA.some((e) => e.nombre === partido.equipoL)
           const equipoVisitanteEnGrupoA = equiposGrupoA.some((e) => e.nombre === partido.equipoV)
-          return equipoLocalEnGrupoA && equipoVisitanteEnGrupoA
+          return equipoLocalEnGrupoA || equipoVisitanteEnGrupoA // Cambiado && por ||
         })
 
         const partidosGrupoB = partidos.filter((partido) => {
           const equipoLocalEnGrupoB = equiposGrupoB.some((e) => e.nombre === partido.equipoL)
           const equipoVisitanteEnGrupoB = equiposGrupoB.some((e) => e.nombre === partido.equipoV)
-          return equipoLocalEnGrupoB && equipoVisitanteEnGrupoB
+          return equipoLocalEnGrupoB || equipoVisitanteEnGrupoB // Cambiado && por ||
         })
 
         // Calcular clasificación para cada grupo
@@ -107,10 +107,9 @@ function ClasificacionPage() {
 
   // Función para calcular la clasificación a partir de partidos y equipos
   const calcularClasificacion = (partidos, equipos) => {
-    // Crear un objeto para almacenar las estadísticas de cada equipo
     const estadisticas = {}
 
-    // Inicializar estadísticas para todos los equipos (incluso los que no han jugado)
+    // Inicializar estadísticas
     equipos.forEach((equipo) => {
       estadisticas[equipo.nombre] = {
         nombre: equipo.nombre,
@@ -125,85 +124,62 @@ function ClasificacionPage() {
       }
     })
 
-    // Procesar cada partido para actualizar las estadísticas
+    // Procesar cada partido
     partidos.forEach((partido) => {
-      // Verificar si el partido ya se jugó (fecha anterior a hoy)
-      const fechaPartido = new Date(`${partido.fecha}T${partido.hora}`);
-      const hoy = new Date();
+      const fechaPartido = new Date(`${partido.fecha}T${partido.hora}`)
+      const hoy = new Date()
       
-      if (fechaPartido > hoy) {
-        return; // El partido aún no se ha jugado
-      }
+      if (fechaPartido > hoy) return
 
-      // Solo procesar partidos que tienen goles registrados
       if (partido.golesL === null || partido.golesV === null || 
           partido.golesL === undefined || partido.golesV === undefined) {
-        return; // Ignorar partidos sin resultados
+        return
       }
 
-      const equipoLocal = partido.equipoL;
-      const equipoVisitante = partido.equipoV;
-      const golesLocal = partido.golesL;
-      const golesVisitante = partido.golesV;
+      const equipoLocal = partido.equipoL
+      const equipoVisitante = partido.equipoV
 
-      // Asegurarse de que ambos equipos existen en las estadísticas
-      if (!estadisticas[equipoLocal] || !estadisticas[equipoVisitante]) {
-        console.warn(`Partido con equipos no registrados: ${equipoLocal} vs ${equipoVisitante}`);
-        return;
+      // Solo procesar si el equipo pertenece al grupo que estamos calculando
+      if (estadisticas[equipoLocal]) {
+        estadisticas[equipoLocal].jugados += 1
+        estadisticas[equipoLocal].golesFavor += partido.golesL
+        estadisticas[equipoLocal].golesContra += partido.golesV
+        
+        if (partido.golesL > partido.golesV) {
+          estadisticas[equipoLocal].ganados += 1
+          estadisticas[equipoLocal].puntos += 3
+        } else if (partido.golesL < partido.golesV) {
+          estadisticas[equipoLocal].perdidos += 1
+        } else {
+          estadisticas[equipoLocal].empatados += 1
+          estadisticas[equipoLocal].puntos += 1
+        }
       }
 
-      // Actualizar partidos jugados
-      estadisticas[equipoLocal].jugados += 1;
-      estadisticas[equipoVisitante].jugados += 1;
-      
-      // Actualizar goles
-      estadisticas[equipoLocal].golesFavor += golesLocal
-      estadisticas[equipoLocal].golesContra += golesVisitante
-      estadisticas[equipoVisitante].golesFavor += golesVisitante
-      estadisticas[equipoVisitante].golesContra += golesLocal
-
-      // Actualizar resultados (victoria, empate, derrota) y puntos
-      if (golesLocal > golesVisitante) {
-        // Victoria local
-        estadisticas[equipoLocal].ganados += 1
-        estadisticas[equipoLocal].puntos += 3
-        estadisticas[equipoVisitante].perdidos += 1
-      } else if (golesLocal < golesVisitante) {
-        // Victoria visitante
-        estadisticas[equipoVisitante].ganados += 1
-        estadisticas[equipoVisitante].puntos += 3
-        estadisticas[equipoLocal].perdidos += 1
-      } else {
-        // Empate
-        estadisticas[equipoLocal].empatados += 1
-        estadisticas[equipoLocal].puntos += 1
-        estadisticas[equipoVisitante].empatados += 1
-        estadisticas[equipoVisitante].puntos += 1
+      if (estadisticas[equipoVisitante]) {
+        estadisticas[equipoVisitante].jugados += 1
+        estadisticas[equipoVisitante].golesFavor += partido.golesV
+        estadisticas[equipoVisitante].golesContra += partido.golesL
+        
+        if (partido.golesV > partido.golesL) {
+          estadisticas[equipoVisitante].ganados += 1
+          estadisticas[equipoVisitante].puntos += 3
+        } else if (partido.golesV < partido.golesL) {
+          estadisticas[equipoVisitante].perdidos += 1
+        } else {
+          estadisticas[equipoVisitante].empatados += 1
+          estadisticas[equipoVisitante].puntos += 1
+        }
       }
     })
 
-    // Convertir el objeto de estadísticas a un array y ordenarlo
-    const clasificacionArray = Object.values(estadisticas)
-
-    // Ordenar por puntos (descendente), diferencia de goles, goles a favor
-    clasificacionArray.sort((a, b) => {
-      // Primero por puntos
-      if (b.puntos !== a.puntos) {
-        return b.puntos - a.puntos
-      }
-
-      // Si hay empate a puntos, por diferencia de goles
+    return Object.values(estadisticas).sort((a, b) => {
+      if (b.puntos !== a.puntos) return b.puntos - a.puntos
       const difA = a.golesFavor - a.golesContra
       const difB = b.golesFavor - b.golesContra
-      if (difB !== difA) {
-        return difB - difA
-      }
-
-      // Si hay empate en diferencia, por goles a favor
+      if (difB !== difA) return difB - difA
       return b.golesFavor - a.golesFavor
     })
-
-    return clasificacionArray
   }
 
   // Función para calcular la diferencia de goles
