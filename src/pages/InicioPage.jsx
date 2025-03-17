@@ -34,7 +34,7 @@ function InicioPage() {
 
     const imagenesPublicaciones = [
         [imgPublicacion1, "Exhibición de un vehículo inercial para descensos |IES Miguel Herrero Pereda"],
-        [imgPublicacion2, "Jabones Solidarios |IES Zapatón"],
+        [imgPublicacion2, "Jabones Solidarios|IES Zapatón"],
         [imgPublicacion3, 'Entrenador Automatizado|IES Zapatón']
     ];
 

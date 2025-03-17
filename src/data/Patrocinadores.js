@@ -1,5 +1,5 @@
 import disgarsa from "../assets/patrocinadores/disgarsa.jpg";
-import emi from "../assets/patrocinadores/emi.jpg";
+import emi  from "../assets/patrocinadores/emi.jpg";
 import escuela from "../assets/patrocinadores/escuela.jpg";
 import pitma from "../assets/patrocinadores/pitma.jpg";
 import selcansa from "../assets/patrocinadores/selansa.jpg";
