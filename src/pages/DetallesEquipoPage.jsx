@@ -25,7 +25,6 @@ function DetallesEquipoPage() {
                 // Obtener el ID del equipo de la URL
                 const slug = window.location.pathname.split('/').pop();
                 const datos = await negocio.getDatos(`equipos/${slug}`);
-                console.log('Datos del equipo:', datos.equipo); // Depuración
                 if (!datos) {
                     setError('No se han encontrado los datos del equipo');
                     return;

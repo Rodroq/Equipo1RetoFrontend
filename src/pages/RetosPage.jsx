@@ -14,7 +14,6 @@ function RetosPage() {
     useEffect(() => {
         async function fetchRetos() {
             const retosData = await negocio.getDatos('retos');
-            console.log('Datos de retos:', retosData.retos); // Depuración
             setRetos(retosData.retos);
         }
         fetchRetos();
@@ -47,7 +46,6 @@ function RetosPage() {
                 return null; // Excluir retos sin imagen
             })
             .filter(imagen => imagen !== null); // Filtrar entradas nulas
-        console.log('Imagenes para el carrusel:', imagenes); // Depuración
         setImagenesCarrusel(imagenes);
     }
 

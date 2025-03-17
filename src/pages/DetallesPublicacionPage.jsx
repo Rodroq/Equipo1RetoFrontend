@@ -36,7 +36,6 @@ function DetallesPublicacionPage() {
                 }
 
                 setPublicacion(datos.publicacion);
-                console.log(datos);
             } catch (err) {
                 setError('Error al cargar los datos de la publicación');
                 console.error(err);
