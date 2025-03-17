@@ -20,7 +20,6 @@ function EquiposPage() {
         async function fetchEquipos() {
             try {
                 const equiposData = await negocio.getDatos('equipos');
-                console.log('Datos de equipos:', equiposData.equipos); // Depuración
                 if (!equiposData) {
                     setError('No se han encontrado equipos');
                     return;

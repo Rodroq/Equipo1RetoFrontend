@@ -43,10 +43,6 @@ function DetallesJugadorPage() {
         recuperarDatos();
     }, [negocio]);
 
-    useEffect(() => {
-        console.log(imagenes);
-    }, [imagenes]);
-
     if (loading) {
         return <LoadingDisplay />;
     }
